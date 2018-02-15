@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-7">
+            <h1>{{portfolio.name}}</h1>
+            <br/>
+            <h3><b>Estimated value of portfolio</b></h3>
+            <h3>₦{{portfolio.amount}}</h3>
+            <br/>
+            <h3><b>Assets</b></h3>
+            <h4>{{asset_codes}}</h4>
+            <button class="annka-blue-btn submit-btn" (click)="openEdit()">Add Asset</button>
+            <div *ngIf="portfolio.funded; else unfunded">
+                <h4>Your portfolio is funded</h4>
+            </div>
+            <button class="annka-green-btn submit-btn" (click)="openEdit()">Cash Out</button>
+        </div>
+        <div class="col-md-6 col-sm-5">
+            <br/>
+            <div class="pie-chart-div" style="width:300px; height:300px; margin-left:auto; margin-right: 50px;">
+                <piechart></piechart>
+            </div>
+        </div>
+    </div>
+    <div>
+        <br/>
+        <hr/>
+        <br/>
+        <h3>Assets in Portfolio</h3>
+        <div class="row">
+            <portfolioitem *ngFor="let asset of portfolio.assets; let i = index" [asset]="asset"></portfolioitem>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showEdit" class="annka-modal-div" id="login-loader-div">
+    <div class="innder-annka-modal-div">
+        <a class="text-right"><h1 class="close-text" (click)="closeEdit()">&times;</h1></a>
+        <h2 class="text-center">Add an Asset to {{portfolio.name}}</h2>
+        <hr style="width:300px;"/>
+        <br/>
+        <h3 class="text-center">Asset</h3>
+        <div class="selector-div">
+            <select (ngModel)="currencies" (ngModelChange)="showPurchase($event)" class="annka-center">
+                <option *ngFor="let money of currencies; let i = index" (ngValue)="money" (click)="addCurrency(i)"> {{money.Currency}} </option>
+            </select>
+        </div>
+        <br/>
+        <h3 class="text-center">Amount</h3>
+        <div class="selector-div">
+                <select (ngModel)="prices" (ngModelChange)="showPurchase($event)" class="annka-center">
+                    <option *ngFor="let price of prices; let i = index" (ngValue)="price" (click)="addAmount(price)"> ₦{{price}} </option>
+                </select>
+        </div>
+        <br/>
+        <h4 class="text-center">You Get - 0.000457893 {{selected_currency.CurrencyLong}}</h4>
+        <br/>
+        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="AddCurrency()">Add</button>
+    </div>
+</div>

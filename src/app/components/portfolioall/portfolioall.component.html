@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <br/>
+        <h3><b>My Portfolios</b></h3>
+        <hr/>
+        <br/>
+        <a class="annka-green-btn annka-center" routerLink="/portfolio/new/BTC">NEW PORTFOLIO</a>
+    </div>
+    <div class="row">
+        <br/>
+        <div *ngIf="loading" class="loading" style="margin-top:200px;">
+            
+        </div>
+        <div *ngIf="returned_empty">
+            <br/>
+            <br/>
+            <br/>
+            <h5 class="text-center">You have Not created any portolio</h5>
+            <br/>
+            <a class="annka-blue-btn annka-center" routerLink="/portfolio/new/XRP">CREATE</a>
+        </div>
+        <portfoliopre *ngFor="let portfolio of portfolios; let i = index" [portfolio]="portfolio" (click)="showPortfolio(i)"></portfoliopre>
+    </div>
+</div>

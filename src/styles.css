@@ -1,1 +1,408 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    width: 100%;
+    height: auto;
+}
+a {
+    color: #273746;
+    text-decoration: none;
+}
+
+a:hover{
+    cursor: pointer;
+    color: #EECA1E;
+}
+
+.a{
+    color: #EECA1E;
+}
+
+.a:hover{
+    color:#273746;
+}
+
+.annka-light-blue{
+    color: #2E86C1;
+}
+
+.annka-blue{
+    color:#273746;
+}
+
+.annka-red{
+    color:#7B241C;
+}
+
+.annka-yellow{
+    color:#EECA1E;
+}
+
+.annka-green{
+    color: #145A32;
+}
+
+.annka-padding-16{
+    padding: 16px 16px 16px 16px;
+}
+
+.annka-grey-background{
+    background-color: #B3B6B7;
+}
+
+.annka-green-background{
+    background: #145A32;
+}
+
+.annka-white{
+    color: #FFFFFF;
+}
+
+.annka-grey{
+    color: #B3B6B7;
+}
+
+h1,h2,h3,h4,h5,input,a,option{
+    font-family: "Open Sans", sans-serif;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.annka-header{
+   font-size: 55px;
+}
+
+hr{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.annka-center{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.annka-red-btn{
+    display: block;
+    background-color: #7B241C;
+    color: #FFFFFF;
+    border: 0px solid rgba(0,0,0,0);
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    width: 200px;
+    text-align: center;
+    -moz-box-shadow:    0px 1px 2px 1px #ccc;
+    -webkit-box-shadow: 0px 1px 2px 1px #ccc;
+    box-shadow:         0px 1px 2px 1px #ccc;
+}
+
+.annka-red-btn:hover{
+    text-decoration: none;
+    background-color: #E74C3C;
+    color:#FFFFFF;
+}
+
+.annka-blue-btn{
+    display: block;
+    background-color: #273746;
+    color: #FFFFFF;
+    border: 0px solid rgba(0,0,0,0);
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    width: 200px;
+    text-align: center;
+    -moz-box-shadow:    0px 1px 2px 1px #ccc;
+    -webkit-box-shadow: 0px 1px 2px 1px #ccc;
+    box-shadow:         0px 1px 2px 1px #ccc;
+}
+
+.annka-blue-no-shadow-btn{
+    display: block;
+    background-color: #273746;
+    color: #FFFFFF;
+    border: 0px solid rgba(0,0,0,0);
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    width: 200px;
+    text-align: center;
+}
+
+.annka-blue-no-shadow-btn:hover{
+    text-decoration: none;
+    background-color: #5D6D7E;
+    color:#FFFFFF;
+}
+
+.annka-blue-btn:hover{
+    text-decoration: none;
+    background-color: #5D6D7E;
+    color:#FFFFFF;
+}
+
+.annka-green-btn{
+    display: block;
+    background-color: #145A32;
+    color: #FFFFFF;
+    border: 0px solid rgba(0,0,0,0);
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    width: 200px;
+    text-align: center;
+    -moz-box-shadow:    0px 1px 2px 1px #ccc;
+    -webkit-box-shadow: 0px 1px 2px 1px #ccc;
+    box-shadow:         0px 1px 2px 1px #ccc;
+}
+
+.annka-green-btn:hover{
+    background-color: #2Ecc71;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.annka-card{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    min-width: 100px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+}
+
+.annka-inline{
+    display: inline
+}
+
+.annka-input{
+    min-width: 250px;
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #D0D3D4;
+    border-right: 0px solid #000000;
+    border-top: 0px solid #000000;
+    border-left: 0px solid #000000;
+}
+
+.annka-input:focus{
+    border-bottom: 1px solid #EECA1E;
+}
+
+.annka-login-div{
+    max-width:400px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.annka-login-div-inner{
+    background-color: #FFFFFF;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-right: 30px;
+    padding-left:30px;
+}
+
+.account-bg{
+    background: url("./assets/images/home_intro.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 1000px;
+}
+
+.annka-fund-div{
+    max-width: 600px;
+}
+
+.shadow {
+    -moz-box-shadow:    0px 1px 2px 1px #ccc;
+    -webkit-box-shadow: 0px 1px 2px 1px #ccc;
+    box-shadow:         0px 1px 2px 1px #ccc;
+    border-radius: 5px;
+}
+
+/*Annka Modal*/
+.annka-modal-div{
+    width: 100%;
+   height: 100%;
+   z-index: 1000;
+   position: fixed;
+   overflow:auto;
+   top: 0;
+   left: 0;
+   background: rgba(0,0,0, 0.98);
+   color:white;
+
+   /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    /* Safari and Chrome */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+
+.innder-annka-modal-div{
+    width: 100%;
+    height: 100%;
+    color:white;
+}
+
+.close-text{
+    color: #FFFFFFFF;
+    font-size: 80px;
+    cursor: default;
+    margin-right: 50px;
+ }
+ 
+ .close-text:hover{
+    text-decoration: none;
+    cursor: pointer;
+ }
+/*Annka Modal*/
+
+/*Loading*/
+.loading-small {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #EECA1E;
+    border-bottom: 8px solid #EECA1E;
+    width: 30px;
+    height: 30px;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loading {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #EECA1E;
+    border-bottom: 8px solid #EECA1E;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-div{
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    position: fixed;
+    overflow:auto;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0, 0.98);
+    
+    /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+ 
+     /* Safari and Chrome */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+
+.inner-loading-div{
+    vertical-align: middle;
+}
+/*Loading*/
+
+/*navbar*/
+.navbar{
+    margin-bottom: 0px;
+}
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
+
+}
+
+nav.navbar.navbar-default {
+    background-color: #2E86C1;
+    border: 0px solid white;
+    border-radius: 0px;
+}
+
+.navbar-default .navbar-nav>li>a{
+    color: #FFFFFF;
+}
+
+.navbar-default .navbar-brand{
+    color: #FFFFFF;
+    padding-left: 30px;
+}
+
+.bib-navbar-fa{
+    margin-right:100px;
+}
+
+.navbar-default .navbar-brand:hover{
+   color: #FFFFFF;
+}
+
+.navbar-default .navbar-toggle .icon-bar{
+   background-color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu li a:hover{
+    color: #000000;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu li a{
+    color: #000000;
+}
+
+.navbar-nav .open .dropdown-menu li a{
+    color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-default .navbar-nav .open .dropdown-menu li a{
+        color: #FFFFFF;
+    }
+
+    .navbar-nav .open .dropdown-menu li a:focus{
+        color: #FFFFFF;
+    }
+}
+
+/*navbar*/

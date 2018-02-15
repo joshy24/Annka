@@ -1,0 +1,29 @@
+<div id="home-intro-div">
+    <div class="container">
+      <div class="row">
+          <h1 class="text-center annka-header annka-white">Annka</h1>
+          <h3 class="text-center annka-white">Helps you invest in multiple digital assets(cryptocurrencies) without the hassle of multiple digital wallets.</h3>
+          <h3 class="text-center annka-white">Track and Manage your portfolio of assets in one place.</h3>
+      </div>
+    </div>
+</div>
+<hr/>
+<div id="home-portfolio-div">
+    <div class="container">
+        <div class="row">
+            <!--<br/>
+            <h4><b>My Portfolios</b></h4>
+            <div *ngIf="portfolio; else noportfolio" >
+
+            </div>
+            <ng-template #noportfolio>
+                <h4 class="text-center">You dont have any portfolio</h4>
+                <a class="annka-blue-btn annka-center" routerLink="/portfolio/create">Create Portfolio</a>
+            </ng-template>-->
+            <br/>
+            <h2 class="text-center">Invest in a cryptocurrency today</h2>     
+            <br/>       
+            <currency *ngFor="let currency of currencyService.currencies; let i = index" [currency]="currency" (click)="buyAsset(i)"></currency>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+   <div class="row">
+       <br/>
+       <br/>
+       <div class="shadow annka-center annka-fund-div">
+            <div class="annka-padding-16 annka-center" style="max-width:400px;">
+                <br/>
+                <form class="form-horizontal"  [formGroup]="amountForm" (ngSubmit)="onFormSubmit()">  
+                   <h3 class="text-center annka-green">Enter Amount</h3>
+                   <br/>
+                   <h4 class="text-center">How much are you depositing?</h4>
+                   <br/>
+                   <br/>
+                   
+                   <div *ngIf="(amount.invalid && amount.touched)"
+                       class="text-danger">
+                   
+                       <h5>Please Enter a Valid Amount</h5>
+                   </div>
+                   <div class="form-group">
+                     <h3 style="display:inline;">₦</h3>
+                     <input style="display:inline;" class="annka-input" type="text"
+                         formControlName = "amount"
+                         id="amount"
+                         placeholder="Amount">
+                   </div>
+                   <br/>
+                   <button type="submit" class="annka-blue-btn annka-center">NEXT</button>
+                   <br/>
+                </form>
+            </div>
+            <hr/>
+            <div class="annka-grey-background" style="width:100%; padding-top:10px; padding-bottom:10px;">
+                <h4 class="text-center annka-white" style="line-height:1.2em;">Minimum allowed Deposit - ₦5,000</h4> 
+                <h4 class="text-center annka-white" style="line-height:1.2em;">Maximum allowed Deposit - ₦200,000</h4>
+            </div>
+       </div>   
+   </div>
+</div>

@@ -1,0 +1,15 @@
+.annka-card-price{
+    min-width: 150px;
+    max-width: 300px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    cursor: default;
+}
+
+.annka-card-price:hover{
+    cursor: pointer;
+}

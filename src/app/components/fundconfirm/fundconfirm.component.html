@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <br/>
+        <br/>
+        <div class="shadow annka-center annka-fund-div">
+            <div class="annka-padding-16 annka-center" style="max-width:400px;">
+                <h3 class="text-center annka-green">Payment Method</h3>
+                <br/>
+                <h4 class="text-center">Payment will be made via Paystack</h4>
+                <br/>
+                <br/>
+                <angular4-paystack
+                    [key]="'pk_test_a9c0d664e813d53522dce8470f0fa0c74cdf043b'"
+                    [email]="'joshuamajebi@yahoo.com'"
+                    [amount]="5000000"
+                    [ref]="'2637458678576'"
+                    [class]="'annka-blue-btn annka-center'"
+                    (close)="paymentCancel()"
+                    (callback)="paymentDone($event)"
+                >NEXT</angular4-paystack>
+                <!--<button type="submit" class="annka-blue-btn annka-center" [disabled]="!signupForm.valid">NEXT</button>-->
+                <br/>
+                <h5 class="text-center"><a class="text-center" routerLink="/account/fund">Back</a></h5>
+            </div>
+        </div>   
+    </div>
+</div>

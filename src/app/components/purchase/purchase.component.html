@@ -1,0 +1,68 @@
+<div id="new-portfolio-div">
+  <div class="container">
+      <div class="row">
+          <br/>
+          <h3 class="annka-inline"><b>New Portfolio</b></h3> 
+          <div *ngIf="user" class="annka-inline pull-right">
+             <h4 class="annka-inline" style="margin-right:20px;"><b>Wallet Balance - ₦{{user.account_balance}}</b></h4>
+             <a class="annka-inline annka-green-btn" style="width:200px;" routerLink="/account/fund">FUND ACCOUNT</a>
+          </div>
+          <br/>
+          <br/>
+          <hr/>
+          <br/>
+          <div class="row">
+              <div class="col-md-4 col-sm-4">
+                  <h4 class="text-center">Give your portfolio a name</h4>
+                  <div class="input-group annka-center">
+                      <input type="text" class="form-control" placeholder="name" aria-describedby="basic-addon1" value="{{portfolio.name}}" #portfolio_name>
+                  </div>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                  <h4 class="text-center">Total Amount in Portfolio</h4>
+                  <h4 class="text-center">₦{{portfolio.amount}}</h4>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                  <h4 class="text-center">Assets</h4>
+                  <h4 class="text-center">{{asset_codes}}</h4>
+              </div>     
+          </div>
+          <br/>
+          <br/>
+          <hr/>
+          <h3>Add {{currencyLong}} ({{currency}}) to your portfolio</h3> 
+          <div class="selector-div">
+              <select (ngModel)="currencies" (ngModelChange)="showPurchase($event)" class="annka-center" name="curencies">
+                <option *ngFor="let money of currencies; let i = index" (ngValue)="money" (click)="showPurchase(money)"> {{money.Currency}} </option>
+              </select>
+          </div>
+          
+          <br/>
+          <h3 class="text-center">Our Popular Packages</h3>    
+          <br/>       
+          <div class="price-item-div">
+              <priceitem *ngFor="let price of currencyService.prices; let i = index" [currency]="currency" [price]="price" (click)="addAmount(price)"></priceitem>
+          </div>
+      </div>
+      <div class="row">
+          <br/>
+          <button class="annka-blue-btn annka-center submit-btn" (click)="submitPortfolio(portfolio_name.value)">Create Portfolio</button>
+      </div>
+  </div>
+</div>
+
+
+<div *ngIf="showError" class="annka-modal-div" id="login-loader-div">
+    <div class="innder-annka-modal-div">
+        <a class="text-right"><h1 class="close-text" (click)="closeError()">&times;</h1></a>
+        <h2 class="text-center">{{portfolioError.name}}</h2>
+        <br/>
+        <br/>
+        <h4 class="text-center">{{portfolioError.message}}</h4>
+        <br/>
+        <br/>
+        <br/>
+        <button *ngIf="portfolioError.action=='wallet'" class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="showFundWallet()">FUND WALLET</button>
+        <button *ngIf="portfolioError.action=='assets'" class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeError()">CONTINUE</button>
+    </div>
+</div>

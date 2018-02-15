@@ -1,0 +1,32 @@
+select{
+    background-color: #273746;
+    border: 0px solid #FFFFFF;
+    padding-left: 20px;
+    padding-right: 40px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #273746;
+    color: #FFFFFF;
+    font-size: 20px;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0px solid #273746;
+    /* Some browsers will not display the caret when using calc, so we put the fallback first */ 
+    background: url("../../../assets/images/caret-down.png") #273746 no-repeat 98.5% !important; /* !important used for overriding all other customisations */
+    background: url("../../../assets/images/caret-down.png") #273746 no-repeat calc(100% - 10px) !important; /* Better placement regardless of input width */
+}
+
+.submit-btn{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#new-portfolio-div{
+    height: auto;
+}
+
+.price-item-div{
+    margin-bottom: 30px;
+}

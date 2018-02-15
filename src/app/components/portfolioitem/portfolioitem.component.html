@@ -1,0 +1,31 @@
+<div class="col-md-6 col-sm-6">
+    <div class="portfolio-item annka-card shadow">
+        <div class="row">
+            <div class="col-md-3 col-sm-4"> <!-- logo div -->
+                <img src="../../../assets/images/128/black/{{asset.image_url}}.png" class="img-responsive">
+            </div>
+            <div class="col-md-9 col-sm-8"> <!-- information div -->
+                <h1>{{asset.market_code}}</h1>
+                <h2>{{asset.name}}</h2>
+                <br/>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-6 col-sm-5">
+                        <h3><b>Quantity</b></h3>
+                        <h4>{{asset.quantity}}</h4>
+                        <br/>
+                        <h3><b>Value</b></h3>
+                        <h4>₦{{asset.value}}</h4>
+                    </div>
+                    <div class="col-md-6 col-sm-7">
+                        <h2>{{asset.percent}}% of your portfolio</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <br/>
+                <button class="annka-green-btn submit-btn annka-center" (click)="cashOut()">Cash Out</button>
+        </div>
+    </div>
+</div>

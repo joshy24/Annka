@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div *ngIf="loading" class="loading" style="margin-top:200px;">
+        
+        </div>
+    </div>
+    <div *ngIf="user" class="row">
+        <div class="col-md-7 col-sm-6">
+            <br/>
+            <h3><b>Account</b></h3>
+            <hr/>
+            <h2 class="pull-right"><i class="fa fa-pen-square"></i></h2>
+            <br/>
+            <br/>
+            <h4><b>Name</b></h4>
+            <h4>{{user.firstname}} {{user.lastname}}</h4>
+            <br>
+            <h4><b>Email Address</b></h4>
+            <h4>{{user.email}}</h4>
+            <br/>
+            <div *ngIf="!user.activated">
+                <h5 class="annka-red">Your account has not been activated</h5>
+                <h5>Please follow the link in the email we sent you. </h5>
+                <a class="a" routerLink="/portfolio/all">Resend email</a>
+            </div>
+            <br/>
+            <br/>
+            <a class="annka-blue-btn" routerLink="/portfolio/all">PORTFOLIO OF ASSETS</a>
+        </div>
+        <div class="col-md-5 col-sm-6">
+            <br/>
+            <h3><b>Wallet</b></h3>
+            <hr/>
+            <h2 class="pull-right"><i class="fa fa-pen-square"></i></h2>
+            <br/>
+            <br/>
+            <h4><b>Annka Wallet Balance</b></h4>
+            <h4>₦0</h4>
+            <br/>
+            <a class="annka-blue-btn" routerLink="/account/fund">FUND ACCOUNT</a>
+            <br/>
+            <h4><b>Bank</b></h4>
+            <h4>{{user.account_bank}}</h4>
+            <br>
+            <h4><b>Account Number</b></h4>
+            <h4>{{user.account_number}}</h4>
+            <br>
+            <h5 class="annka-green">We Need your Bank details for when you want to cash out on your investments</h5>
+        </div>
+    </div>
+</div>

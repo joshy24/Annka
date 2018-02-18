@@ -35,7 +35,7 @@
                   
                   <li *ngIf="authService.isUserAuthenticated()"><a routerLink="/portfolio/all">Portfolios</a></li>
                   <li *ngIf="authService.isUserAuthenticated(); else unauth"><a routerLink="/account">Account</a></li>
-                  <li *ngIf="authService.isUserAuthenticated()"><a routerLink="/portfolio/all">Logout</a></li>
+                  <li *ngIf="authService.isUserAuthenticated()"><a (click)="logout()">Logout</a></li>
                   
                   <ng-template #unauth>
                       <li><a routerLink="/login">Login</a></li>

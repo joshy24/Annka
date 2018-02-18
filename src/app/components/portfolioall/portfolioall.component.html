@@ -16,8 +16,6 @@
             <br/>
             <br/>
             <h5 class="text-center">You have Not created any portolio</h5>
-            <br/>
-            <a class="annka-blue-btn annka-center" routerLink="/portfolio/new/XRP">CREATE</a>
         </div>
         <portfoliopre *ngFor="let portfolio of portfolios; let i = index" [portfolio]="portfolio" (click)="showPortfolio(i)"></portfoliopre>
     </div>

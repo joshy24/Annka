@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="portfolio; else loading" class="container">
     <div class="row">
         <div class="col-md-6 col-sm-7">
             <h1>{{portfolio.name}}</h1>
@@ -6,30 +6,31 @@
             <h3><b>Estimated value of portfolio</b></h3>
             <h3>₦{{portfolio.amount}}</h3>
             <br/>
-            <h3><b>Assets</b></h3>
-            <h4>{{asset_codes}}</h4>
-            <button class="annka-blue-btn submit-btn" (click)="openEdit()">Add Asset</button>
-            <div *ngIf="portfolio.funded; else unfunded">
-                <h4>Your portfolio is funded</h4>
-            </div>
             <button class="annka-green-btn submit-btn" (click)="openEdit()">Cash Out</button>
         </div>
         <div class="col-md-6 col-sm-5">
             <br/>
-            <div class="pie-chart-div" style="width:300px; height:300px; margin-left:auto; margin-right: 50px;">
+            <div class="pie-chart-div" style="width:300px; height:300px; margin-left:auto; margin-right: 0px;">
                 <piechart></piechart>
             </div>
         </div>
     </div>
-    <div>
-        <br/>
-        <hr/>
-        <br/>
-        <h3>Assets in Portfolio</h3>
-        <div class="row">
-            <portfolioitem *ngFor="let asset of portfolio.assets; let i = index" [asset]="asset"></portfolioitem>
+    <br/>
+    <hr/>
+    <br/>
+    <div class="row">
+        <h3 class="annka-inline">Assets in Portfolio</h3> 
+        <div class="annka-inline pull-right" style="margin-left:auto; margin-right: 65px;">
+            <h4 class="text-center">{{asset_codes}}</h4>
+            <button class="annka-blue-btn submit-btn" (click)="openEdit()">Add Asset</button>
         </div>
     </div>
+    <div class="row">
+        <portfolioitem *ngFor="let asset of portfolio.assets; let i = index" [asset]="asset"></portfolioitem>
+    </div>
+</div>
+<div #loading class="loading" style="margin-top:200px;">
+        
 </div>
 
 <div *ngIf="showEdit" class="annka-modal-div" id="login-loader-div">

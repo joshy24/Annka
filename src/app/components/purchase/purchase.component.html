@@ -30,7 +30,8 @@
           <br/>
           <br/>
           <hr/>
-          <h3>Add {{currencyLong}} ({{currency}}) to your portfolio</h3> 
+          <h3 class="text-center">Add {{currencyLong}} ({{currency}}) to your portfolio</h3> 
+          <br/>
           <div class="selector-div">
               <select (ngModel)="currencies" (ngModelChange)="showPurchase($event)" class="annka-center" name="curencies">
                 <option *ngFor="let money of currencies; let i = index" (ngValue)="money" (click)="showPurchase(money)"> {{money.Currency}} </option>
@@ -38,13 +39,16 @@
           </div>
           
           <br/>
-          <h3 class="text-center">Our Popular Packages</h3>    
+          <h3 c>Our Popular Packages</h3>    
           <br/>       
           <div class="price-item-div">
               <priceitem *ngFor="let price of currencyService.prices; let i = index" [currency]="currency" [price]="price" (click)="addAmount(price)"></priceitem>
           </div>
       </div>
       <div class="row">
+          <br/>
+          <h5 class="text-center">A Blockchain Transaction Fee of 5%(Maximum of ₦2000) is charged <i class="far fa-question-circle"></i></h5>
+          <h5 class="text-center">A Portfolio Creation Fee of 1%(Maximum of ₦1000) is charged <i class="far fa-question-circle"></i></h5>
           <br/>
           <button class="annka-blue-btn annka-center submit-btn" (click)="submitPortfolio(portfolio_name.value)">Create Portfolio</button>
       </div>

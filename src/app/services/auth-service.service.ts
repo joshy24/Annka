@@ -138,7 +138,7 @@ export class AuthService {
     return moment(expiresAt);
   }   
   
-  private getToken():string {
+  getToken():string {
     const token = localStorage.getItem("token");
     return token;
   }   

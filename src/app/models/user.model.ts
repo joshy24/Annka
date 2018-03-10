@@ -10,6 +10,7 @@ class User {
     facebook_id: String;
     google_id: String;
     activated:boolean;
+    verified:string;
     account_bank: string;
     account_number: number;
     account_balance: number;

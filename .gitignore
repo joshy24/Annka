@@ -44,3 +44,8 @@ Thumbs.db
 # app images
 /src/assets
 
+
+
+/node_modules
+
+/config

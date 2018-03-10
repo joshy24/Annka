@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import Asset from '../../models/asset.model';
+import { CurrencyService } from '../../services/currency.service'
 
 @Component({
   selector: 'portfolioitem',
@@ -9,7 +10,7 @@ import Asset from '../../models/asset.model';
 export class PortfolioitemComponent implements OnInit {
   @Input() asset:Asset;
 
-  constructor() { }
+  constructor(private currencyService:CurrencyService) { }
 
   ngOnInit() {
     

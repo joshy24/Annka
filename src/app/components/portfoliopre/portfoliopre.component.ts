@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import Portfolio  from '../../models/portfolio.model';
+import { CurrencyService } from '../../services/currency.service';
+import { ResourceService } from '../../services/resource.service';
 
 @Component({
   selector: 'portfoliopre',
@@ -11,8 +13,8 @@ export class PortfoliopreComponent implements OnInit {
   @Input() portfolio:Portfolio;
   assets:string;
 
-  constructor() { }
-
+  constructor(private currencyService:CurrencyService, private resourceService:ResourceService) { }
+  
   ngOnInit() {
     this.assets = "";
     this.portfolio.assets.forEach(ass => {

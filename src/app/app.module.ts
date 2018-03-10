@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { JWTInterceptor } from './helpers/jwt.interceptor';
+import { ResponseInterceptor } from './helpers/response.interceptor'
 
 import { Angular4PaystackModule } from 'angular4-paystack';
 
@@ -40,6 +41,9 @@ import { SignupComponent } from './components/signup/signup.component';
 import { PortfoliopreComponent } from './components/portfoliopre/portfoliopre.component';
 import { FundComponent } from './components/fund/fund.component';
 import { FundconfirmComponent } from './components/fundconfirm/fundconfirm.component';
+import { SearchComponent } from './components/search/search.component';
+import { EditaccountComponent } from './components/editaccount/editaccount.component';
+import { AccountVerifyComponent } from './components/account-verify/account-verify.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +63,10 @@ import { FundconfirmComponent } from './components/fundconfirm/fundconfirm.compo
     SignupComponent,
     PortfoliopreComponent,
     FundComponent,
-    FundconfirmComponent
+    FundconfirmComponent,
+    SearchComponent,
+    EditaccountComponent,
+    AccountVerifyComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +86,11 @@ import { FundconfirmComponent } from './components/fundconfirm/fundconfirm.compo
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JWTInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
       multi: true
     },
     AccountService,

@@ -14,7 +14,11 @@ export class FundComponent implements OnInit {
   amountForm: FormGroup;
   loading:boolean;
 
-  constructor(private router: Router, private authService:AuthService, private location:Location) { }
+  constructor(private router: Router, private authService:AuthService, private location:Location) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+    } 
+  }
 
   ngOnInit() {
      this.amountForm = new FormGroup({

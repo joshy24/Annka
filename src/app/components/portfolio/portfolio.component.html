@@ -4,7 +4,7 @@
             <h1>{{portfolio.name}}</h1>
             <br/>
             <h3><b>Estimated value of portfolio</b></h3>
-            <h3>₦{{portfolio.amount}}</h3>
+            <h3>₦{{currencyService.getAmount(portfolio.amount)}}</h3>
             <br/>
             <button class="annka-green-btn submit-btn" (click)="openEdit()">Cash Out</button>
         </div>
@@ -29,8 +29,8 @@
         <portfolioitem *ngFor="let asset of portfolio.assets; let i = index" [asset]="asset"></portfolioitem>
     </div>
 </div>
-<div #loading class="loading" style="margin-top:200px;">
-        
+<div #loading *ngIf="!portfolio" class="loading" style="margin-top:200px;">
+    
 </div>
 
 <div *ngIf="showEdit" class="annka-modal-div" id="login-loader-div">
@@ -49,12 +49,41 @@
         <h3 class="text-center">Amount</h3>
         <div class="selector-div">
                 <select (ngModel)="prices" (ngModelChange)="showPurchase($event)" class="annka-center">
-                    <option *ngFor="let price of prices; let i = index" (ngValue)="price" (click)="addAmount(price)"> ₦{{price}} </option>
+                    <option *ngFor="let price of prices; let i = index" (ngValue)="price" (click)="addAmount(price)"> ₦{{currencyService.getAmount(price)}} </option>
                 </select>
         </div>
         <br/>
-        <h4 class="text-center">You Get - 0.000457893 {{selected_currency.CurrencyLong}}</h4>
+        <h5 class="text-center">You Get</h5>
+        <div *ngIf="loading" class="loading-small">
+        
+        </div>
+        <h4 *ngIf="!loading" class="text-center"> {{rate}}</h4>
+        <h3 class="annka-green text-center">{{selected_currency.CurrencyLong}}</h3>
         <br/>
         <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="AddCurrency()">Add</button>
+    </div>
+</div>
+
+<div *ngIf="showError" class="annka-modal-div" id="login-loader-div">
+    <div class="innder-annka-modal-div">
+        <a class="text-right"><h1 class="close-text" (click)="closeError()">&times;</h1></a>
+        <h2 class="text-center">{{portfolioError.name}}</h2>
+        <hr style="width:300px;"/>
+        <br/>
+        <br/>
+        <h4 class="text-center">{{portfolioError.message}}</h4>
+        <br/>
+        <br/>
+        <br/>
+        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeError()">GOT IT</button>
+    </div>
+</div>
+
+<div *ngIf="buying" class="loading-div">
+    <div class="inner-loading-div">
+        <div class="loading">
+
+        </div>
+        <h4 class="text-center annka-white">Purchasing Asset...</h4>
     </div>
 </div>

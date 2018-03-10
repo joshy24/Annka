@@ -1,11 +1,14 @@
 <div class="col-md-3 col-sm-3">
 
   <div class="annka-card-price shadow">
-      <h3><b>₦{{price}}</b></h3>
-      <h4>You Get</h4>
+      <h3 class="annka-blue"><b>₦{{currencyService.getAmount(price)}}</b></h3>
+      <h5>You Get</h5>
       <div *ngIf="loading" class="loading-small">
         
       </div>
-      <h4>{{amount}} {{currency}}</h4>
+      <div *ngIf="!loading">
+        <h4>{{currencyService.getAnnkaRate(price, ticker)}}</h4>
+        <h3 class="annka-green">{{currency}}</h3>
+      </div>
   </div>
 </div>

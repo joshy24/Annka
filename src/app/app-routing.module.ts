@@ -40,7 +40,7 @@ const routes: Routes = [
      component: AccountComponent, 
      canActivate: [ AuthGuardService ]     
    },
-   {path: 'account/fund', component: FundComponent},
+   {path: 'account/fund', component: FundComponent, canActivate: [ AuthGuardService ]},
    {path: 'account/fund/payment', component: FundconfirmComponent},
    {path: 'signup', component: SignupComponent},
    {path: "**", component: PagenotfoundComponent}

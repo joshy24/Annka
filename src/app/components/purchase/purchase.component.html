@@ -4,7 +4,7 @@
           <br/>
           <h3 class="annka-inline"><b>New Portfolio</b></h3> 
           <div *ngIf="user" class="annka-inline pull-right">
-             <h4 class="annka-inline" style="margin-right:20px;"><b>Wallet Balance - ₦{{user.account_balance}}</b></h4>
+             <h4 class="annka-inline" style="margin-right:20px;"><b>Wallet Balance - ₦{{currencyService.getAmount(user.account_balance)}}</b></h4>
              <a class="annka-inline annka-green-btn" style="width:200px;" routerLink="/account/fund">FUND ACCOUNT</a>
           </div>
           <br/>
@@ -20,7 +20,7 @@
               </div>
               <div class="col-md-4 col-sm-4">
                   <h4 class="text-center">Total Amount in Portfolio</h4>
-                  <h4 class="text-center">₦{{portfolio.amount}}</h4>
+                  <h4 class="text-center">₦{{currencyService.getAmount(portfolio.amount)}}</h4>
               </div>
               <div class="col-md-4 col-sm-4">
                   <h4 class="text-center">Assets</h4>
@@ -30,11 +30,11 @@
           <br/>
           <br/>
           <hr/>
-          <h3 class="text-center">Add {{currencyLong}} ({{currency}}) to your portfolio</h3> 
+          <h3 class="text-center">Add {{currencyLong}} ({{currency}}) to your portfolio <a style="margin-left:50px;" (click)="showSearch()"><i class="fas fa-search annka-inline"></i></a></h3>
           <br/>
           <div class="selector-div">
               <select (ngModel)="currencies" (ngModelChange)="showPurchase($event)" class="annka-center" name="curencies">
-                <option *ngFor="let money of currencies; let i = index" (ngValue)="money" (click)="showPurchase(money)"> {{money.Currency}} </option>
+                <option *ngFor="let money of currencyService.currencies; let i = index" (ngValue)="money" (click)="showPurchase(money)"> {{money.Currency}} </option>
               </select>
           </div>
           
@@ -42,7 +42,7 @@
           <h3 c>Our Popular Packages</h3>    
           <br/>       
           <div class="price-item-div">
-              <priceitem *ngFor="let price of currencyService.prices; let i = index" [currency]="currency" [price]="price" (click)="addAmount(price)"></priceitem>
+              <priceitem *ngFor="let price of currencyService.prices; let i = index" [currency]="currency" [price]="price" [ticker]="ticker" [loading]="loading" (click)="addAmount(price)"></priceitem>
           </div>
       </div>
       <div class="row">
@@ -54,7 +54,6 @@
       </div>
   </div>
 </div>
-
 
 <div *ngIf="showError" class="annka-modal-div" id="login-loader-div">
     <div class="innder-annka-modal-div">
@@ -69,4 +68,8 @@
         <button *ngIf="portfolioError.action=='wallet'" class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="showFundWallet()">FUND WALLET</button>
         <button *ngIf="portfolioError.action=='assets'" class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeError()">CONTINUE</button>
     </div>
+</div>
+
+<div *ngIf="search">
+    <search (closeClick)="closeSearchFromParent($event)" (assetSet)="addAssetToParent($event)" [currencies]="currencyService.currencies"></search>
 </div>

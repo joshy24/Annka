@@ -6,13 +6,16 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, map } from 'rxjs/operators';
+import { ResourceService } from './resource.service'
 
 @Injectable()
 export class AccountService {
 
-  private account_url = "http://localhost:3020/account";
+  private account_url = "/account";
+  private upload_url = "/upload_verification";
+  private bvn_url = "/bvn_verification";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private resourceService:ResourceService) { }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -31,7 +34,7 @@ export class AccountService {
   };
   
   account():Observable<User>{
-      return this.http.post(this.account_url, {},{
+      return this.http.post(this.resourceService.getBaseUrl()+this.account_url, {},{
         headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
       })
       .map((user: User) => {
@@ -48,4 +51,43 @@ export class AccountService {
       )
   }
 
+  upload(file):Observable<string>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.upload_url,file,{
+      headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+    })
+    .map((response:AnnkaResponse) => {
+        if(response){
+          return response;  
+        }
+        else{
+          return null;
+        }
+    })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  savebvn(bvn):Observable<string>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.bvn_url,{bvn},{
+      headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+    })
+    .map((response:AnnkaResponse) => {
+        if(response){
+          return response;  
+        }
+        else{
+          return null;
+        }
+    })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
 }
+
+interface AnnkaResponse{
+  response: String;
+}
+

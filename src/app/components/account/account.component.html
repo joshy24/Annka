@@ -1,9 +1,4 @@
 <div class="container">
-    <div class="row">
-        <div *ngIf="loading" class="loading" style="margin-top:200px;">
-        
-        </div>
-    </div>
     <div *ngIf="user" class="row">
         <div class="col-md-7 col-sm-6">
             <br/>
@@ -17,6 +12,9 @@
             <br>
             <h4><b>Email Address</b></h4>
             <h4>{{user.email}}</h4>
+            <br>
+            <h4><b>Phone Number</b></h4>
+            <h4>{{user.phone_number}}</h4>
             <br/>
             <div *ngIf="!user.activated">
                 <h5 class="annka-red">Your account has not been activated</h5>
@@ -24,8 +22,20 @@
                 <a class="a" routerLink="/portfolio/all">Resend email</a>
             </div>
             <br/>
+            <hr/>
+            <div *ngIf="user.verified=='no'">
+                <h5 class="annka-red">Your account has not been verified</h5>
+                <a class="annka-blue-btn" (click)="showVerify()">Verify Account</a>
+                <br/>
+                <a class="a" routerLink="/portfolio/all">What is account verification?</a>
+            </div>
             <br/>
-            <a class="annka-blue-btn" routerLink="/portfolio/all">PORTFOLIO OF ASSETS</a>
+            <div *ngIf="user.verified=='pending'">
+                <h5>Account Verification status -  <span class="annka-blue">pending</span></h5>
+                <a class="a" routerLink="/portfolio/all">What is account verification?</a>
+            </div>
+            <br/>
+            <br/>
         </div>
         <div class="col-md-5 col-sm-6">
             <br/>
@@ -35,7 +45,7 @@
             <br/>
             <br/>
             <h4><b>Annka Wallet Balance</b></h4>
-            <h4>₦ {{user.account_balance}}</h4>
+            <h4>₦ {{currencyService.getAmount(user.account_balance)}}</h4>
             <br/>
             <a class="annka-blue-btn" routerLink="/account/fund">FUND ACCOUNT</a>
             <br/>
@@ -47,5 +57,31 @@
             <br>
             <h5 class="annka-green">We Need your Bank details for when you want to cash out on your investments</h5>
         </div>
+    </div>
+    <div class="row">
+        <br/>
+        <a class="annka-green-btn annka-center" routerLink="/portfolio/all">MY PORTFOLIOS</a>
+    </div>
+    <div class="row">
+        <div *ngIf="loading" class="loading" style="margin-top:200px;">
+        
+        </div>
+    </div>
+</div>
+
+<account-verify *ngIf="verify" (closeClick)="closeVerify($event)" (reloadUser)="reloadParent($event)" (showError)="openError()"></account-verify>
+
+<div *ngIf="showError" class="annka-modal-div" id="login-loader-div">
+    <div class="innder-annka-modal-div">
+        <a class="text-right"><h1 class="close-text" (click)="closeError()">&times;</h1></a>
+        <h2 class="text-center">{{portfolioError.name}}</h2>
+        <hr style="width:300px;"/>
+        <br/>
+        <br/>
+        <h4 class="text-center">{{portfolioError.message}}</h4>
+        <br/>
+        <br/>
+        <br/>
+        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeError()">GOT IT</button>
     </div>
 </div>

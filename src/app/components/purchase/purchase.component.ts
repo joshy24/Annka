@@ -7,6 +7,7 @@ import { AccountService } from '../../services/account.service';
 import Portfolio from '../../models/portfolio.model';
 import Currency from '../../models/currency.model';
 import User from '../../models/user.model'
+import PortfolioError from '../../models/portfolio.error'
 import { PiedataService } from "../../services/piedata.service";
 import { PortfolioService } from "../../services/portfolio.service";
 
@@ -22,9 +23,12 @@ export class PurchaseComponent implements OnInit {
   user: User;
   currency: string;
   currencyLong: string;
-  currencies: Currency[];
-  portfolioError:portfolioError;
+  portfolioError:PortfolioError;
   showError: boolean;
+  search: boolean;
+  ticker:Number;
+  interval:any;
+  loading:boolean;
 
   constructor(private portfolioService:PortfolioService, private accountService:AccountService, private router:Router, private route: ActivatedRoute, private currencyService:CurrencyService, private bitrexService: BitrexService, private piedataService:PiedataService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
@@ -36,19 +40,18 @@ export class PurchaseComponent implements OnInit {
     this.currency = this.route.snapshot.paramMap.get('currency');
   
     if(this.currencyService.currencies==null){
-        this.bitrexService.getCurrencies().subscribe(response => {
-          this.currencies = response;
-          this.currencyService.currencies = response;
-          response.map((c)=> {
-              if(c.Currency==this.currency){
-                  this.currencyLong = c.CurrencyLong;
-              }
+      this.currencyService.getCurrencies().subscribe(response => {
+        if(response){
+          this.currencyService.currencies.map((c)=> {
+            if(c.Currency==this.currency){
+                this.currencyLong = c.CurrencyLong;
+            }
           })
-        })
+        }
+      })
     }
     else{
-      this.currencies = this.currencyService.currencies;
-      this.currencies.map((c)=>{
+      this.currencyService.currencies.map((c)=>{
         if(c.Currency==this.currency){
             this.currencyLong = c.CurrencyLong;
         }
@@ -66,7 +69,39 @@ export class PurchaseComponent implements OnInit {
         message: "",
         action: ""
     }
-    this.showError = false;
+
+    this.showLoading();
+
+    this.currencyService.getRate(this.currency).subscribe(res => {
+        this.ticker = res;
+        this.hideLoading();
+    }, err => {
+      this.hideLoading();
+    })
+
+    this.interval = setInterval(() => {
+      this.showLoading();
+      this.currencyService.getRate(this.currency).subscribe(res => {
+        this.ticker = res;
+        this.hideLoading();
+      }, err => {
+        this.hideLoading();
+      })
+    }, 60000)
+
+    this.closeError();
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
+  }
+  
+  showLoading(){
+    this.loading = true;
+  }
+
+  hideLoading(){
+    this.loading = false;
   }
 
   openError(){
@@ -82,7 +117,7 @@ export class PurchaseComponent implements OnInit {
       user => {
        this.user = user;
     }, error => {
-      this.router.navigate(['/login']);
+      
     })
   }
 
@@ -95,7 +130,7 @@ export class PurchaseComponent implements OnInit {
 
   addAmount(amount:number){
       if((this.portfolio.amount + amount) <= this.user.account_balance){
-        this.currencies.map((c) => {
+        this.currencyService.currencies.map((c) => {
           if(c.Currency===this.currency){
               this.portfolio.addAsset(c,amount);
               this.setAssetCodes();
@@ -159,14 +194,21 @@ export class PurchaseComponent implements OnInit {
   setAssetCodes(){
       this.asset_codes = "";
       this.portfolio.assets.forEach((p) => {
-      this.asset_codes+= " "+p.market_code+" ";
-    })
+        this.asset_codes+= " "+p.market_code+" ";
+      })
   }
 
-}
+  showSearch(){
+     this.search = true;
+  }
 
-interface portfolioError{
-    name: String;
-    message: String;
-    action: String;
+  closeSearchFromParent = function(){
+     this.search = false;
+  }
+
+  addAssetToParent = function(currency){
+     this.search = false;
+     this.router.navigate(['/portfolio/new', currency]);
+  }
+
 }

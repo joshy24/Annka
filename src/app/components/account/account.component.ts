@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import User from '../../models/user.model';
-import { HttpClient, HttpParams,HttpHeaders } from '@angular/common/http';
-import { Response } from '@angular/http'
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
 import { AccountService } from '../../services/account.service';
+import { CurrencyService } from '../../services/currency.service';
+import PortfolioError from '../../models/portfolio.error'
 
 @Component({
   selector: 'app-account',
@@ -14,12 +12,21 @@ import { AccountService } from '../../services/account.service';
 export class AccountComponent implements OnInit {
   loading:boolean;
   user: User;
-
-  constructor(private http: HttpClient, private accountService:AccountService) { }
+  verify: boolean;
+  portfolioError:PortfolioError;
+  showError: boolean;
+  
+  constructor(private accountService:AccountService, private currencyService:CurrencyService) { }
   
   ngOnInit() {
      this.loading = true;
      this.getAccount();
+
+     this.portfolioError = {
+      name: "",
+      message: "",
+      action: ""
+     }
   }
 
   showLoading(){
@@ -43,4 +50,29 @@ export class AccountComponent implements OnInit {
     );
   }
 
+  showVerify(){
+    this.verify = true;
+  }
+
+  closeVerify = function(){
+    this.verify = false;
+  }
+
+  reloadParent = function(currency){
+     this.verify = false;
+     this.loading = true;
+     this.user = {};
+     this.getAccount();
+  }
+
+  openError(){
+    this.closeVerify();
+    this.portfolioError.name = "File Not Uploaded";
+    this.portfolioError.message = "The file could not be uploaded. Please try again later";
+    this.showError = true;
+  }
+ 
+  closeError(){
+    this.showError = false;
+  }
 }

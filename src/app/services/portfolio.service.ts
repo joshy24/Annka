@@ -14,6 +14,7 @@ export class PortfolioService {
   private portfolio_create_url = "/portfolio/create";
   private portfolio_all_url = "/portfolio/all";
   private portfolio_one_url = "/portfolio/one";
+  private portfolio_buy_one_url = "/portfolio/one/buy";
 
   constructor(private resourceService:ResourceService,private http: HttpClient) { }
 
@@ -70,6 +71,23 @@ export class PortfolioService {
 
   portfolio(id):Observable<Portfolio>{
     return this.http.post(this.resourceService.getBaseUrl()+this.portfolio_one_url, {id:id} ,{
+      headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+    })
+    .map((portfolio:Portfolio) => {
+        if(portfolio){
+          return portfolio;  
+        }
+        else{
+          return null;
+        }
+    })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  portfoliobuy(amount, value, currency, portfolio):Observable<Portfolio>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.portfolio_buy_one_url, {amount, value, currency, portfolio} ,{
       headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
     })
     .map((portfolio:Portfolio) => {

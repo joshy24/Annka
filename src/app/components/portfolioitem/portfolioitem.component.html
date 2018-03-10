@@ -15,7 +15,7 @@
                         <h4>{{asset.quantity}}</h4>
                         <br/>
                         <h3><b>Value</b></h3>
-                        <h4>₦{{asset.value}}</h4>
+                        <h4>₦{{currencyService.getAmount(asset.value)}}</h4>
                     </div>
                     <div class="col-md-6 col-sm-7">
                         <h2>{{asset.percent}}% of your portfolio</h2>
@@ -24,8 +24,8 @@
             </div>
         </div>
         <div class="row">
-                <br/>
-                <button class="annka-green-btn submit-btn annka-center" (click)="cashOut()">Cash Out</button>
+            <br/>
+            <button class="annka-green-btn submit-btn annka-center" (click)="cashOut()">Cash Out</button>
         </div>
     </div>
 </div>

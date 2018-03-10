@@ -1,6 +1,7 @@
 <div id="home-intro-div">
     <div class="container">
       <div class="row">
+          <img src="../../../assets/images/logo.png" width="80" height="80" class="img-responsive annka-center">
           <h1 class="text-center annka-header annka-white">Annka</h1>
           <h3 class="text-center annka-white">Helps you invest in multiple digital assets(cryptocurrencies) without the hassle of multiple digital wallets.</h3>
           <h3 class="text-center annka-white">Track and Manage your portfolio of assets in one place.</h3>
@@ -22,8 +23,26 @@
             </ng-template>-->
             <br/>
             <h2 class="text-center">Invest in a cryptocurrency today</h2>     
-            <br/>       
-            <currency *ngFor="let currency of currencyService.currencies; let i = index" [currency]="currency" (click)="buyAsset(i)"></currency>
+            <br/>
+
+            <div class="col-md-4 col-sm-4" *ngFor="let currency of selected_currencies; let i = index" (click)="buyAsset(i)" style="margin-bottom:30px;">
+                <a href="">
+                <div class="annka-card shadow">
+                    <img src="../../../assets/images/64/color/{{currency.Image_url}}@2x.png" class="img-responsive annka-center">
+                    <h2 class="text-center"><b>{{currency.Currency}}</b></h2>
+                    <h4 class="text-center"><b>{{currency.CurrencyLong}}</b></h4>
+                </div>
+                </a>
+            </div>
+            <br/>
+            <br/>
+            <div style="margin-top:30px;">
+                <button class="annka-blue-btn annka-center submit-btn" (click)="showSearch()">Other Assets</button>
+            </div>
         </div>
     </div>
+</div>
+
+<div *ngIf="search">
+    <search (closeClick)="closeSearchFromParent($event)" (assetSet)="addAssetToParent($event)" [currencies]="currencyService.currencies"></search>
 </div>

@@ -5,16 +5,15 @@ import { Observable } from 'rxjs';
 import * as moment from "moment";
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, map } from 'rxjs/operators';
+import { ResourceService } from '../services/resource.service'
 
 @Injectable()
 export class AuthService {
   private redirectUrl: string = '/';
   private loginUrl: string = '/login';
   private signupUrl: string = '/signup';
-  private login_url:string = "http://localhost:3020/login";
-  private signup_url:string = "http://localhost:3020/signup";
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private resourceService:ResourceService) { }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -33,12 +32,12 @@ export class AuthService {
   };
 
   login(email:string, password:string):Observable<boolean>{
-      return this.http.post(this.login_url, {email: email, password: password}, {
+      return this.http.post(this.resourceService.getBaseUrl()+this.loginUrl, {email: email, password: password}, {
           headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
         })
         .map((respond: Respond) => {
           if(respond){
-            
+            console.log(respond);
             if(respond.token&&respond.user&&respond.expires){
               this.setSession(respond);
               return true;
@@ -55,9 +54,9 @@ export class AuthService {
           catchError(this.handleError)
          )
   }
-
+  
   signup(user:User):Observable<boolean>{
-    return this.http.post(this.signup_url,user, 
+    return this.http.post(this.resourceService.getBaseUrl()+this.signupUrl,user, 
       {
         headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
 

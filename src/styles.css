@@ -177,6 +177,27 @@ hr{
     text-decoration: none;
 }
 
+.annka-green-no-shadow-btn{
+    display: block;
+    background-color: #145A32;
+    color: #FFFFFF;
+    border: 0px solid rgba(0,0,0,0);
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    width: 200px;
+    text-align: center;
+}
+
+.annka-green-no-shadow-btn:hover{
+    text-decoration: none;
+    background-color: #2Ecc71;
+    color:#FFFFFF;
+}
+
 .annka-card{
     margin-left: auto;
     margin-right: auto;
@@ -188,6 +209,7 @@ hr{
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 20px;
+    background: #FFFFFF;
 }
 
 .annka-inline{
@@ -197,6 +219,7 @@ hr{
 .annka-input{
     min-width: 250px;
     width: 100%;
+    max-width: 1000px;
     height: 30px;
     border-bottom: 1px solid #D0D3D4;
     border-right: 0px solid #000000;

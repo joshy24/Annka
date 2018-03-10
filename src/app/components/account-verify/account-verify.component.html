@@ -1,0 +1,58 @@
+<div class="annka-modal-div" id="login-loader-div">
+  <div class="innder-annka-modal-div">
+      <a class="text-right"><h1 class="close-text" (click)="closeVerify()">&times;</h1></a>
+      <h2 class="text-center">Account Verification</h2>
+      <hr style="width:300px;"/>
+      <br/>
+      <br/>
+      <h4 *ngIf="!bvninput && !uploadinput" class="text-center">All Annka Users need to be verified by providing a means of identification which should be one of the following</h4>
+      <br/>
+      <br/>
+      <div *ngIf="!bvninput && !uploadinput" class="annka-center" style="width:400px">
+          
+          <h2 class="text-center"><a class="a" (click)="showBVNInput()">BVN</a></h2>
+          <br/>
+          <h2 class="text-center"><a class="a" (click)="showUploadInput('national-id')">National Identity Card</a></h2>
+          <br/>
+          <h2 class="text-center"><a class="a" (click)="showUploadInput('drivers-license')">Drivers License</a></h2>
+          <br/>
+          <h2 class="text-center"><a class="a" (click)="showUploadInput('school-id')">School Id Card</a></h2>
+      </div>
+      
+      <div *ngIf="error_message">
+        <h5 class="annka-red text-center">{{error_message}}</h5>
+        <br/>
+      </div>
+
+      <div *ngIf="bvninput">
+          <h4 class="text-center">Enter your BVN Number</h4>
+          <br/>
+          <input style="display:block; color:#000000; height: 30px;" class="annka-input annka-center" #bvn >
+          <br/>
+          <br/>
+          <button class="annka-green-no-shadow-btn annka-center" (click)="saveBVN(bvn.value)">Save</button>
+      </div>
+
+      <div *ngIf="uploadinput">
+        <h4 class="text-center">Upload File</h4>
+        <br/>
+        <input type="file" (change)="onFileSelected($event)" style="display:block; color:#000000; height: 30px;" class="annka-input annka-center">
+        <h5 class="text-center">File should be an image(jpeg, jpg, png, gif) that is less than 2MB</h5>
+        <br/>
+        <br/>
+        <button class="annka-green-no-shadow-btn annka-center" (click)="uploadFile()">Save</button>
+      </div>
+
+      <div class="row">
+          <div *ngIf="loading" class="loading" style="margin-top:50px;">
+          
+          </div>
+      </div>
+      
+      <br/>
+      <br/>
+      <br/>
+      <h4 *ngIf="bvninput || uploadinput" class="text-center"><a class="a" (click)="closeAllInput()">Cancel</a></h4>
+      <br/>
+  </div>
+</div>

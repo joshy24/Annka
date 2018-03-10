@@ -38,8 +38,8 @@ export class CurrencyService {
       })
   }
 
-  getRate(amount):Observable<number>{
-      return this.http.post(`${this.resourceService.getBaseUrl()+this.ticker_url}`,{amount},{
+  getRate(currency):Observable<number>{
+      return this.http.post(`${this.resourceService.getBaseUrl()+this.ticker_url}`,{currency},{
         headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
       })
       .map((res:Value)  => {
@@ -49,6 +49,31 @@ export class CurrencyService {
       }, error => {
         return null;
       })
+  }
+  
+  getAmount(amount){
+    var a = amount.toString();
+    
+    switch(a.length){
+      case 4:
+        return a.slice(0,1) +"," +a.slice(1);
+      case 5:
+        return a.slice(0,2) +"," +a.slice(2);
+      case 6:
+        var am = a.slice(0,3) +"," +a.slice(3);
+        return am;
+      case 7:
+        return a.slice(0,1) +"," +a.slice(1,4)+","+a.slice(4);
+      default: 
+        return a;
+    }
+    
+  }
+
+  getAnnkaRate(amount, value){
+    var num = amount/value;
+    
+    return num*0.94;
   }
 
 }

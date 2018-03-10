@@ -5,6 +5,7 @@ import { PiedataService } from "../../services/piedata.service";
 import { CurrencyService } from '../../services/currency.service';
 import { BitrexService } from '../../services/bitrex.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import PortfolioError from '../../models/portfolio.error'
 import Currency from '../../models/currency.model';
 import Asset from '../../models/asset.model';
 import { Router } from '@angular/router';
@@ -23,13 +24,20 @@ export class PortfolioComponent implements OnInit {
   prices: number[];
   selected_currency:Currency;
   selected_amount:number;
+  portfolioError:PortfolioError;
   private id:string;
+  private rate: Number;
+  ticker:Number;
+  interval:any;
+  loading:boolean;
+  buying:boolean;
+  showError: boolean;
 
   constructor(private portfolioService:PortfolioService,private route: ActivatedRoute, private router:Router, private piedataService:PiedataService, private currencyService:CurrencyService, private bitrexService: BitrexService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('portfolio');
-    console.log(this.id);
+    
     this.asset_codes = "";
 
     this.showEdit = false;
@@ -53,6 +61,13 @@ export class PortfolioComponent implements OnInit {
       this.currencies = this.currencyService.currencies;
       this.selected_currency = this.currencies[0];
     }
+
+    this.portfolioError = {
+      name: "",
+      message: "",
+      action: ""
+    }
+
   }
 
   getPortfolio(){
@@ -62,11 +77,23 @@ export class PortfolioComponent implements OnInit {
           this.setPieChart();
        }
     }, error => {
-      console.log(error);
+      
     })
   }
 
   openEdit(){
+     this.selected_amount = this.currencyService.prices[0];
+     this.selected_currency = this.currencyService.currencies[0];
+     this.rate = 0;
+
+     this.showLoading();
+     this.currencyService.getRate( this.selected_currency.Currency).subscribe(res => {
+          this.ticker = res;
+          this.rate = this.currencyService.getAnnkaRate(this.selected_amount, this.ticker);
+          this.hideLoading();
+      }, err => {
+          this.hideLoading();
+      })
      this.showEdit = true;
   }
 
@@ -76,17 +103,54 @@ export class PortfolioComponent implements OnInit {
 
   addCurrency(index){
     this.selected_currency = this.currencies[index];
+    //
+    if(this.interval){
+       clearInterval(this.interval);
+    }
+
+    this.showLoading();
+    this.currencyService.getRate( this.selected_currency.Currency).subscribe(res => {
+        this.ticker = res;
+        this.rate = this.currencyService.getAnnkaRate(this.selected_amount, this.ticker);
+        this.hideLoading();
+    }, err => {
+      this.hideLoading();
+    })
+
+    this.interval = setInterval(() => {
+      this.showLoading();
+      this.currencyService.getRate( this.selected_currency.Currency).subscribe(res => {
+        this.ticker = res;
+        this.rate = this.currencyService.getAnnkaRate(this.selected_amount, this.ticker);
+        this.hideLoading();
+      }, err => {
+        this.hideLoading();
+      })
+    }, 60000)
   }
 
   addAmount(amount){
       this.selected_amount = amount;
+      this.rate = this.currencyService.getAnnkaRate(this.selected_amount, this.ticker);
   }
   
   AddCurrency(){
     this.closeEdit();
-    this.addAsset(this.selected_currency,this.selected_amount);
-    this.setPieChart();
-    //this.setPercentage();
+    clearInterval(this.interval);
+    //this.addAsset(this.selected_currency,this.selected_amount);
+    //this.setPieChart();
+
+    this.showBuying();
+    this.portfolioService.portfoliobuy(this.selected_amount, this.rate, this.selected_currency.Currency, this.portfolio._id).subscribe(portfolio => {
+      //reload this portfolio
+
+      this.hideBuying();
+    }, err => {
+      this.hideBuying();
+      this.portfolioError.name = "Asset Not Purchased";
+      this.portfolioError.message = err;
+      this.openError();
+    });
   }
 
   setPieChart(){
@@ -131,8 +195,35 @@ export class PortfolioComponent implements OnInit {
        this.portfolio.amount+=amount;
        this.portfolio.assets.unshift(asset);
     }
-
     //save portfolio after adding the asset
+ }
+
+ ngOnDestroy() {
+    clearInterval(this.interval);
+ }
+
+ showLoading(){
+    this.loading = true;
+ }
+
+ hideLoading(){
+    this.loading = false;
+ }
+
+ showBuying(){
+   this.buying = true;
+ }
+
+ hideBuying(){
+   this.buying = false;
+ }
+
+ openError(){
+   this.showError = true;
+ }
+
+ closeError(){
+   this.showError = false;
  }
 
 }

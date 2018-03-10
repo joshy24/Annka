@@ -10,15 +10,29 @@ import { CurrencyService } from '../../services/currency.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
   portfolio: Portfolio[];
+  selected_currencies: Currency[];
+  priority_currencies: String[];
+  search: boolean;
 
   constructor( private bitrexService: BitrexService, private router:Router, private currencyService:CurrencyService ) { }
 
   ngOnInit() {
-      this.currencyService.getCurrencies().subscribe(res => {
-          if(!res){
+      this.priority_currencies = ["BTC", "ETH", "XRP"];
+      this.selected_currencies = [];
 
+      this.currencyService.getCurrencies().subscribe(res => {
+          if(res){
+            this.currencyService.currencies.map(c => {
+                if(this.priority_currencies.includes(c.Currency)){
+                    this.selected_currencies.push(c);
+                }
+            })
+          }
+          else{
+              
           }
       }, err => {
 
@@ -26,8 +40,21 @@ export class HomeComponent implements OnInit {
   }
   
   buyAsset(i){
-      this.router.navigate(['/portfolio/new', this.currencyService.currencies[i].Currency]);
+      this.router.navigate(['/portfolio/new', this.priority_currencies[i]]);
       return false;
   } 
+
+  showSearch(){
+      this.search = true;
+  }
+
+  closeSearchFromParent = function(){
+      this.search = false;
+  }
+
+  addAssetToParent = function(currency){
+      this.search = false;
+      this.router.navigate(['/portfolio/new', currency]);
+  }
 
 }

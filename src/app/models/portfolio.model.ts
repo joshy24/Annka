@@ -7,6 +7,7 @@ class Portfolio {
   amount: number;
   assets: Asset[];
   funded: boolean;
+  date:Date;
   
   addAsset(currency:Currency, amount:number){
      let exists:boolean = false;

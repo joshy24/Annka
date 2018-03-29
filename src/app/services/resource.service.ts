@@ -15,7 +15,6 @@ export class ResourceService {
     var d = date.toString();
     var adate = d.split("T")
 
-    console.log(adate[0]);
     return moment(adate[0]).format("LL");
   }
 

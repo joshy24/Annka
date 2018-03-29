@@ -44,6 +44,10 @@ import { FundconfirmComponent } from './components/fundconfirm/fundconfirm.compo
 import { SearchComponent } from './components/search/search.component';
 import { EditaccountComponent } from './components/editaccount/editaccount.component';
 import { AccountVerifyComponent } from './components/account-verify/account-verify.component';
+import { CashoutComponent } from './components/cashout/cashout.component';
+import { TransactionComponent } from './components/transaction/transaction.component';
+import { PendingitemComponent } from './components/pendingitem/pendingitem.component';
+import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +70,11 @@ import { AccountVerifyComponent } from './components/account-verify/account-veri
     FundconfirmComponent,
     SearchComponent,
     EditaccountComponent,
-    AccountVerifyComponent
+    AccountVerifyComponent,
+    CashoutComponent,
+    TransactionComponent,
+    PendingitemComponent,
+    CashoutwalletComponent
   ],
   imports: [
     BrowserModule,

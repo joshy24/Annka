@@ -25,6 +25,7 @@ export class PurchaseComponent implements OnInit {
   currencyLong: string;
   portfolioError:PortfolioError;
   showError: boolean;
+  showPurchaseMessage: boolean;
   search: boolean;
   ticker:Number;
   interval:any;
@@ -112,6 +113,14 @@ export class PurchaseComponent implements OnInit {
       this.showError = false;
   }
 
+  openPurchaseMessage(){
+     this.showPurchaseMessage = true;
+  }
+
+  closePurchaseMessage(){
+    this.showPurchaseMessage = false;
+  }
+
   getUser(){
     this.accountService.account().subscribe( 
       user => {
@@ -122,9 +131,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   showPurchase(selectedcurrency){
-    this.currency = selectedcurrency.Currency;
-    this.currencyLong = selectedcurrency.CurrencyLong;
-    this.router.navigate(['/portfolio/new', selectedcurrency.Currency]); 
+    this.router.navigate(['/portfolio/new', selectedcurrency]); 
     return false;
   }
 
@@ -168,27 +175,40 @@ export class PurchaseComponent implements OnInit {
          //save portfolio then go to portfolio component
          this.portfolio.name = name;
 
-         this.portfolioService.create(this.portfolio).subscribe( data => {
-            switch(data){
-               case "max reached":
-               break;
-               case "portfolio exists":
-               break;
-               case "insufficient funds":
-                  this.portfolioError.name = "Insufficient Funds in Wallet";
-                  this.portfolioError.message = "The amount in your wallet is less then the amount you are attempting to invest. Please fund your wallet to proceed";
-                  this.portfolioError.action = "wallet";
-                  this.openError();
-               break;
-               default :
-                  this.router.navigate(['/portfolio', data]); 
-               break;
-            }
-         }, error => {
-
-         })
-
+         
+         this.openPurchaseMessage();
       }
+  }
+
+  continuePurchase(){
+      this.closePurchaseMessage();
+      this.portfolioService.create(this.portfolio).subscribe( data => {
+        switch(data){
+          case "Assets Max Size Reached":
+              this.portfolioError.name = "Maximum Size Reached";
+              this.portfolioError.message = "You cant own more than 5 Digital Portfolios";
+              this.portfolioError.action = "assets";
+              this.openError();
+          break;
+          case "Portfolio Exists":
+              this.portfolioError.name = "Portfolio Exists";
+              this.portfolioError.message = "A portfolio with that name already exists. Pleasse rename your portfolio";
+              this.portfolioError.action = "assets";
+              this.openError();
+          break;
+          case "Insufficient Funds":
+              this.portfolioError.name = "Insufficient Funds in Wallet";
+              this.portfolioError.message = "The amount in your wallet is less then the amount you are attempting to invest. Please fund your wallet to proceed";
+              this.portfolioError.action = "wallet";
+              this.openError();
+          break;
+          default :
+              this.router.navigate(['/portfolio', data]); 
+          break;
+        }
+    }, error => {
+
+    })
   }
 
   setAssetCodes(){
@@ -209,6 +229,7 @@ export class PurchaseComponent implements OnInit {
   addAssetToParent = function(currency){
      this.search = false;
      this.router.navigate(['/portfolio/new', currency]);
+     return false;
   }
 
 }

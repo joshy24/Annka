@@ -24,9 +24,9 @@ export class CurrencyService {
 
   getCurrencies(): Observable<boolean>{
       return this.http.get(`${this.resourceService.getBaseUrl()+this.get_currencies_url}`, {})
-      .map(res  => {
+      .map((res:Currency[])  => {
         //Maps the response object sent from the server
-        this.currencies = res["result"];
+        this.currencies = res;
 
         this.currencies.map(c => {
             c.Image_url = c.Currency.toLowerCase();
@@ -70,6 +70,10 @@ export class CurrencyService {
     
   }
 
+  getNairaAnnkaRate(amount){
+    return Math.round(amount*0.94);
+  }
+  
   getAnnkaRate(amount, value){
     var num = amount/value;
     

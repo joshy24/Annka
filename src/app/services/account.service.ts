@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import User from  '../models/user.model'
+import AnnkaResponse from '../models/annka.interface'
+import Transaction from '../models/transaction.model';
 import { HttpClient, HttpParams,HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Response } from '@angular/http'
 import { Observable } from 'rxjs';
@@ -14,6 +16,9 @@ export class AccountService {
   private account_url = "/account";
   private upload_url = "/upload_verification";
   private bvn_url = "/bvn_verification";
+  private pending_count_url = "/pendingtransactionscount";
+  private pending_all_url = "/pendingtransactions";
+  private cashout_url = "/cashout/wallet";
 
   constructor(private http: HttpClient, private resourceService:ResourceService) { }
 
@@ -85,9 +90,55 @@ export class AccountService {
     )
   }
 
-}
+  pendingcount():Observable<number>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.pending_count_url,{},{
+      headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+    })
+    .map((response:AnnkaResponse) => {
+        if(response){
+          return response.response;  
+        }
+        else{
+          return null;
+        }
+    })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 
-interface AnnkaResponse{
-  response: String;
-}
+  pendingall():Observable<Transaction[]>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.pending_all_url,{},{
+      headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+    })
+    .map((response:Transaction[]) => {
+        if(response){
+          return response;  
+        }
+        else{
+          return null;
+        }
+    })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+  
+  cashout(amount):Observable<String>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.cashout_url, {amount} ,{
+      headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+    })
+    .map((portfolio:AnnkaResponse) => {
+        if(portfolio.response){
+          return portfolio.response;  
+        }
+        else{
+          return null;
+        }
+    })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 
+}

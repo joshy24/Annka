@@ -19,7 +19,7 @@
                   </div>
               </div>
               <div class="col-md-4 col-sm-4">
-                  <h4 class="text-center">Total Amount in Portfolio</h4>
+                  <h4 class="text-center">Amount in Portfolio</h4>
                   <h4 class="text-center">₦{{currencyService.getAmount(portfolio.amount)}}</h4>
               </div>
               <div class="col-md-4 col-sm-4">
@@ -30,16 +30,17 @@
           <br/>
           <br/>
           <hr/>
-          <h3 class="text-center">Add {{currencyLong}} ({{currency}}) to your portfolio <a style="margin-left:50px;" (click)="showSearch()"><i class="fas fa-search annka-inline"></i></a></h3>
-          <br/>
+          <h3 class="annka-center text-center">Select Asset <a style="margin-left:50px;" (click)="showSearch()"><i class="fas fa-search annka-inline"></i> Search</a></h3>
           <div class="selector-div">
-              <select (ngModel)="currencies" (ngModelChange)="showPurchase($event)" class="annka-center" name="curencies">
-                <option *ngFor="let money of currencyService.currencies; let i = index" (ngValue)="money" (click)="showPurchase(money)"> {{money.Currency}} </option>
-              </select>
+                <select (ngModel)="currencies" class="annka-center" name="curencies"> 
+                  <option *ngFor="let money of currencyService.currencies; let i = index" (click)="showPurchase(money.Currency)" (ngValue)="money"> {{money.Currency}} </option>
+                </select>
           </div>
-          
           <br/>
-          <h3 c>Our Popular Packages</h3>    
+          <hr/>
+          <h3 class="text-center">Add {{currencyLong}} ({{currency}}) to your portfolio</h3>
+          <br/>
+          <h3>Our Popular Packages</h3>    
           <br/>       
           <div class="price-item-div">
               <priceitem *ngFor="let price of currencyService.prices; let i = index" [currency]="currency" [price]="price" [ticker]="ticker" [loading]="loading" (click)="addAmount(price)"></priceitem>
@@ -67,6 +68,23 @@
         <br/>
         <button *ngIf="portfolioError.action=='wallet'" class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="showFundWallet()">FUND WALLET</button>
         <button *ngIf="portfolioError.action=='assets'" class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeError()">CONTINUE</button>
+    </div>
+</div>
+
+<div *ngIf="showPurchaseMessage" class="annka-modal-div" id="login-loader-div">
+    <div class="innder-annka-modal-div">
+        <a class="text-right"><h1 class="close-text" (click)="closePurchaseMessage()">&times;</h1></a>
+        <h2 class="text-center">Create Portfolio</h2>
+        <br/>
+        <br/>  
+         <h4 class="text-center annka-center" style="line-height:1.5em; max-width:900px;">Purchasing Digital Assets involves owning a digital wallet, Maintaining an account on an exchange platform and spending a considerable amount of money just to make a simple transaction go through. Annka removes that complexity and reduces cost significantly with you needing just your credit card and an email address. <br/> Because we are bearing the burding and cost of purchasing and maintaining digital assets on your behalf we charge you a blockchain fee of 5% and a 1% commision. </h4>
+        <br/>
+        <br/>
+        <br/>
+        <h4 class="text-center">Estimated Value of Portfolio</h4>
+        <h3 class="text-center annka-green">₦{{currencyService.getAmount(currencyService.getNairaAnnkaRate(portfolio.amount))}}</h3>
+        <br/>
+        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="continuePurchase()">CONTINUE</button>
     </div>
 </div>
 

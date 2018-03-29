@@ -1,0 +1,77 @@
+<div class="container">
+   <div *ngIf="portfolio" class="row">
+       <br/>
+       <br/>
+       <div class="shadow annka-center annka-fund-div">
+            <div class="annka-padding-16 annka-center" style="max-width:400px;">
+                <h3 class="text-center"><b>{{portfolio.name}}</b></h3>
+                <h3 class="text-center annka-green"><b>Cash Out</b></h3>
+                <br/>
+                <h4 class="text-center"><b>Estimated Value of Portfolio</b></h4>
+                <h4 class="text-center">₦{{currencyService.getAmount(portfolio.amount)}}</h4>
+                <br/>
+                <hr/>
+                <br/>
+                <div *ngIf="asset_id!='all'">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-lg-6">
+                            <h4 class="text-center"><b>Asset to cash out</b></h4>
+                            <img src="../../../assets/images/svg/color/{{asset.image_url}}.svg" class="img-responsive annka-center">
+                            <h4 class="text-center">{{asset.market_code}}  ({{asset.name}})</h4>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-6">
+                            <h4 class="text-center"><b>Value of Asset</b></h4>
+                            <h4 class="text-center">₦{{currencyService.getAmount(asset.value)}}</h4>
+                        </div>
+                    </div>
+                    <br/>
+                    <hr/>
+                    <br/>
+                </div>
+                <div *ngIf="asset_id=='all'">
+                    <h4 class="text-center"><b>Asset(s) to cash out</b></h4>
+                    <h4 class="text-center">{{asset_codes}}</h4>
+                    <br/>
+                    <hr/>
+                    <br/>
+                    <h4 class="text-center">You are cashing out the whole Portfolio</h4>
+                    <br/>
+                    <hr/>
+                    <br/>
+                </div>
+                <h5 class="text-center"><b>Where do you want us to send your money?</b></h5>
+                <br/>
+                <button type="submit" class="annka-green-btn annka-center" (click)="cashout('bank')">MY BANK ACCOUNT</button>
+                <br/>
+                <button type="submit" class="annka-blue-btn annka-center" (click)="cashout('wallet')">MY ANNKA WALLET</button>
+                <br/>
+                <h5 class="text-center"><a class="text-center" (click)="goBack()">Back</a></h5>
+            </div>
+       </div>   
+   </div>
+</div>
+
+<div #loading *ngIf="!portfolio" class="loading" style="margin-top:200px;"></div>
+
+<div *ngIf="showMessage" class="annka-modal-div" id="login-loader-div">
+    <div class="innder-annka-modal-div">
+        <a class="text-right"><h1 class="close-text" (click)="closeMessage()">&times;</h1></a>
+        <h2 class="text-center">CashOut</h2>
+        <br/>
+        <br/>  
+        <div *ngIf="asset_id=='all'">
+          <h4 class="text-center annka-center" style="line-height:1.5em; max-width:900px;">₦{{currencyService.getAmount(portfolio.amount)}} will be transferred to your {{location}}</h4>
+          <br/>
+          <h5 class="text-center">And Your Portfolio will be closed</h5>
+        </div>
+        <div *ngIf="asset_id!='all'">
+          <h4 class="text-center annka-center" style="line-height:1.5em; max-width:900px;">₦{{currencyService.getAmount(asset.value)}} will be transferred to your {{location}}</h4>
+          <br/>
+          <h5 class="text-center">And {{asset.name}} will be removed from your portfolio</h5>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="continueCashout()">CONTINUE</button>
+    </div>
+</div>

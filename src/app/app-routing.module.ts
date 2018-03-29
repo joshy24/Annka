@@ -13,6 +13,9 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AccountComponent } from './components/account/account.component';
 import { FundComponent } from './components/fund/fund.component';
 import { FundconfirmComponent } from './components/fundconfirm/fundconfirm.component';
+import { CashoutComponent } from './components/cashout/cashout.component'
+import { TransactionComponent } from './components/transaction/transaction.component';
+import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet.component'
 
 const routes: Routes = [
    //{path: '', redirectTo: '/#', pathMatch: 'full'},
@@ -40,9 +43,12 @@ const routes: Routes = [
      component: AccountComponent, 
      canActivate: [ AuthGuardService ]     
    },
+   {path: 'pendingtransactions', component: TransactionComponent, canActivate: [ AuthGuardService ]},
    {path: 'account/fund', component: FundComponent, canActivate: [ AuthGuardService ]},
    {path: 'account/fund/payment', component: FundconfirmComponent},
    {path: 'signup', component: SignupComponent},
+   {path: "cashout/:portfolio/:asset", component:CashoutComponent, canActivate: [ AuthGuardService ]},
+   {path: "cashout/wallet", component:CashoutwalletComponent, canActivate: [ AuthGuardService ]},
    {path: "**", component: PagenotfoundComponent}
 ];
 

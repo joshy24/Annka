@@ -6,7 +6,7 @@
             <h3><b>Estimated value of portfolio</b></h3>
             <h3>₦{{currencyService.getAmount(portfolio.amount)}}</h3>
             <br/>
-            <button class="annka-green-btn submit-btn" (click)="openEdit()">Cash Out</button>
+            <button class="annka-green-btn submit-btn" (click)="cashOutAll()">Cash Out</button>
         </div>
         <div class="col-md-6 col-sm-5">
             <br/>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="row">
-        <portfolioitem *ngFor="let asset of portfolio.assets; let i = index" [asset]="asset"></portfolioitem>
+        <portfolioitem *ngFor="let asset of portfolio.assets; let i = index" [asset]="asset" (cashOut)="cashOut($event)"></portfolioitem>
     </div>
 </div>
 <div #loading *ngIf="!portfolio" class="loading" style="margin-top:200px;">
@@ -41,7 +41,7 @@
         <br/>
         <h3 class="text-center">Asset</h3>
         <div class="selector-div">
-            <select (ngModel)="currencies" (ngModelChange)="showPurchase($event)" class="annka-center">
+            <select (ngModel)="currencies" class="annka-center">
                 <option *ngFor="let money of currencies; let i = index" (ngValue)="money" (click)="addCurrency(i)"> {{money.Currency}} </option>
             </select>
         </div>

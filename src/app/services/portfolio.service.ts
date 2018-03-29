@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import User from  '../models/user.model'
 import Portfolio from '../models/portfolio.model';
+import Asset from '../models/asset.model'
+import AnnkaResponse from '../models/annka.interface'
 import { HttpClient, HttpParams,HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Response } from '@angular/http'
 import { Observable } from 'rxjs';
@@ -15,6 +17,8 @@ export class PortfolioService {
   private portfolio_all_url = "/portfolio/all";
   private portfolio_one_url = "/portfolio/one";
   private portfolio_buy_one_url = "/portfolio/one/buy";
+  private asset_one_url = "/asset/one";
+  private cashout_url = "/cashout";
 
   constructor(private resourceService:ResourceService,private http: HttpClient) { }
 
@@ -56,9 +60,9 @@ export class PortfolioService {
     return this.http.post(this.resourceService.getBaseUrl()+this.portfolio_create_url, portfolio,{
       headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
     })
-    .map((portfolio:Portfolio[]) => {
+    .map((portfolio:AnnkaResponse) => {
         if(portfolio){
-          return portfolio;  
+          return portfolio.response;  
         }
         else{
           return null;
@@ -86,13 +90,47 @@ export class PortfolioService {
     )
   }
 
+  asset(id):Observable<Asset>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.asset_one_url, {id:id} ,{
+      headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+    })
+    .map((asset:Asset) => {
+        if(asset){
+          return asset;  
+        }
+        else{
+          return null;
+        }
+    })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
   portfoliobuy(amount, value, currency, portfolio):Observable<Portfolio>{
     return this.http.post(this.resourceService.getBaseUrl()+this.portfolio_buy_one_url, {amount, value, currency, portfolio} ,{
       headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
     })
-    .map((portfolio:Portfolio) => {
-        if(portfolio){
-          return portfolio;  
+    .map((portfolio:AnnkaResponse) => {
+        if(portfolio.response){
+          return portfolio.response;  
+        }
+        else{
+          return null;
+        }
+    })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  cashout(portfolio, asset, location):Observable<String>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.cashout_url, {portfolio, asset, location} ,{
+      headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+    })
+    .map((portfolio:AnnkaResponse) => {
+        if(portfolio.response){
+          return portfolio.response;  
         }
         else{
           return null;

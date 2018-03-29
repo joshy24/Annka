@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import PortfolioError from '../../models/portfolio.error'
 import { AuthService } from '../../services/auth-service.service';
 
 @Component({
@@ -14,6 +15,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading:boolean;
   account_url:string;
+  portfolioError:PortfolioError;
+  showError: boolean;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -24,6 +27,20 @@ export class LoginComponent implements OnInit {
       });
 
       this.account_url = "/account";
+
+      this.portfolioError = {
+        name: "",
+        message: "",
+        action: ""
+      }
+        
+      if(localStorage.getItem("jwt_login_msg").length>0){
+        //we have a message
+        this.portfolioError.name = "Session Expired";
+        this.portfolioError.message = localStorage.getItem("jwt_login_msg");
+        this.openError();
+        localStorage.removeItem("jwt_login_msg");
+      }
   }
 
   get email() { return this.loginForm.get('email'); }
@@ -61,6 +78,14 @@ export class LoginComponent implements OnInit {
     else{
       this.invalidCredentialMsg = 'Invalid Credentials. Try again.';
     }
+  }
+
+  openError(){
+    this.showError = true;
+  }
+
+  closeError(){
+      this.showError = false;
   }
 
 }

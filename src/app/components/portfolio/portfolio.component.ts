@@ -48,13 +48,12 @@ export class PortfolioComponent implements OnInit {
 
     this.getPortfolio();
 
-    //this.portfolio = JSON.parse(localStorage.getItem("portfolio"));
-
     if(this.currencyService.currencies==null){
-      this.bitrexService.getCurrencies().subscribe(response => {
-        this.currencies = response;
-        this.currencyService.currencies = response;
-        this.selected_currency = this.currencies[0];
+      this.currencyService.getCurrencies().subscribe(response => {
+        if(response){
+           this.currencies = this.currencyService.currencies;
+           this.selected_currency = this.currencies[0];
+        }
       })
     }
     else{
@@ -196,6 +195,14 @@ export class PortfolioComponent implements OnInit {
        this.portfolio.assets.unshift(asset);
     }
     //save portfolio after adding the asset
+ }
+
+ cashOut(asset){
+   this.router.navigate(['/cashout', this.portfolio._id, asset]); 
+ }
+
+ cashOutAll(){
+   this.router.navigate(['/cashout', this.portfolio._id, "all"]);
  }
 
  ngOnDestroy() {

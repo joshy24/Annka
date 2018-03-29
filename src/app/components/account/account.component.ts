@@ -75,4 +75,8 @@ export class AccountComponent implements OnInit {
   closeError(){
     this.showError = false;
   }
+
+  cashout(){
+
+  }
 }

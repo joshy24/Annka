@@ -5,6 +5,7 @@ class Asset {
   image_url: string;
   quantity: number;
   value: number;
+  old_value:number;
   percent: number;
 }
 

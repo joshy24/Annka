@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         action: ""
       }
         
-      if(localStorage.getItem("jwt_login_msg").length>0){
+      if(localStorage.getItem("jwt_login_msg")&&localStorage.getItem("jwt_login_msg").length>0){
         //we have a message
         this.portfolioError.name = "Session Expired";
         this.portfolioError.message = localStorage.getItem("jwt_login_msg");
@@ -71,7 +71,22 @@ export class LoginComponent implements OnInit {
 
               }
           }, error => {
-           this.hideLoading();
+            this.portfolioError.name = "Login Message";
+
+            switch(error){
+              case "User Not Found":
+                this.portfolioError.message = "The Username or Password is incorrect";
+              break;
+              case "Server Error":
+                this.portfolioError.message = "Login could not be processed at this moment. Please try again later";
+              break
+              case "Wrong Password":
+                this.portfolioError.message = "The Username or Password is incorrect";
+              break;
+            }
+
+            this.openError();
+            this.hideLoading();
           }
       );
     }

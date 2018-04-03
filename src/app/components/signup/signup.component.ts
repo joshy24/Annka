@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import User from '../../models/user.model'
+import PortfolioError from '../../models/portfolio.error'
 
 @Component({
   selector: 'app-signup',
@@ -16,6 +17,8 @@ export class SignupComponent implements OnInit {
   showConfirm:boolean;
   loading:boolean;
   account_url:string;
+  portfolioError:PortfolioError;
+  showError: boolean;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -27,8 +30,8 @@ export class SignupComponent implements OnInit {
         photo_url: new FormControl(''),
         firstname: new FormControl('', [Validators.required, Validators.minLength(2)]),
         lastname: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        account_bank: new FormControl(''),
-        account_number: new FormControl(''),
+        account_bank: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        account_number: new FormControl('', [Validators.required, Validators.minLength(8)]),
         terms: new FormControl(false)
       });
 
@@ -36,6 +39,12 @@ export class SignupComponent implements OnInit {
 
       this.showConfirm = false;
       this.loading = false;
+
+      this.portfolioError = {
+        name: "",
+        message: "",
+        action: ""
+      }
   }
 
   get email() { return this.signupForm.get('email'); }
@@ -83,6 +92,21 @@ export class SignupComponent implements OnInit {
             }
         }, error => {
            this.hideLoading();
+           this.portfolioError.name = "Signup Message";
+
+            switch(error){
+                case "User Not Found":
+                  
+                break;
+                case "Server Error":
+                  this.portfolioError.message = "Login could not be processed at this moment. Please try again later";
+                break
+                case "Wrong Password":
+                  
+                break;
+            }
+
+            this.openError();
         }
     );
   }
@@ -105,6 +129,14 @@ export class SignupComponent implements OnInit {
     else{
       this.invalidCredentialMsg = 'Invalid Credentials. Try again.';
     }
+  }
+
+  openError(){
+    this.showError = true;
+  }
+
+  closeError(){
+      this.showError = false;
   }
 
 }

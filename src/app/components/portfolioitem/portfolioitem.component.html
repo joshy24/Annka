@@ -14,8 +14,16 @@
                         <h3><b>Quantity</b></h3>
                         <h4>{{asset.quantity}}</h4>
                         <br/>
-                        <h3><b>Value</b></h3>
-                        <h4>₦{{currencyService.getAmount(asset.value)}}</h4>
+                        <div>
+                            <div class="annka-inline">
+                                <h3><b>Value</b></h3>
+                                <h4>₦{{currencyService.getAmount(asset.value)}}</h4>
+                            </div>
+                            <div class="annka-inline" style="margin-top:0px;">
+                                <h4 class="annka-green pull-right" *ngIf="currencyService.getChangeDirection(asset.old_value, asset.value)==true">+ {{currencyService.getPercentageChange(asset.old_value, asset.value)}}%</h4>
+                                <h4 class="annka-red pull-right" *ngIf="currencyService.getChangeDirection(asset.old_value, asset.value)==false">- {{currencyService.getPercentageChange(asset.old_value, asset.value)}}%</h4>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6 col-sm-7">
                         <h2>{{asset.percent}}% of your portfolio</h2>

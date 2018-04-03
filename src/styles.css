@@ -224,6 +224,16 @@ hr{
     display: inline
 }
 
+.annka-right{
+    float:right;
+    text-align: right;
+}
+
+.annka-left{
+    float:left;
+    text-align: left;
+}
+
 .annka-input{
     min-width: 250px;
     width: 100%;
@@ -309,7 +319,7 @@ hr{
 }
 
 .close-text{
-    color: #FFFFFFFF;
+    color: #f3f3f3;
     font-size: 80px;
     cursor: default;
     margin-right: 50px;

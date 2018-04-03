@@ -30,6 +30,9 @@ export class ResponseInterceptor implements HttpInterceptor {
                     if (err.status === 403 && err.statusText=="Expired Token") {
                     // redirect to the login route
                     // or show a modal
+                        localStorage.removeItem("user");
+                        localStorage.removeItem("expires");
+                        localStorage.removeItem("token");
                         localStorage.setItem("jwt_login_msg", "Your Session has expired, you need to login with your details");
                         this.router.navigate([ "/login" ]);
                     }

@@ -80,6 +80,18 @@ export class CurrencyService {
     return num*0.94;
   }
 
+  getPercentageChange(old_amt, new_amt){
+     return Math.round((Math.abs((new_amt-old_amt)/old_amt))*100);
+  }
+  
+  getAmountChange(old_amt, new_amt){
+    return Math.abs(new_amt-old_amt);
+  }
+
+  getChangeDirection(old_amt, new_amt){
+     return new_amt>=old_amt;
+  }
+
 }
 
 interface Value{

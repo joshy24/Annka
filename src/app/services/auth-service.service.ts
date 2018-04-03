@@ -28,7 +28,8 @@ export class AuthService {
     }
     // return an ErrorObservable with a user-facing error message
     return new ErrorObservable(
-      'Something bad happened; please try again later.');
+           error.error
+    );
   };
 
   login(email:string, password:string):Observable<boolean>{
@@ -37,7 +38,6 @@ export class AuthService {
         })
         .map((respond: Respond) => {
           if(respond){
-            console.log(respond);
             if(respond.token&&respond.user&&respond.expires){
               this.setSession(respond);
               return true;

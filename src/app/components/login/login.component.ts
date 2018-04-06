@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   invalidCredentialMsg: string;
   loginForm: FormGroup;
   loading:boolean;
-  account_url:string;
+  portfolio_url:string;
   portfolioError:PortfolioError;
   showError: boolean;
 
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         password: new FormControl('', [Validators.required, Validators.minLength(8)])
       });
 
-      this.account_url = "/account";
+      this.portfolio_url = "/portfolio/all";
 
       this.portfolioError = {
         name: "",
@@ -65,12 +65,13 @@ export class LoginComponent implements OnInit {
           authenticated => {
             this.hideLoading();
               if(authenticated) {
-                this.router.navigate([ this.account_url ]);					  
+                this.router.navigate([ this.portfolio_url ]);					  
               } 
               else {
 
               }
           }, error => {
+            
             this.portfolioError.name = "Login Message";
 
             switch(error){

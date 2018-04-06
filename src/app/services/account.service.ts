@@ -19,6 +19,7 @@ export class AccountService {
   private pending_count_url = "/pendingtransactionscount";
   private pending_all_url = "/pendingtransactions";
   private cashout_url = "/cashout/wallet";
+  private resend_url = "/resend_email";
 
   constructor(private http: HttpClient, private resourceService:ResourceService) { }
 
@@ -131,6 +132,23 @@ export class AccountService {
     .map((portfolio:AnnkaResponse) => {
         if(portfolio.response){
           return portfolio.response;  
+        }
+        else{
+          return null;
+        }
+    })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  resendMail():Observable<String>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.resend_url, {} ,{
+      headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+    })
+    .map((result:AnnkaResponse) => {
+        if(result.response){
+          return result.response;  
         }
         else{
           return null;

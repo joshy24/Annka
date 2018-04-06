@@ -19,11 +19,11 @@
             <div *ngIf="!user.activated">
                 <h5 class="annka-red">Your account has not been activated</h5>
                 <h5>Please follow the link in the email we sent you. </h5>
-                <a class="a" routerLink="/portfolio/all">Resend email</a>
+                <a class="a" (click)="resendEmail()">Resend email</a>
             </div>
             <br/>
             <hr/>
-            <div *ngIf="user.verified=='no'">
+            <div *ngIf="user.verified=='No'">
                 <h5 class="annka-red">Your account has not been verified</h5>
                 <a class="annka-blue-btn" (click)="showVerify()">Verify Account</a>
                 <br/>
@@ -61,6 +61,7 @@
         </div>
     </div>
     <div class="row">
+        <br/>
         <br/>
         <a class="annka-green-btn annka-center" routerLink="/portfolio/all">MY PORTFOLIOS</a>
     </div>

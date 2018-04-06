@@ -34,6 +34,16 @@
                         
                             <h5>Your Lastname needs to be more than 1 character</h5>
                         </div>
+                        <div *ngIf="(account_bank.invalid && account_bank.touched)"
+                            class="text-danger">
+                        
+                            <h5>Your Bank name is required for us when you want to cashout</h5>
+                        </div>
+                        <div *ngIf="(account_number.invalid && account_number.touched)"
+                            class="text-danger">
+                        
+                            <h5>Your Bank account number is needed when you want to cashout</h5>
+                        </div>
                         <div *ngIf="(terms.invalid && terms.touched)"
                             class="text-danger">
                         
@@ -58,6 +68,13 @@
                             formControlName = "email"
                             id="email"
                             placeholder="Email">
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <input style="display:block;" class="annka-input" type="text"
+                              formControlName = "phone_number"
+                              id="phone_number"
+                              placeholder="Phone Number">
                         </div>
                         <br/>
                         <div class="form-group">

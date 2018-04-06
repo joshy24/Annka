@@ -11,6 +11,7 @@ import { CurrencyService } from './services/currency.service';
 import { PiedataService } from './services/piedata.service';
 import { AuthService } from './services/auth-service.service'
 import { AuthGuardService } from './services/auth-guard-service.service';
+import { UnauthGuardService } from './services/unauth-guard-service.service';
 import { AccountService } from './services/account.service';
 import { PortfolioService } from './services/portfolio.service';
 import { ResourceService } from './services/resource.service';
@@ -48,6 +49,7 @@ import { CashoutComponent } from './components/cashout/cashout.component';
 import { TransactionComponent } from './components/transaction/transaction.component';
 import { PendingitemComponent } from './components/pendingitem/pendingitem.component';
 import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet
     CashoutComponent,
     TransactionComponent,
     PendingitemComponent,
-    CashoutwalletComponent
+    CashoutwalletComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +94,7 @@ import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet
     PiedataService,
     AuthService,
     AuthGuardService,
+    UnauthGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JWTInterceptor,

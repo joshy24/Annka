@@ -49,6 +49,17 @@ export class AccountComponent implements OnInit {
       }
     );
   }
+  
+  resendEmail(){
+     this.showLoading();
+     this.accountService.resendMail().subscribe(res => {
+        if(res){
+           this.getAccount()
+        }
+     }, error => {
+        this.hideLoading();
+     })
+  }
 
   showVerify(){
     this.verify = true;

@@ -8,6 +8,7 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { PortfolioallComponent } from './components/portfolioall/portfolioall.component';
 import { AuthGuardService } from './services/auth-guard-service.service'
+import { UnauthGuardService } from './services/unauth-guard-service.service'
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AccountComponent } from './components/account/account.component';
@@ -16,6 +17,7 @@ import { FundconfirmComponent } from './components/fundconfirm/fundconfirm.compo
 import { CashoutComponent } from './components/cashout/cashout.component'
 import { TransactionComponent } from './components/transaction/transaction.component';
 import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet.component'
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 
 const routes: Routes = [
    //{path: '', redirectTo: '/#', pathMatch: 'full'},
@@ -37,7 +39,7 @@ const routes: Routes = [
         }
       ]		
    },
-   {path: 'login', component: LoginComponent},
+   {path: 'login', component: LoginComponent, canActivate: [ UnauthGuardService ]},
    {
      path: 'account', 
      component: AccountComponent, 
@@ -46,9 +48,10 @@ const routes: Routes = [
    {path: 'pendingtransactions', component: TransactionComponent, canActivate: [ AuthGuardService ]},
    {path: 'account/fund', component: FundComponent, canActivate: [ AuthGuardService ]},
    {path: 'account/fund/payment', component: FundconfirmComponent},
-   {path: 'signup', component: SignupComponent},
+   {path: 'signup', component: SignupComponent, canActivate: [ UnauthGuardService ]},
    {path: "cashout/:portfolio/:asset", component:CashoutComponent, canActivate: [ AuthGuardService ]},
    {path: "cashout/wallet", component:CashoutwalletComponent, canActivate: [ AuthGuardService ]},
+   {path: "forgotpassword", component:ForgotpasswordComponent, canActivate: [ UnauthGuardService ]},
    {path: "**", component: PagenotfoundComponent}
 ];
 

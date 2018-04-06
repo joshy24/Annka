@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   showConfirm:boolean;
   loading:boolean;
-  account_url:string;
+  portfolio_url:string;
   portfolioError:PortfolioError;
   showError: boolean;
 
@@ -30,12 +30,13 @@ export class SignupComponent implements OnInit {
         photo_url: new FormControl(''),
         firstname: new FormControl('', [Validators.required, Validators.minLength(2)]),
         lastname: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        phone_number: new FormControl('', [Validators.pattern('/^[0-9]+$/'), Validators.minLength(11)]),
         account_bank: new FormControl('', [Validators.required, Validators.minLength(3)]),
         account_number: new FormControl('', [Validators.required, Validators.minLength(8)]),
         terms: new FormControl(false)
       });
 
-      this.account_url = "/account";
+      this.portfolio_url = "/portfolio/all";
 
       this.showConfirm = false;
       this.loading = false;
@@ -54,6 +55,7 @@ export class SignupComponent implements OnInit {
   get firstname() { return this.signupForm.get('firstname'); }
   get lastname() { return this.signupForm.get('lastname'); }
   get account_bank() { return this.signupForm.get('account_bank'); }
+  get phone_number(){return this.signupForm.get('phone_number'); }
   get account_number() { return this.signupForm.get('account_number'); }
   get terms() { return this.signupForm.get('terms'); }
 
@@ -85,7 +87,8 @@ export class SignupComponent implements OnInit {
             if(authenticated) {
               let url =  this.authService.getRedirectUrl(); 
               
-              this.router.navigate([ this.account_url ]);					  
+              this.router.navigate([ this.portfolio_url ]);	
+              				  
             } 
             else {
               

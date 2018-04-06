@@ -18,7 +18,7 @@ export class FundconfirmComponent implements OnInit {
   }
 
   paymentDone($event){
-    console.log($event);
+    
   }
 
 }

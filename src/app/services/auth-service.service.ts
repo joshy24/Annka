@@ -12,6 +12,7 @@ export class AuthService {
   private redirectUrl: string = '/';
   private loginUrl: string = '/login';
   private signupUrl: string = '/signup';
+  private accountUrl: string = '/account';
   
   constructor(private http: HttpClient, private resourceService:ResourceService) { }
 
@@ -90,6 +91,10 @@ export class AuthService {
     else{
       return false;
     }
+  }
+
+  getAccountUrl(): string {
+		return this.accountUrl;
   }
 
 	getRedirectUrl(): string {

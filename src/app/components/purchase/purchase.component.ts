@@ -31,7 +31,7 @@ export class PurchaseComponent implements OnInit {
   interval:any;
   loading:boolean;
 
-  constructor(private portfolioService:PortfolioService, private accountService:AccountService, private router:Router, private route: ActivatedRoute, private currencyService:CurrencyService, private bitrexService: BitrexService, private piedataService:PiedataService) {
+  constructor(private portfolioService:PortfolioService, private accountService:AccountService, private router:Router, private route: ActivatedRoute, public currencyService:CurrencyService, private bitrexService: BitrexService, private piedataService:PiedataService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
       return false;
     } 

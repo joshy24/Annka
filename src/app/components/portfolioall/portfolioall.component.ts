@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./portfolioall.component.css']
 })
 export class PortfolioallComponent implements OnInit {
-  private portfolios:Portfolio[];
+  portfolios:Portfolio[];
   loading:boolean;
   returned_empty:boolean;
 

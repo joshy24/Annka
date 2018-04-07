@@ -12,7 +12,7 @@ export class PriceitemComponent implements OnInit {
   @Input() ticker;
   @Input() loading;
   
-  constructor(private currencyService:CurrencyService) { }
+  constructor(public currencyService:CurrencyService) { }
 
   ngOnInit() {
      

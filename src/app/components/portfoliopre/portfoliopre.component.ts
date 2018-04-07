@@ -13,7 +13,7 @@ export class PortfoliopreComponent implements OnInit {
   @Input() portfolio:Portfolio;
   assets:string;
 
-  constructor(private currencyService:CurrencyService, private resourceService:ResourceService) { }
+  constructor(private currencyService:CurrencyService, public resourceService:ResourceService) { }
   
   ngOnInit() {
     this.assets = "";

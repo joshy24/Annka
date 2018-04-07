@@ -3,7 +3,7 @@ import * as moment from "moment";
 
 @Injectable()
 export class ResourceService {
-  private base_url:string = "http://localhost:3020";
+  private base_url:string = "https://annka.xyz/api";
   
   constructor() { }
 

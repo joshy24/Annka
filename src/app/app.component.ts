@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'app';
   pending:any = 0;
 
-  constructor(private authService:AuthService, private accountService:AccountService, private router: Router){
+  constructor(public authService:AuthService, public accountService:AccountService, private router: Router){
       if(this.authService.isUserAuthenticated()){
           this.accountService.pendingcount().subscribe(res => {
             this.pending = res

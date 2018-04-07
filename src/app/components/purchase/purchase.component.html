@@ -32,7 +32,7 @@
           <hr/>
           <h3 class="annka-center text-center">Select Asset <a style="margin-left:50px;" (click)="showSearch()"><i class="fas fa-search annka-inline"></i> Search</a></h3>
           <div class="selector-div">
-                <select (ngModel)="currencies" class="annka-center" name="curencies"> 
+                <select (ngModel)="currencyService.currencies" class="annka-center" name="curencies"> 
                   <option *ngFor="let money of currencyService.currencies; let i = index" (click)="showPurchase(money.Currency)" (ngValue)="money"> {{money.Currency}} </option>
                 </select>
           </div>

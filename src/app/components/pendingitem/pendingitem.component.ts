@@ -11,7 +11,7 @@ export class PendingitemComponent implements OnInit {
 
   @Input() transaction:Transaction;
 
-  constructor(private resourceService:ResourceService) { }
+  constructor(public resourceService:ResourceService) { }
 
   ngOnInit() {
   }

@@ -13,7 +13,7 @@ export class PortfolioitemComponent implements OnInit {
 
   @Output() cashOut: EventEmitter<String> = new EventEmitter<String>();
 
-  constructor(private currencyService:CurrencyService) { }
+  constructor(public currencyService:CurrencyService) { }
 
   ngOnInit() {
     

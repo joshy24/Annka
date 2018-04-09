@@ -140,6 +140,8 @@ export class PurchaseComponent implements OnInit {
   }
 
   showPurchase(selectedcurrency){
+    
+    console.log(selectedcurrency)
     this.router.navigate(['/portfolio/new', selectedcurrency]); 
     return false;
   }

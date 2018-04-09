@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
         photo_url: new FormControl(''),
         firstname: new FormControl('', [Validators.required, Validators.minLength(2)]),
         lastname: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        phone_number: new FormControl('', [Validators.pattern('/^[0-9]+$/'), Validators.minLength(11)]),
+        phone_number: new FormControl('', [Validators.minLength(11)]),
         account_bank: new FormControl('', [Validators.required, Validators.minLength(3)]),
         account_number: new FormControl('', [Validators.required, Validators.minLength(8)]),
         terms: new FormControl(false)
@@ -83,6 +83,7 @@ export class SignupComponent implements OnInit {
           
     this.authService.signup(user).subscribe(
         authenticated => {
+            console.log("Data - "+authenticated)
             this.hideLoading();
             if(authenticated) {
               let url =  this.authService.getRedirectUrl(); 
@@ -94,6 +95,7 @@ export class SignupComponent implements OnInit {
               
             }
         }, error => {
+           console.log("Error - "+error)
            this.hideLoading();
            this.portfolioError.name = "Signup Message";
 
@@ -116,21 +118,27 @@ export class SignupComponent implements OnInit {
 
   onFormSubmit() {
     this.invalidCredentialMsg = '';
-    if(this.signupForm.valid) {
-      if(this.signupForm.value.terms){
-        if(this.signupForm.value.password==this.signupForm.value.confirmPassword){
-            this.openConfirm();
+    var phone = this.signupForm.value.phone_number;
+    if(phone.match(/^[0-9]+$/)){
+      if(this.signupForm.valid) {
+        if(this.signupForm.value.terms){
+          if(this.signupForm.value.password==this.signupForm.value.confirmPassword){
+              this.openConfirm();
+          }
+          else{
+            this.invalidCredentialMsg = 'Passwords Dont match';
+          }
         }
         else{
-          this.invalidCredentialMsg = 'Passwords Dont match';
+          this.invalidCredentialMsg = 'You must agree to terms and conditions';
         }
       }
       else{
-        this.invalidCredentialMsg = 'You must agree to terms and conditions';
+        this.invalidCredentialMsg = 'Invalid Credentials. Try again.';
       }
     }
     else{
-      this.invalidCredentialMsg = 'Invalid Credentials. Try again.';
+      this.invalidCredentialMsg = 'Please Enter a valid Phone Number';
     }
   }
 

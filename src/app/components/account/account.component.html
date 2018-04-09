@@ -47,7 +47,7 @@
             <h4><b>Annka Wallet Balance</b></h4>
             <h4>₦ {{currencyService.getAmount(user.account_balance)}}</h4>
             <br/>
-            <a class="annka-blue-btn" routerLink="/account/fund">FUND ACCOUNT</a>
+            <a class="annka-blue-btn" routerLink="/account/fund">FUND</a>
             <br/>
             <a class="annka-green-btn" routerLink="/cashout/wallet">CASH OUT</a>
             <br/>
@@ -64,6 +64,8 @@
         <br/>
         <br/>
         <a class="annka-green-btn annka-center" routerLink="/portfolio/all">MY PORTFOLIOS</a>
+        <br/>
+        <br/>
     </div>
     <div class="row">
         <div *ngIf="loading" class="loading" style="margin-top:200px;">

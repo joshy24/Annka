@@ -39,7 +39,7 @@ export class FundComponent implements OnInit {
   onFormSubmit(){
     if(this.amountForm.valid){
         if(this.amountForm.value.amount>=5000&&this.amountForm.value.amount<=200000){
-            window.location.href = "http://localhost:3020/account?amount="+this.amountForm.value.amount+"&name="+this.authService.getToken();
+            window.location.href = "https://annka/api/account?amount="+this.amountForm.value.amount+"&name="+this.authService.getToken();
         }
         else{
 

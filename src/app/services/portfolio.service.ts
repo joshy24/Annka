@@ -107,7 +107,7 @@ export class PortfolioService {
     )
   }
 
-  portfoliobuy(amount, value, currency, portfolio):Observable<Portfolio>{
+  portfoliobuy(amount, value, currency, portfolio):Observable<String>{
     return this.http.post(this.resourceService.getBaseUrl()+this.portfolio_buy_one_url, {amount, value, currency, portfolio} ,{
       headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
     })

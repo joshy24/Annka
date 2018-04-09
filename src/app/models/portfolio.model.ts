@@ -9,15 +9,15 @@ class Portfolio {
   funded: boolean;
   date:Date;
   old_amount:number;
-  
-  addAsset(currency:Currency, amount:number){
+
+  addAsset(currency:Currency, amount:number, quantity){
      let exists:boolean = false;
     
      var asset:Asset = new Asset();
      asset.image_url = currency.Currency.toLowerCase();
      asset.market_code = currency.Currency;
      asset.name = currency.CurrencyLong;
-     asset.quantity = 0.000045//should be calculated;
+     asset.quantity = quantity;
      asset.value = amount;
 
      if(this.assets!=null&&this.assets.length>0){

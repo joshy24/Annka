@@ -71,13 +71,30 @@ export class CurrencyService {
   }
 
   getNairaAnnkaRate(amount){
-    return Math.round(amount*0.94);
+
+    var fee = Math.round(amount*0.94);
+
+    var six = Math.round(amount*0.06)
+
+    if(six>3000){
+       fee = amount - 3000;
+    }
+
+    return fee;
   }
   
   getAnnkaRate(amount, value){
-    var num = amount/value;
+    var fee = Math.round(amount*0.94);
+
+    var six = Math.round(amount*0.06)
+
+    if(six>3000){
+       fee = amount - 3000;
+    }
+
+    var num = fee/value;
     
-    return num*0.94;
+    return Number(num.toFixed(8));
   }
 
   getPercentageChange(old_amt, new_amt){

@@ -140,14 +140,36 @@ export class PortfolioComponent implements OnInit {
     //this.setPieChart();
 
     this.showBuying();
-    this.portfolioService.portfoliobuy(this.selected_amount, this.rate, this.selected_currency.Currency, this.portfolio._id).subscribe(portfolio => {
+    this.portfolioService.portfoliobuy(this.selected_amount, this.rate, this.selected_currency, this.portfolio._id).subscribe(portfolio => {
       //reload this portfolio
-
       this.hideBuying();
+      switch(portfolio){
+        case "Assets Max Size Reached":
+            this.portfolioError.name = "Maximum Size Reached";
+            this.portfolioError.message = "You cant own more than 5 Digital Portfolios";
+            this.portfolioError.action = "assets";
+            this.openError();
+        break;
+        case "Portfolio Exists":
+            this.portfolioError.name = "Portfolio Exists";
+            this.portfolioError.message = "A portfolio with that name already exists. Pleasse rename your portfolio";
+            this.portfolioError.action = "assets";
+            this.openError();
+        break;
+        case "Insufficient Funds":
+            this.portfolioError.name = "Insufficient Funds in Wallet";
+            this.portfolioError.message = "The amount in your wallet is less then the amount you are attempting to invest. Please fund your wallet to proceed";
+            this.portfolioError.action = "wallet";
+            this.openError();
+        break;
+        default :
+            this.router.navigate(['/portfolio', portfolio]); 
+        break;
+      }
     }, err => {
       this.hideBuying();
       this.portfolioError.name = "Asset Not Purchased";
-      this.portfolioError.message = err;
+      this.portfolioError.message = "We could not purchase the asset you requested. Please try again";
       this.openError();
     });
   }

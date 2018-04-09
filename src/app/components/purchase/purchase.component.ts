@@ -30,6 +30,7 @@ export class PurchaseComponent implements OnInit {
   ticker:Number;
   interval:any;
   loading:boolean;
+  create_loading:boolean;
 
   constructor(private portfolioService:PortfolioService, private accountService:AccountService, private router:Router, private route: ActivatedRoute, public currencyService:CurrencyService, private bitrexService: BitrexService, private piedataService:PiedataService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
@@ -39,7 +40,7 @@ export class PurchaseComponent implements OnInit {
   
   ngOnInit() {
     this.currency = this.route.snapshot.paramMap.get('currency');
-  
+    
     if(this.currencyService.currencies==null){
       this.currencyService.getCurrencies().subscribe(response => {
         if(response){
@@ -105,6 +106,14 @@ export class PurchaseComponent implements OnInit {
     this.loading = false;
   }
 
+  showCreateLoading(){
+    this.create_loading = true;
+  }
+
+  hideCreateLoading(){
+    this.create_loading = false;
+  }
+
   openError(){
       this.showError = true;
   }
@@ -139,7 +148,7 @@ export class PurchaseComponent implements OnInit {
       if((this.portfolio.amount + amount) <= this.user.account_balance){
         this.currencyService.currencies.map((c) => {
           if(c.Currency===this.currency){
-              this.portfolio.addAsset(c,amount);
+              this.portfolio.addAsset(c,amount, this.currencyService.getAnnkaRate(amount, this.ticker));
               this.setAssetCodes();
           }
         })
@@ -182,7 +191,9 @@ export class PurchaseComponent implements OnInit {
 
   continuePurchase(){
       this.closePurchaseMessage();
+      this.showCreateLoading()
       this.portfolioService.create(this.portfolio).subscribe( data => {
+        this.hideCreateLoading();
         switch(data){
           case "Assets Max Size Reached":
               this.portfolioError.name = "Maximum Size Reached";
@@ -207,7 +218,11 @@ export class PurchaseComponent implements OnInit {
           break;
         }
     }, error => {
-
+      this.hideCreateLoading();
+      this.portfolioError.name = "Asset Not Purchased";
+      this.portfolioError.message = "We could not purchase the asset you requested. Please try again";
+      this.portfolioError.action = "assets";
+      this.openError();
     })
   }
 

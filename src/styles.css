@@ -289,8 +289,8 @@ hr{
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     width: 100%;
 }
 

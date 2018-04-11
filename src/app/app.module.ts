@@ -50,6 +50,7 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { PendingitemComponent } from './components/pendingitem/pendingitem.component';
 import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { GuidelinesComponent } from './components/guidelines/guidelines.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
     TransactionComponent,
     PendingitemComponent,
     CashoutwalletComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    GuidelinesComponent
   ],
   imports: [
     BrowserModule,

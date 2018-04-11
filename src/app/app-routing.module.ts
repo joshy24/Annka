@@ -18,6 +18,7 @@ import { CashoutComponent } from './components/cashout/cashout.component'
 import { TransactionComponent } from './components/transaction/transaction.component';
 import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet.component'
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { GuidelinesComponent } from './components/guidelines/guidelines.component';
 
 const routes: Routes = [
    //{path: '', redirectTo: '/#', pathMatch: 'full'},
@@ -52,6 +53,7 @@ const routes: Routes = [
    {path: "cashout/:portfolio/:asset", component:CashoutComponent, canActivate: [ AuthGuardService ]},
    {path: "cashout/wallet", component:CashoutwalletComponent, canActivate: [ AuthGuardService ]},
    {path: "forgotpassword", component:ForgotpasswordComponent, canActivate: [ UnauthGuardService ]},
+   {path: "guidelines", component:GuidelinesComponent},
    {path: "**", component: PagenotfoundComponent}
 ];
 

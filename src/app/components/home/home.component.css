@@ -22,3 +22,10 @@ h1,h2,h3,h4,h5{
 .white_text{
     color: #FFFFFFFF;
 }
+
+@media screen and (max-width: 768px) {
+    .home-intro-div h3{
+        font-size: 8px;
+    }
+}
+

@@ -29,6 +29,11 @@
                         
                             <h5>Your Firstname needs to be more than 1 character</h5>
                         </div>
+                        <div *ngIf="(phone_number.invalid && phone_number.touched)"
+                            class="text-danger">
+                        
+                            <h5>Your Phone Number Needs to be 11 characters or more without (+)</h5>
+                        </div>
                         <div *ngIf="(lastname.invalid && lastname.touched)"
                             class="text-danger">
                         
@@ -94,9 +99,28 @@
                         <div class="form-group">
                             <label for="account_bank">Bank</label>
                               <select style="display:block;" class="annka-input" formControlName = "account_bank" id="account_bank">
-                                <option>UBA</option>
-                                <option>GTB</option>
+                                <option>Access</option>
+                                <option>Citibank</option>
                                 <option>Diamond</option>
+                                <option>Ecobank</option>
+                                <option>Enterprise</option>
+                                <option>Fidelity</option>
+                                <option>First Bank</option>
+                                <option>First City Monument</option>
+                                <option>Guaranty Trust</option>
+                                <option>Heritage</option>
+                                <option>Key Stone</option>
+                                <option>MainStreet</option>
+                                <option>Skye</option>
+                                <option>Stanbic IBTC</option>
+                                <option>Standard Chartered</option>
+                                <option>Sterling</option>
+                                <option>Sun Trust</option>
+                                <option>Union</option>
+                                <option>UBA</option>
+                                <option>Unity</option>
+                                <option>Wema</option>
+                                <option>Zenith</option>
                               </select>
                         </div>
                         <br/>

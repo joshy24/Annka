@@ -23,7 +23,7 @@
             </div>
             <br/>
             <hr/>
-            <div *ngIf="user.verified=='No'">
+            <div *ngIf="user.verified!='yes'">
                 <h5 class="annka-red">Your account has not been verified</h5>
                 <a class="annka-blue-btn" (click)="showVerify()">Verify Account</a>
                 <br/>

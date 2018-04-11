@@ -31,6 +31,7 @@ export class PurchaseComponent implements OnInit {
   interval:any;
   loading:boolean;
   create_loading:boolean;
+  showInvestMessage:boolean;
 
   constructor(private portfolioService:PortfolioService, private accountService:AccountService, private router:Router, private route: ActivatedRoute, public currencyService:CurrencyService, private bitrexService: BitrexService, private piedataService:PiedataService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
@@ -92,12 +93,25 @@ export class PurchaseComponent implements OnInit {
     }, 60000)
 
     this.closeError();
+
+    if(!localStorage.getItem("purchase_msg")&&localStorage.getItem("purchase_msg").length<=0){
+      this.openInvestmentMessage();
+      localStorage.setItem("purchase_msg", "set");
+    }
   }
 
   ngOnDestroy() {
     clearInterval(this.interval);
   }
   
+  closeInvestmentMessage(){
+    this.showInvestMessage = false;
+  }
+
+  openInvestmentMessage(){
+    this.showInvestMessage = true;
+  }
+
   showLoading(){
     this.loading = true;
   }

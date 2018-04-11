@@ -23,7 +23,7 @@ import { GuidelinesComponent } from './components/guidelines/guidelines.componen
 const routes: Routes = [
    //{path: '', redirectTo: '/#', pathMatch: 'full'},
    {path: '', component: HomeComponent},
-   {path: 'portfolio/new/:currency', component: PurchaseComponent,pathMatch: 'full', canActivate: [ AuthGuardService ]},
+   {path: 'portfolio/new', component: PurchaseComponent,pathMatch: 'full', canActivate: [ AuthGuardService ]},
    {path: 'portfolio/all', component: PortfolioallComponent,canActivate: [ AuthGuardService ],pathMatch: 'full'},
    {
     path: 'portfolio/:portfolio', 

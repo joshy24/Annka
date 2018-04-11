@@ -40,7 +40,8 @@ export class HomeComponent implements OnInit {
   }
   
   buyAsset(i){
-      this.router.navigate(['/portfolio/new', this.priority_currencies[i]]);
+      this.currencyService.changeCurrency(this.priority_currencies[i]);
+      this.router.navigate(['/portfolio/new']);
       return false;
   } 
 
@@ -54,7 +55,8 @@ export class HomeComponent implements OnInit {
 
   addAssetToParent = function(currency){
       this.search = false;
-      this.router.navigate(['/portfolio/new', currency]);
+      this.currencyService.changeCurrency(currency);
+      this.router.navigate(['/portfolio/new']);
   }
 
 }

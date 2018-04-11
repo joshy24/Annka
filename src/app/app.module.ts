@@ -51,6 +51,7 @@ import { PendingitemComponent } from './components/pendingitem/pendingitem.compo
 import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { GuidelinesComponent } from './components/guidelines/guidelines.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { GuidelinesComponent } from './components/guidelines/guidelines.componen
     PendingitemComponent,
     CashoutwalletComponent,
     ForgotpasswordComponent,
-    GuidelinesComponent
+    GuidelinesComponent,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,

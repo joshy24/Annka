@@ -11,6 +11,10 @@ class Portfolio {
   old_amount:number;
 
   addAsset(currency:Currency, amount:number, quantity){
+     
+     //clear the array...new business requirements say only one asset can be added when creating a new portfolio
+     this.assets = [];
+
      let exists:boolean = false;
     
      var asset:Asset = new Asset();
@@ -37,7 +41,8 @@ class Portfolio {
         if(this.assets==null||this.assets.length<=0){
           this.assets = [];
         }
-        this.amount+=amount;
+        //this.amount+=amount;
+        this.amount = amount;
         this.assets.unshift(asset);
      }
   }

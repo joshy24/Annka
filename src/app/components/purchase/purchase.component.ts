@@ -10,6 +10,7 @@ import User from '../../models/user.model'
 import PortfolioError from '../../models/portfolio.error'
 import { PiedataService } from "../../services/piedata.service";
 import { PortfolioService } from "../../services/portfolio.service";
+import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 @Component({
   selector: 'app-purchase',
@@ -21,7 +22,7 @@ export class PurchaseComponent implements OnInit {
   asset_codes: String;
   portfolio:Portfolio;
   user: User;
-  currency: string;
+  currency: String;
   currencyLong: string;
   portfolioError:PortfolioError;
   showError: boolean;
@@ -32,56 +33,63 @@ export class PurchaseComponent implements OnInit {
   loading:boolean;
   create_loading:boolean;
   showInvestMessage:boolean;
+  @ViewChild(SnackbarComponent) snackbar:SnackbarComponent;
 
   constructor(private portfolioService:PortfolioService, private accountService:AccountService, private router:Router, private route: ActivatedRoute, public currencyService:CurrencyService, private bitrexService: BitrexService, private piedataService:PiedataService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function(){
-      return false;
-    } 
+     
   }
   
   ngOnInit() {
-    this.currency = this.route.snapshot.paramMap.get('currency');
-    
-    if(this.currencyService.currencies==null){
-      this.currencyService.getCurrencies().subscribe(response => {
-        if(response){
-          this.currencyService.currencies.map((c)=> {
-            if(c.Currency==this.currency){
-                this.currencyLong = c.CurrencyLong;
-            }
-          })
-        }
-      })
-    }
-    else{
-      this.currencyService.currencies.map((c)=>{
-        if(c.Currency==this.currency){
-            this.currencyLong = c.CurrencyLong;
-        }
-      })
-    }
+      this.currencyService.currency.subscribe(c => {
+         this.currency = c;
+      });
+      
+      if(this.currencyService.currencies==null){
+        this.currencyService.getCurrencies().subscribe(response => {
+          if(response){
+             this.setCurrencyLong();
+          }
+        })
+      }
+      else{
+        this.setCurrencyLong();
+      }
 
-    this.getUser();
+      this.getUser();
 
-    this.portfolio = new Portfolio();
-    this.portfolio.name = "";
-    this.portfolio.amount = 0;
-    this.asset_codes = "";
-    this.portfolioError = {
-        name: "",
-        message: "",
-        action: ""
-    }
+      this.portfolio = new Portfolio();
+      this.portfolio.name = "";
+      this.portfolio.amount = 0;
+      this.asset_codes = "";
+      this.portfolioError = {
+          name: "",
+          message: "",
+          action: ""
+      }
 
-    this.showLoading();
+      //get ticker
+      this.getRate();
 
-    this.currencyService.getRate(this.currency).subscribe(res => {
-        this.ticker = res;
-        this.hideLoading();
-    }, err => {
-      this.hideLoading();
+      //reload all tickers
+      this.setIntervalCount();
+
+      this.closeError();
+
+      if(!localStorage.getItem("purchase_msg")){
+        this.openInvestmentMessage();
+        localStorage.setItem("purchase_msg", "set");
+      }
+  }
+
+  setCurrencyLong(){
+    this.currencyService.currencies.map((c)=> {
+      if(c.Currency==this.currency){
+          this.currencyLong = c.CurrencyLong;
+      }
     })
+  }
 
+  setIntervalCount(){
     this.interval = setInterval(() => {
       this.showLoading();
       this.currencyService.getRate(this.currency).subscribe(res => {
@@ -91,13 +99,16 @@ export class PurchaseComponent implements OnInit {
         this.hideLoading();
       })
     }, 60000)
+  }
 
-    this.closeError();
-
-    if(!localStorage.getItem("purchase_msg")&&localStorage.getItem("purchase_msg").length<=0){
-      this.openInvestmentMessage();
-      localStorage.setItem("purchase_msg", "set");
-    }
+  getRate(){
+    this.showLoading();
+    this.currencyService.getRate(this.currency).subscribe(res => {
+        this.ticker = res;
+        this.hideLoading();
+    }, err => {
+      this.hideLoading();
+    })
   }
 
   ngOnDestroy() {
@@ -154,9 +165,12 @@ export class PurchaseComponent implements OnInit {
   }
 
   showPurchase(selectedcurrency){
-    
-    console.log(selectedcurrency)
-    this.router.navigate(['/portfolio/new', selectedcurrency]); 
+    this.currency = selectedcurrency.Currency;
+    this.setCurrencyLong();
+    this.getRate();
+    clearInterval(this.interval);
+    this.setIntervalCount();
+    //this.router.navigate(['/portfolio/new', selectedcurrency.Currency]); 
     return false;
   }
 
@@ -166,6 +180,7 @@ export class PurchaseComponent implements OnInit {
           if(c.Currency===this.currency){
               this.portfolio.addAsset(c,amount, this.currencyService.getAnnkaRate(amount, this.ticker));
               this.setAssetCodes();
+              this.snackbar.showShow("Asset Added - "+this.currencyLong);
           }
         })
       }
@@ -176,11 +191,7 @@ export class PurchaseComponent implements OnInit {
         this.openError();
       }
   }
-
-  confirmAmount(){
-    
-  }
-
+  
   showFundWallet(){
      //take the user to fund their wallet
      this.closeError();

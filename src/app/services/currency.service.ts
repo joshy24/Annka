@@ -5,9 +5,18 @@ import {Response} from '@angular/http';
 import { HttpClient,HttpParams,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { ResourceService } from './resource.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class CurrencyService {
+
+  private currencySource = new BehaviorSubject<String>("BTC");
+  currency = this.currencySource.asObservable();
+
+  changeCurrency(message: String) {
+    this.currencySource.next(message)
+  }
+
   currencies: Currency[];
   prices:number[] = [5000, 10000, 20000, 30000, 50000, 60000, 80000,100000];
 

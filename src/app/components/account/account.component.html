@@ -17,7 +17,7 @@
             <h4>{{user.phone_number}}</h4>
             <br/>
             <div *ngIf="!user.activated">
-                <h5 class="annka-red">Your account has not been activated</h5>
+                <h5 class="annka-red">Your account has NOT been activated</h5>
                 <h5>Please follow the link in the email we sent you. </h5>
                 <a class="a" (click)="resendEmail()">Resend email</a>
             </div>
@@ -90,3 +90,14 @@
         <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeError()">GOT IT</button>
     </div>
 </div>
+
+<div *ngIf="sending_loading" class="loading-div">
+    <div class="innder-loading-div">
+        <div class="loading">
+
+        </div>
+        <h4 class="text-center annka-white">Sending Mail</h4>
+    </div>
+</div>
+
+<snackbar></snackbar>

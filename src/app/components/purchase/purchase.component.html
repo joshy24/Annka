@@ -39,9 +39,9 @@
             <h4 class="annka-green"><b>Step 2 - Add an Asset to your portfolio</b></h4>
             <h3 class="annka-center text-center">Select Asset <a style="margin-left:50px;" (click)="showSearch()"><i class="fas fa-search annka-inline"></i> Search</a></h3>
             <div class="selector-div">
-                    <select (ngModel)="currencyService.currencies" class="annka-center" name="curencies"> 
-                        <option *ngFor="let money of currencyService.currencies; let i = index" (click)="showPurchase(money.Currency)" (ngValue)="money"> {{money.Currency}} </option>
-                    </select>
+                <select [(ngModel)]="currencies" class="annka-center" name="currencies" id="currencies"> 
+                    <option *ngFor="let money of currencyService.currencies" (click)="showPurchase(money)" [value]="money" [selected]="money.Currency==currency"> {{money.Currency}} </option>
+                </select>
             </div>
             <br/>
             <h3 class="text-center">Add {{currencyLong}} ({{currency}}) to your portfolio</h3>
@@ -134,3 +134,5 @@
         <h4 class="text-center annka-white">Creating Your Portfolio</h4>
     </div>
 </div>
+
+<snackbar></snackbar>

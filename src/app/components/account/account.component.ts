@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import User from '../../models/user.model';
 import { AccountService } from '../../services/account.service';
 import { CurrencyService } from '../../services/currency.service';
 import PortfolioError from '../../models/portfolio.error'
+import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 @Component({
   selector: 'app-account',
@@ -15,6 +16,8 @@ export class AccountComponent implements OnInit {
   verify: boolean;
   portfolioError:PortfolioError;
   showError: boolean;
+  sending_loading:boolean;
+  @ViewChild(SnackbarComponent) snackbar:SnackbarComponent;
   
   constructor(private accountService:AccountService, private currencyService:CurrencyService) { }
   
@@ -29,12 +32,24 @@ export class AccountComponent implements OnInit {
      }
   }
 
+  ngOnDestroy() {
+    this.snackbar.hideShow();
+  }
+
   showLoading(){
     this.loading = true;
   }
 
   hideLoading(){
     this.loading = false;
+  }
+
+  showSedningLoading(){
+    this.sending_loading = true;
+  }
+
+  hideSendingLoading(){
+    this.sending_loading = false;
   }
 
   getAccount(){
@@ -51,13 +66,16 @@ export class AccountComponent implements OnInit {
   }
   
   resendEmail(){
-     this.showLoading();
+     this.showSedningLoading();
      this.accountService.resendMail().subscribe(res => {
+        this.hideSendingLoading()
         if(res){
+           //this.showLoading()
+           this.snackbar.showShow("Email Was sent")
            this.getAccount()
         }
      }, error => {
-        this.hideLoading();
+       this.hideSendingLoading()
      })
   }
 

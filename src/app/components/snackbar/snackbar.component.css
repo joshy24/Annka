@@ -1,0 +1,10 @@
+.annka-bar-div{
+    background-color: #145A32;
+    color: #FFFFFF;
+    max-width: 100%;
+    width:100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    position: fixed;
+    bottom:0px;
+}

@@ -267,6 +267,11 @@ hr{
     padding-left:30px;
 }
 
+#home-portfolio-div{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 #home-whyannka-div{
     background: url("./assets/images/bg1.jpg");
     background-repeat: no-repeat;
@@ -274,6 +279,8 @@ hr{
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 #home-message-div{
@@ -290,6 +297,8 @@ hr{
 #home-steps-div{
     background-color: #FFFFFF;
     width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .account-bg{

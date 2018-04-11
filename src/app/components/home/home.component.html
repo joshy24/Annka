@@ -11,19 +11,11 @@
 <hr/>
 <div id="home-portfolio-div">
     <div class="container">
+        <br/>
+        <h1 class="text-center">Invest in a crypto asset today</h1>     
+        <br/>
+        <br/>
         <div class="row">
-            <!--<br/>
-            <h4><b>My Portfolios</b></h4>
-            <div *ngIf="portfolio; else noportfolio" >
-
-            </div>
-            <ng-template #noportfolio>
-                <h4 class="text-center">You dont have any portfolio</h4>
-                <a class="annka-blue-btn annka-center" routerLink="/portfolio/create">Create Portfolio</a>
-            </ng-template>-->
-            <br/>
-            <h1 class="text-center">Invest in a crypto asset today</h1>     
-            <br/>
             <div class="col-md-4 col-sm-4" *ngFor="let currency of selected_currencies; let i = index" (click)="buyAsset(i)" style="margin-bottom:30px;">
                 <a href="">
                 <div class="annka-card shadow">
@@ -33,12 +25,10 @@
                 </div>
                 </a>
             </div>
-            <br/>
-            <br/>
-            <br/>
-            <div style="margin-top:30px; margin-bottom:30px;">
-                <button class="annka-blue-btn annka-center submit-btn" (click)="showSearch()">Other Assets</button>
-            </div>
+        </div>
+        <br/>
+        <div style="margin-top:30px; margin-bottom:30px;">
+            <button class="annka-blue-btn annka-center submit-btn" (click)="showSearch()">Other Assets</button>
         </div>
     </div>
 </div>
@@ -47,11 +37,11 @@
         <h1 style="line-height:1.6em;" class="text-center annka-white">Annka is designed for cypto asset investors who intend to have a mid to long term position in the market</h1>
     </div>
 </div>
-
 <div id="home-steps-div">
     <div class="container">
         <br/>
         <h1 class="text-center">What to do</h1>     
+        <br/>
         <br/>
         <div class="row">
             <div class="col-md-4 col-sm-4">
@@ -71,6 +61,7 @@
             </div>
         </div>
         <br/>
+        <br/>
         <div style="margin-top:30px; margin-bottom:30px;">
             <a class="annka-blue-btn annka-center" routerLink="/portfolio/new/BTC">Get Started</a>
         </div>
@@ -83,7 +74,9 @@
             <br/>
             <h1 class="text-center annka-white">Why Annka</h1>     
             <br/>
-            <h4 style="line-height:1.6em;" class="text-center annka-white">Annka.xyz was designed by entrepreneurs and investors who had personally gone through the limitations and fustration of investing in Crypto Assets in Nigeria. Annka.xyz is strictly built for investors and not traders because we designed the platform for Mid-term or Long-term positions which last from a couple of months to a few years. We provide you with the largest collection of Crypto Assets in Africa. Annka.xyz has guidelines based on best practices for both biginners and professionals to invest profitably.</h4>
+            <br/>
+            <h4 style="line-height:1.8em;" class="text-center annka-white">Annka.xyz was designed by entrepreneurs and investors who had personally gone through the limitations and fustration of investing in Crypto Assets in Nigeria. Annka.xyz is strictly built for investors and not traders because we designed the platform for Mid-term or Long-term positions which last from a couple of months to a few years. We provide you with the largest collection of Crypto Assets in Africa. Annka.xyz has guidelines based on best practices for both biginners and professionals to invest profitably.</h4>
+            <br/>
             <br/>
             <div style="margin-top:30px; margin-bottom:30px;">
                 <a class="annka-blue-no-shadow-btn annka-center" routerLink="/guidelines">View Guidelines</a>

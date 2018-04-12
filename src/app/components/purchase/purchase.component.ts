@@ -170,13 +170,7 @@ export class PurchaseComponent implements OnInit {
     })
   }
 
-  showPurchase(event:any){
-
-
-
-
-
-    
+  showPurchase(event){
     console.log(event.target.value)
     this.currency = event.target.value;
     this.setCurrencyLong();
@@ -282,9 +276,17 @@ export class PurchaseComponent implements OnInit {
   }
 
   addAssetToParent = function(currency){
-     this.search = false;
-     this.router.navigate(['/portfolio/new', currency]);
-     return false;
+
+    this.search = false;
+
+    this.currency = currency;
+    this.currencyService.changeCurrency(currency);
+    this.setCurrencyLong();
+    this.getRate();
+    clearInterval(this.interval);
+    this.setIntervalCount();
+    
+    return false;
   }
 
 }

@@ -1,16 +1,16 @@
 <div class="annka-modal-div" id="login-loader-div">
   <div class="innder-annka-modal-div">
       <a class="text-right"><h1 class="close-text" (click)="closeSearch()">&times;</h1></a>
-      <h2 class="text-center">Search For Assets</h2>
+      <h2 class="text-center">Select Asset</h2>
       <hr style="width:450px;"/>
       <br/>
       <br/>
-      <h4 class="text-center">Enter Assets Name</h4>
-      <input style="display:block; color:#000000; height: 50px;" class="annka-input annka-center" #box (keyup)="onKey(box.value)">
+      <h4 class="text-center">Search</h4>
+      <input placeholder="asset name" style="display:block; color:#000000; height: 50px;" class="annka-input annka-center" #box (keyup)="onKey(box.value)">
       <br/>
       <br/>
       <br/>
-      <h4 class="text-center">Search Results</h4>
+      <h4 class="text-center">Currencies</h4>
       <div class="price-item-div" style="margin-bottom:30px;">
          <currency *ngFor="let currency of selected_currencies; let i = index" [currency]="currency" (click)="setCurrency(i)"></currency>
       </div>

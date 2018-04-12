@@ -253,6 +253,10 @@ hr{
     border-bottom: 1px solid #EECA1E;
 }
 
+.annka-currency-div:hover{
+    cursor: pointer;
+}
+
 .annka-login-div{
     max-width:400px;
     margin-top: 80px;

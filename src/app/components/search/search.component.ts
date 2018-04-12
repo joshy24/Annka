@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.selected_currencies = [];
+    this.selected_currencies = this.currencies;
   }
 
   onKey(value:String){
@@ -29,6 +29,13 @@ export class SearchComponent implements OnInit {
            this.selected_currencies.push(c);
         }
       });
+
+      if(this.selected_currencies.length==0){
+        this.selected_currencies = this.currencies;
+      }
+
+    }else{
+      this.selected_currencies = this.currencies;
     }
   }
 

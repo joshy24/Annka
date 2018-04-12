@@ -169,8 +169,14 @@ export class PurchaseComponent implements OnInit {
       
     })
   }
-  
+
   showPurchase(event:any){
+
+
+
+
+
+    
     console.log(event.target.value)
     this.currency = event.target.value;
     this.setCurrencyLong();

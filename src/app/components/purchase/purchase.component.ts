@@ -164,8 +164,8 @@ export class PurchaseComponent implements OnInit {
     })
   }
 
-  showPurchase(selectedcurrency){
-    this.currency = selectedcurrency.Currency;
+  showPurchase(event:any){
+    this.currency = event.target.value;
     this.setCurrencyLong();
     this.getRate();
     clearInterval(this.interval);
@@ -175,7 +175,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   addAmount(amount:number){
-      if((this.portfolio.amount + amount) <= this.user.account_balance){
+      if((amount) <= this.user.account_balance){
         this.currencyService.currencies.map((c) => {
           if(c.Currency===this.currency){
               this.portfolio.addAsset(c,amount, this.currencyService.getAnnkaRate(amount, this.ticker));

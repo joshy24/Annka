@@ -27,6 +27,7 @@ export class SnackbarComponent implements OnInit {
   }
 
   showShow(message){
+    clearInterval(this.interval);
     this.show = true;
     this.message = message;
 

@@ -41,7 +41,7 @@ export class PurchaseComponent implements OnInit {
   
   ngOnInit() {
       this.currencyService.currency.subscribe(c => {
-         if(c!=null&&c!=undefined&&c.length==3){
+         if(c!=null&&c!=undefined){
             this.currency = c;
          }
          else{
@@ -276,7 +276,6 @@ export class PurchaseComponent implements OnInit {
   }
 
   addAssetToParent = function(currency){
-
     this.search = false;
 
     this.currency = currency;

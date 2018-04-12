@@ -377,17 +377,33 @@ hr{
 }
 
 .innder-annka-modal-div{
-    width: 100%;
+    max-width: 1000px;
     height: 100%;
     color:white;
 }
 
 .innder-annka-modal-div-transparent{
-    max-width:800px;
+    max-width:1000px;
     margin-left:auto;
     margin-right:auto;
     height: 100%;
     color:white;
+}
+
+@media screen and (max-width: 768px) {
+    .innder-annka-modal-div{
+        max-width:600px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .innder-annka-modal-div{
+        max-width:300px;
+    }
+
+    .innder-annka-modal-div-transparent{
+        max-width:350px;
+    }
 }
 
 .close-text{

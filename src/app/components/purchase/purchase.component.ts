@@ -41,7 +41,13 @@ export class PurchaseComponent implements OnInit {
   
   ngOnInit() {
       this.currencyService.currency.subscribe(c => {
-         this.currency = c;
+         if(c!=null&&c!=undefined&&c.length==3){
+            this.currency = c;
+         }
+         else{
+            this.currency="BTC";
+         }
+         
       });
       
       if(this.currencyService.currencies==null){
@@ -163,8 +169,9 @@ export class PurchaseComponent implements OnInit {
       
     })
   }
-
+  
   showPurchase(event:any){
+    console.log(event.target.value)
     this.currency = event.target.value;
     this.setCurrencyLong();
     this.getRate();

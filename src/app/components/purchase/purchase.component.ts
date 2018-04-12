@@ -102,6 +102,7 @@ export class PurchaseComponent implements OnInit {
         this.ticker = res;
         this.hideLoading();
       }, err => {
+        this.ticker = 0;
         this.hideLoading();
       })
     }, 60000)
@@ -113,6 +114,7 @@ export class PurchaseComponent implements OnInit {
         this.ticker = res;
         this.hideLoading();
     }, err => {
+      this.ticker = 0;
       this.hideLoading();
     })
   }

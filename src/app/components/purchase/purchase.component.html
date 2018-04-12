@@ -3,7 +3,7 @@
       <div class="row">
         <br/>
         <div>
-            <h3 class="annka-new-portfolio"><b>New Portfolio</b></h3> 
+            <h3 class="annka-new-portfolio"><b>New Portfolio </b> <a (click)="openInvestmentMessage()"><i  class="far fa-question-circle"></i></a></h3> 
             <div *ngIf="user" class="purchase-wallet-div">
                 <h4><b>Wallet Balance - ₦{{currencyService.getAmount(user.account_balance)}}</b></h4>
                 <a class="annka-green-btn" routerLink="/account/fund">FUND ACCOUNT</a>
@@ -101,11 +101,12 @@
 <div *ngIf="showInvestMessage" class="annka-modal-div-transparent" id="login-loader-div">
     <div class="innder-annka-modal-div-transparent">
         <a class="text-right"><h1 class="close-text" (click)="closeInvestmentMessage()">&times;</h1></a>
-        <h2 class="text-center">Annka Crypto Assets Investment Guide Lines</h2>
+        <h2 class="text-center">Create Portfolio</h2>
         <hr style="width:450px;"/>
         <br/>
         <br/>
-        <h3><b>Invest</b></h3>
+        <h4 class="text-center" style="line-height:1.6em;">Creating a Portfolio and investing in a crypto asset go hand in hand on Annka. <br/>The idea is to have a porfolio of one or more crypto assets and let the portfolio grow as a whole.</h4>
+        <!--<h3><b>Invest</b></h3>
         <h4 class="text-left" style="line-height:1.6em;">When investing in crypto assets you should allocate no more than 2-5 % of your investable funds.</h4>
         <br/> 
         <h3><b>Diversify</b></h3> 
@@ -115,7 +116,7 @@
         <h4 class="text-left" style="line-height:1.6em;">The crypto asset market is very volatile an asset may drop to as low as 50% before achieving a very profitable percentage, So what ever you do, do not panic cash out</h4>
         <br/>
         <h3><b>Cash Out</b></h3>
-        <h4 class="text-left" style="line-height:1.6em;">We advice you to cash-out some profit of a portfolio or asset if you have made nice gains.</h4>
+        <h4 class="text-left" style="line-height:1.6em;">We advice you to cash-out some profit of a portfolio or asset if you have made nice gains.</h4>-->
         <br/>
         <br/>
         <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeInvestmentMessage()">CONTINUE</button>

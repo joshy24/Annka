@@ -16,6 +16,9 @@
         <br/>
         <br/>
         <div class="row">
+            <div *ngIf="loading" class="loading-medium">
+
+            </div>
             <div class="col-md-4 col-sm-4" *ngFor="let currency of selected_currencies; let i = index" (click)="buyAsset(i)" style="margin-bottom:30px;">
                 <a href="">
                 <div class="annka-card shadow">

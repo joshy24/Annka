@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth-service.service';
 import { AccountService } from './services/account.service'
 import { Router } from '@angular/router';
@@ -11,6 +11,11 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'app';
   pending:any = 0;
+  user_name:String;
+
+  ngOnInit() {
+    this.user_name = this.authService.getLoggedInUser().firstname;
+  }
 
   constructor(public authService:AuthService, public accountService:AccountService, private router: Router){
       if(this.authService.isUserAuthenticated()){
@@ -23,6 +28,10 @@ export class AppComponent {
   logout(){
      this.authService.logoutUser();
      this.router.navigate(['/login']);
+  }
+
+  gohome(){
+    this.router.navigate(['/']);
   }
 
 }

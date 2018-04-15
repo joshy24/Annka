@@ -41,6 +41,14 @@ export class LoginComponent implements OnInit {
         this.openError();
         localStorage.removeItem("jwt_login_msg");
       }
+
+      if(localStorage.getItem("unauth_login_msg")&&localStorage.getItem("unauth_login_msg").length>0){
+        //we have a message
+        this.portfolioError.name = "Login Required";
+        this.portfolioError.message = localStorage.getItem("unauth_login_msg");
+        this.openError();
+        localStorage.removeItem("unauth_login_msg");
+      }
   }
 
   get email() { return this.loginForm.get('email'); }
@@ -83,6 +91,9 @@ export class LoginComponent implements OnInit {
               break
               case "Wrong Password":
                 this.portfolioError.message = "The Username or Password is incorrect";
+              break;
+              default:
+                this.portfolioError.message = "An Error occurred login you in";
               break;
             }
 

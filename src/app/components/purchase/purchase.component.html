@@ -3,7 +3,7 @@
       <div class="row">
         <br/>
         <div>
-            <h3 class="annka-new-portfolio"><b>New Portfolio </b> <a (click)="openInvestmentMessage()"><i  class="far fa-question-circle"></i></a></h3> 
+            <h3 class="annka-new-portfolio"><b>New Portfolio </b> <a (click)="openInvestmentMessage()"> <i  class="far fa-question-circle"></i></a></h3> 
             <div *ngIf="user" class="purchase-wallet-div">
                 <h4><b>Wallet Balance - ₦{{currencyService.getAmount(user.account_balance)}}</b></h4>
                 <a class="annka-green-btn" routerLink="/account/fund">FUND ACCOUNT</a>
@@ -86,7 +86,7 @@
         <h3 class="text-center annka-green">₦{{currencyService.getAmount(currencyService.getNairaAnnkaRate(portfolio.amount))}}</h3>
         <br/>  
         <br/>
-        <h4 class="text-center annka-center" style="line-height:1.5em; max-width:900px;">Purchasing Digital Assets involves a lot of tedious steps and spending a considerable amount of money just to make a simple transaction go through. Annka removes that complexity and reduces cost significantly with you needing just your credit card and an email address. <br/> Because we are bearing the burding and cost of purchasing and maintaining digital assets on your behalf we charge you a blockchain fee and a commision when creating your portfolio.</h4>
+        <h4 class="text-center annka-center" style="line-height:1.8em;">Purchasing Digital Assets involves a lot of tedious steps and spending a considerable amount of money just to make a simple transaction go through. Annka removes that complexity and reduces cost significantly with you needing just your credit card and an email address. <br/> Because we are bearing the burding and cost of purchasing and maintaining digital assets on your behalf we charge you a blockchain fee and a commision when creating your portfolio.</h4>
         <br/>
         <br/>
         

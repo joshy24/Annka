@@ -16,6 +16,9 @@ export class AuthGuardService implements CanActivate{
       }
           
       this.authService.setRedirectUrl(url);
+
+      localStorage.setItem("unauth_login_msg", "You are required to login to continue.");
+
       this.router.navigate([ this.authService.getLoginUrl() ]);
 
       return false;

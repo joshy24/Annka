@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 export class TransactionComponent implements OnInit {
   loading:boolean;
   transactions:Transaction[];
+  show_msg:boolean;
 
   constructor(private url_location: Location, private accountService:AccountService) { }
 
@@ -37,6 +38,14 @@ export class TransactionComponent implements OnInit {
 
   goBack(){
     this.url_location.back();
+  }
+
+  showMessage(){
+    this.show_msg = true;
+  }
+
+  closeMessage(){
+    this.show_msg = false;
   }
 
 }

@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   selected_currencies: Currency[];
   priority_currencies: String[];
   search: boolean;
+  loading:boolean = true;
 
   constructor( private bitrexService: BitrexService, private router:Router, private currencyService:CurrencyService ) { }
 
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
       this.selected_currencies = [];
 
       this.currencyService.getCurrencies().subscribe(res => {
+        this.loading = false;
           if(res){
             this.currencyService.currencies.map(c => {
                 if(this.priority_currencies.includes(c.Currency)){
@@ -35,7 +37,7 @@ export class HomeComponent implements OnInit {
               
           }
       }, err => {
-
+        this.loading = false;
       });
   }
   

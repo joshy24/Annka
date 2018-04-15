@@ -4,7 +4,7 @@
         <h3><b>My Portfolios</b></h3>
         <hr/>
         <br/>
-        <a class="annka-green-btn annka-center" routerLink="/portfolio/new">NEW PORTFOLIO</a>
+        <a class="annka-green-btn annka-center" routerLink="/portfolio/new">CREATE PORTFOLIO</a>
     </div>
     <div class="row">
         <br/>
@@ -15,7 +15,7 @@
             <br/>
             <br/>
             <br/>
-            <h4 class="text-center">You have Not created any portolio</h4>
+            <h4 class="text-center">You have Not created any portfolio</h4>
         </div>
         <portfoliopre *ngFor="let portfolio of portfolios; let i = index" [portfolio]="portfolio" (click)="showPortfolio(i)"></portfoliopre>
     </div>

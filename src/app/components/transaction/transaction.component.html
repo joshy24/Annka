@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
          <br/>
-         <h3 class="annka-center text-center"><b>Pending Transactions</b></h3>
+         <h3 class="annka-center text-center"><b>Pending Transactions</b> <a (click)="showMessage()"> <i  class="far fa-question-circle"></i></a></h3>
          <br/>
          <br/>
          <div *ngIf="transactions&&!loading">
@@ -22,9 +22,25 @@
             <br/>
             <h5 class="text-center"><a class="text-center" (click)="goBack()">Back</a></h5>
          </div>
+         <br/>
+         
     </div>
 </div>
 
 <div #loading *ngIf="loading" class="loading" style="margin-top:200px;">
     
+</div>
+
+<div *ngIf="show_msg" class="annka-modal-div" id="login-loader-div">
+    <div class="innder-annka-modal-div">
+        <a class="text-right"><h1 class="close-text" (click)="closeMessage()">&times;</h1></a>
+        <h2 class="text-center">Pending Transactions</h2>
+        <hr style="width:450px;"/>
+        <br/>  
+        <br/>
+        <h4 class="text-center annka-center" style="line-height:1.8em;">When you initiate a Wallet Withdrawal, Portfolio cashout or Asset cashout it might take up to 24 hours to process. You can check the state of those transactions here.</h4>
+        <br/>
+        <br/>
+        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeMessage()">CONTINUE</button>
+    </div>
 </div>

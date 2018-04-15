@@ -195,7 +195,7 @@ export class PurchaseComponent implements OnInit {
       }
       else{
         this.portfolioError.name = "Insufficient Funds in Wallet";
-        this.portfolioError.message = "The amount in your wallet is less then the amount you are attempting to invest. Please fund your wallet to proceed";
+        this.portfolioError.message = "The amount in your Annka Wallet is less then the amount you are attempting to invest. Please fund your wallet to proceed";
         this.portfolioError.action = "wallet";
         this.openError();
       }

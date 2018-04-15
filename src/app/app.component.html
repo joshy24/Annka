@@ -24,7 +24,14 @@
                   <li *ngIf="authService.isUserAuthenticated()"><a routerLink="/portfolio/all">Portfolios</a></li>
                   <li *ngIf="authService.isUserAuthenticated(); else unauth"><a routerLink="/account">Account</a></li>
                   <li *ngIf="authService.isUserAuthenticated()"><a routerLink="/pendingtransactions">Pending <span *ngIf="pending!=0" class="badge">{{pending}}</span></a></li>
-                  <li *ngIf="authService.isUserAuthenticated()"><a (click)="logout()">Logout</a></li>
+                  
+                  <li *ngIf="authService.isUserAuthenticated()" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user_name}}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/account">Wallet</a></li>
+                        <li><a (click)="logout()">Logout</a></li>
+                    </ul>
+                  </li>
                   
                   <ng-template #unauth>
                       <li><a routerLink="/login">Login</a></li>
@@ -34,7 +41,44 @@
               </div><!-- /.navbar-collapse -->
         </div>
     </nav>
-    <div>
+
+    <div style="min-height:400px;">
         <router-outlet></router-outlet>
+    </div>
+    
+    <!--footer-->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" (click)="gohome()">
+                    <img src="../assets/images/logo.png" width="80" height="80" class="img-responsive annka-center">
+                    <h1 class="text-center annka-header annka-white">Annka</h1>
+                    <br/>
+                    <h5 class="text-center">An EpikTeck Platform</h5>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3><b>Annka</b></h3>
+                            <ul class="annka-footer-ul">
+                                <li>Home</li>
+                                <li>About</li>
+                                <li>Guidelines</li>
+                                <li>Documentation</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h3><b>User</b></h3>
+                            <ul class="annka-footer-ul">
+                                <li>Account</li>
+                                <li>Portfolios</li>
+                                <li>Wallet</li>
+                                <li>Pending</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

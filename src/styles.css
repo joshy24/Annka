@@ -91,6 +91,7 @@ hr{
 }
 
 .annka-center{
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -257,6 +258,24 @@ hr{
     cursor: pointer;
 }
 
+.account-bg-login{
+    background: url("./assets/images/home_intro.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height:750px;
+}
+
+.account-bg-signup{
+    background: url("./assets/images/home_intro.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height:1000px;
+}
+
 .annka-login-div{
     max-width:400px;
     margin-top: 80px;
@@ -285,6 +304,7 @@ hr{
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
+    border: 0px solid #000000;
 }
 
 #home-message-div{
@@ -303,15 +323,6 @@ hr{
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
-}
-
-.account-bg{
-    background: url("./assets/images/home_intro.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 1000px;
 }
 
 .annka-fund-div{
@@ -419,7 +430,40 @@ hr{
  }
 /*Annka Modal*/
 
+
+/*Annka Footer*/
+.footer{
+    background-color: #273746;
+    width: 100%;
+    padding-bottom: 10px;
+    padding-top: 16px;
+    color:#FFFFFF;
+    border: 0px solid #000000;
+    margin-top: -1px;
+}
+
+.annka-footer-ul li{
+    margin-left: -20px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+/*Annka Footer*/
+
+
 /*Loading*/
+.loading-medium {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #EECA1E;
+    border-bottom: 8px solid #EECA1E;
+    width: 30px;
+    height: 30px;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .loading-small {
     border: 8px solid #f3f3f3;
     border-radius: 50%;

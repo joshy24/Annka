@@ -388,6 +388,7 @@ hr{
 }
 
 .innder-annka-modal-div{
+    width:100%;
     max-width: 1000px;
     height: 100%;
     color:white;

@@ -11,6 +11,7 @@ import PortfolioError from '../../models/portfolio.error'
 import { PiedataService } from "../../services/piedata.service";
 import { PortfolioService } from "../../services/portfolio.service";
 import { SnackbarComponent } from '../snackbar/snackbar.component';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
   selector: 'app-purchase',
@@ -34,6 +35,7 @@ export class PurchaseComponent implements OnInit {
   create_loading:boolean;
   showInvestMessage:boolean;
   @ViewChild(SnackbarComponent) snackbar:SnackbarComponent;
+  @ViewChild(MessageComponent) message:MessageComponent;
 
   constructor(private portfolioService:PortfolioService, private accountService:AccountService, private router:Router, private route: ActivatedRoute, public currencyService:CurrencyService, private bitrexService: BitrexService, private piedataService:PiedataService) {
      
@@ -82,7 +84,7 @@ export class PurchaseComponent implements OnInit {
       this.closeError();
 
       if(!localStorage.getItem("purchase_msg")){
-        this.openInvestmentMessage();
+        this.message.showMessage("Create Portfolio", ["Creating a Portfolio and investing in a crypto asset go hand in hand on Annka.", "The idea is to have a porfolio of one or more crypto assets and let the portfolio grow as a whole."]);
         localStorage.setItem("purchase_msg", "set");
       }
   }
@@ -118,7 +120,7 @@ export class PurchaseComponent implements OnInit {
       this.hideLoading();
     })
   }
-
+  
   ngOnDestroy() {
     clearInterval(this.interval);
   }
@@ -128,7 +130,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   openInvestmentMessage(){
-    this.showInvestMessage = true;
+    this.message.showMessage("Create Portfolio", ["Creating a Portfolio and investing in a crypto asset go hand in hand on Annka.", "The idea is to have a porfolio of one or more crypto assets and let the portfolio grow as a whole."]);
   }
 
   showLoading(){

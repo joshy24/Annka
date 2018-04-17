@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <br/>
-        <div *ngIf="loading" class="loading" style="margin-top:200px;">
+        <div *ngIf="loading" class="loading" style="margin-top:150px;">
             
         </div>
         <div *ngIf="returned_empty">
@@ -19,4 +19,7 @@
         </div>
         <portfoliopre *ngFor="let portfolio of portfolios; let i = index" [portfolio]="portfolio" (click)="showPortfolio(i)"></portfoliopre>
     </div>
+    <br/>
+    <br/>
+    <br/>
 </div>

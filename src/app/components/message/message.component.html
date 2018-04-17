@@ -1,0 +1,14 @@
+<div *ngIf="show" class="annka-modal-div-transparent" id="login-loader-div">
+  <div class="innder-annka-modal-div-transparent">
+      <a class="text-right"><h1 class="close-text" (click)="closeMessage()">&times;</h1></a>
+      <h2 class="text-center">{{title}}</h2>
+      <hr style="width:300px;"/>
+      <br/>
+      <div *ngFor="let message of messages">
+          <h4 class="text-center" style="line-height:1.8em;">{{message}}</h4>
+      </div>
+      <br/>
+      <br/>
+      <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeMessage()">CONTINUE</button>
+  </div>
+</div>

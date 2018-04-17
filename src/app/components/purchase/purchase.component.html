@@ -37,12 +37,8 @@
         </div>
         <div class="shadow annka-card" style="padding-bottom:20px;">
             <h4 class="annka-green"><b>Step 2 - Add an Asset to your portfolio</b></h4>
-            <h3 class="annka-center text-center">Select Asset <a style="margin-left:50px;" (click)="showSearch()"><i class="fas fa-search annka-inline"></i> Search</a></h3>
-            <div class="selector-div">
-                <select class="annka-center" (change)="showPurchase($event)" name="currencies" id="currencies">
-                    <option *ngFor="let money of currencyService.currencies" [ngValue]="money"> {{money.Currency}} </option>
-                </select>
-            </div>
+            <h3 class="annka-center text-center"><a style="margin-left:50px;" (click)="showSearch()"><i class="fas fa-search annka-inline"></i> Select Asset </a></h3>
+            
             <br/>
             <h3 class="text-center">Add {{currencyLong}} ({{currency}}) to your portfolio</h3>
             <hr/>
@@ -95,30 +91,7 @@
     </div>
 </div>
 
-<div *ngIf="showInvestMessage" class="annka-modal-div-transparent" id="login-loader-div">
-    <div class="innder-annka-modal-div-transparent">
-        <a class="text-right"><h1 class="close-text" (click)="closeInvestmentMessage()">&times;</h1></a>
-        <h2 class="text-center">Create Portfolio</h2>
-        <hr style="width:300px;"/>
-        <br/>
-        <br/>
-        <h4 class="text-center" style="line-height:1.8em;">Creating a Portfolio and investing in a crypto asset go hand in hand on Annka. <br/>The idea is to have a porfolio of one or more crypto assets and let the portfolio grow as a whole.</h4>
-        <!--<h3><b>Invest</b></h3>
-        <h4 class="text-left" style="line-height:1.6em;">When investing in crypto assets you should allocate no more than 2-5 % of your investable funds.</h4>
-        <br/> 
-        <h3><b>Diversify</b></h3> 
-        <h4 class="text-left" style="line-height:1.6em;">Invest in multiple crypto assets to mitigate risk and maximize potentaial profit. We advice you do your own research before investing in a crypto asset</h4>
-        <br/>
-        <h3><b>Hold</b></h3>
-        <h4 class="text-left" style="line-height:1.6em;">The crypto asset market is very volatile an asset may drop to as low as 50% before achieving a very profitable percentage, So what ever you do, do not panic cash out</h4>
-        <br/>
-        <h3><b>Cash Out</b></h3>
-        <h4 class="text-left" style="line-height:1.6em;">We advice you to cash-out some profit of a portfolio or asset if you have made nice gains.</h4>-->
-        <br/>
-        <br/>
-        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeInvestmentMessage()">CONTINUE</button>
-    </div>
-</div>
+<message></message>
 
 <div *ngIf="search">
     <search (closeClick)="closeSearchFromParent($event)" (assetSet)="addAssetToParent($event)" [currencies]="currencyService.currencies"></search>

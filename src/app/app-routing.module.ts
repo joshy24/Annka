@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { PurchaseComponent } from './components/purchase/purchase.component';
-import { CreateportfolioComponent } from './components/createportfolio/createportfolio.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { PortfolioallComponent } from './components/portfolioall/portfolioall.component';

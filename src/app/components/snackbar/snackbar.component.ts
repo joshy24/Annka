@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'snackbar',
@@ -11,11 +11,6 @@ export class SnackbarComponent implements OnInit {
   interval:any;
 
   constructor() { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    // changes.prop contains the old and the new value...
-    changes.show
-  }
 
   ngOnInit() {
    

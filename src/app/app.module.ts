@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { CreateportfolioComponent } from './components/createportfolio/createportfolio.component';
-
 import { BitrexService } from './services/bitrex.service';
 import { CurrencyService } from './services/currency.service';
 import { PiedataService } from './services/piedata.service';
@@ -52,12 +50,12 @@ import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { GuidelinesComponent } from './components/guidelines/guidelines.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CreateportfolioComponent,
     CurrencyComponent,
     PurchaseComponent,
     PriceitemComponent,
@@ -81,7 +79,8 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     CashoutwalletComponent,
     ForgotpasswordComponent,
     GuidelinesComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

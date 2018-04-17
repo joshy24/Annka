@@ -15,10 +15,15 @@ export class AppComponent {
 
   ngOnInit() {
     this.user_name = this.authService.getLoggedInUser().firstname;
+    console.log(this.user_name)
   }
 
   constructor(public authService:AuthService, public accountService:AccountService, private router: Router){
-      if(this.authService.isUserAuthenticated()){
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+    }  
+    
+    if(this.authService.isUserAuthenticated()){
           this.accountService.pendingcount().subscribe(res => {
             this.pending = res
           })

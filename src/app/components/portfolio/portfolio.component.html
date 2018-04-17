@@ -39,8 +39,11 @@
     <div class="row">
         <portfolioitem *ngFor="let asset of portfolio.assets; let i = index" [asset]="asset" (cashOut)="cashOut($event)"></portfolioitem>
     </div>
+    <br/>
+    <br/>
+    <br/>
 </div>
-<div #loading *ngIf="!portfolio" class="loading" style="margin-top:200px;">
+<div #loading *ngIf="!portfolio" class="loading" style="margin-top:150px;">
     
 </div>
 

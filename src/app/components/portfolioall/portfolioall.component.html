@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <br/>
-        <h3><b>My Portfolios</b></h3>
+        <h3 class="text-center"><b>My Portfolios</b> <a (click)="showMessage()"> <i  class="far fa-question-circle"></i></a></h3>
         <hr/>
         <br/>
         <a class="annka-green-btn annka-center" routerLink="/portfolio/new">CREATE PORTFOLIO</a>
@@ -15,7 +15,7 @@
             <br/>
             <br/>
             <br/>
-            <h4 class="text-center">You have Not created any portfolio</h4>
+            <h5 class="text-center">You have Not created any portfolio</h5>
         </div>
         <portfoliopre *ngFor="let portfolio of portfolios; let i = index" [portfolio]="portfolio" (click)="showPortfolio(i)"></portfoliopre>
     </div>
@@ -23,3 +23,5 @@
     <br/>
     <br/>
 </div>
+
+<message></message>

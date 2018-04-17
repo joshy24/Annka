@@ -18,7 +18,7 @@
               <pendingitem *ngFor="let transaction of transactions; let i = index" [transaction]="transaction"></pendingitem>
          </div>
          <div *ngIf="!transactions&&!loading">
-            <h4 class="text-center">You dont have any pending transactions at the moment</h4>
+            <h5 class="text-center">You dont have any pending transactions at the moment</h5>
             <br/>
             <h5 class="text-center"><a class="text-center" (click)="goBack()">Back</a></h5>
          </div>
@@ -31,16 +31,4 @@
     
 </div>
 
-<div *ngIf="show_msg" class="annka-modal-div" id="login-loader-div">
-    <div class="innder-annka-modal-div">
-        <a class="text-right"><h1 class="close-text" (click)="closeMessage()">&times;</h1></a>
-        <h2 class="text-center">Pending Transactions</h2>
-        <hr style="width:450px;"/>
-        <br/>  
-        <br/>
-        <h4 class="text-center annka-center" style="line-height:1.8em;">When you initiate a Wallet Withdrawal, Portfolio cashout or Asset cashout it might take up to 24 hours to process. You can check the state of those transactions here.</h4>
-        <br/>
-        <br/>
-        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeMessage()">CONTINUE</button>
-    </div>
-</div>
+<message></message>

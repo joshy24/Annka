@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio.service';
 import Portfolio from '../../models/portfolio.model';
 import { Router } from '@angular/router';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
   selector: 'portfolioall',
@@ -12,6 +13,7 @@ export class PortfolioallComponent implements OnInit {
   portfolios:Portfolio[];
   loading:boolean;
   returned_empty:boolean;
+  @ViewChild(MessageComponent) message:MessageComponent;
 
   constructor(private portfolioService:PortfolioService, private router:Router) { }
 
@@ -22,7 +24,7 @@ export class PortfolioallComponent implements OnInit {
   }
 
   showPortfolio(i){
-    this.router.navigate(['/portfolio', this.portfolios[i]._id]); 
+      this.router.navigate(['/portfolio', this.portfolios[i]._id]); 
   }
   
   showLoading(){
@@ -49,6 +51,10 @@ export class PortfolioallComponent implements OnInit {
          this.hideLoading();
       }
     );
+  }
+
+  showMessage(){
+    this.message.showMessage("My Portfolios", ["This is where you find all the portfolios you have created", "A portfolio can contain multiple assets"]);
   }
 
 }

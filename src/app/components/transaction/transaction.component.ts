@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AccountService } from '../../services/account.service'
 import Transaction from '../../models/transaction.model'
 import { Location } from '@angular/common';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
   selector: 'app-transaction',
@@ -12,6 +13,7 @@ export class TransactionComponent implements OnInit {
   loading:boolean;
   transactions:Transaction[];
   show_msg:boolean;
+  @ViewChild(MessageComponent) message:MessageComponent;
 
   constructor(private url_location: Location, private accountService:AccountService) { }
 
@@ -41,7 +43,7 @@ export class TransactionComponent implements OnInit {
   }
 
   showMessage(){
-    this.show_msg = true;
+    this.message.showMessage("Pending Transactions", ["When you initiate a Wallet Withdrawal, Portfolio cashout or Asset cashout it might take up to 24 hours to process.", "You can check the state of those transactions here."])
   }
 
   closeMessage(){

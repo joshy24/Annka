@@ -191,7 +191,7 @@ export class PurchaseComponent implements OnInit {
           if(c.Currency===this.currency){
               this.portfolio.addAsset(c,amount, this.currencyService.getAnnkaRate(amount, this.ticker));
               this.setAssetCodes();
-              this.snackbar.showShow("Asset Added - "+this.currencyLong);
+              this.snackbar.showShow("Asset Added - "+this.currencyLong +" ("+this.currency+")");
           }
         })
       }

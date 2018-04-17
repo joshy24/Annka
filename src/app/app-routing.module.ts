@@ -18,27 +18,15 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { CashoutwalletComponent } from './components/cashoutwallet/cashoutwallet.component'
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { GuidelinesComponent } from './components/guidelines/guidelines.component';
+import { EditaccountComponent } from './components/editaccount/editaccount.component';
 
 const routes: Routes = [
    //{path: '', redirectTo: '/#', pathMatch: 'full'},
    {path: '', component: HomeComponent},
    {path: 'portfolio/new', component: PurchaseComponent,pathMatch: 'full', canActivate: [ AuthGuardService ]},
    {path: 'portfolio/all', component: PortfolioallComponent,canActivate: [ AuthGuardService ],pathMatch: 'full'},
-   {
-    path: 'portfolio/:portfolio', 
-    component: PortfolioComponent,
-    canActivate: [ AuthGuardService ],
-    children: [
-        {
-          path: 'edit',
-          component: PortfolioComponent
-        },
-        {
-          path: 'delete',
-          component: PortfolioComponent
-        }
-      ]		
-   },
+   {path: 'portfolio/:portfolio', component: PortfolioComponent, canActivate: [ AuthGuardService ]},
+   {path: 'account/edit', component: EditaccountComponent, canActivate: [ AuthGuardService ]},
    {path: 'login', component: LoginComponent, canActivate: [ UnauthGuardService ]},
    {
      path: 'account', 

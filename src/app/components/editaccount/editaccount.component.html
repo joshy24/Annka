@@ -1,1 +1,124 @@
-<h1>Edit Account</h1>
+
+<div class="account-bg-signup">
+        <div class="container">
+            <div class="annka-login-div annka-center">
+                <div class="annka-login-div-inner annka-center">
+                    <div *ngIf="initial_loading" class="loading-medium">
+                        
+                    </div>
+                    <form *ngIf="user" class="form-horizontal"  [formGroup]="editForm" (ngSubmit)="onFormSubmit()">
+    
+                          <h4 class="text-center"><b>Edit Account</b></h4>
+                          
+                          <h5 *ngIf="invalidCredentialMsg" class="text-danger">{{invalidCredentialMsg}}</h5>
+                          
+                          <div *ngIf="email.invalid && email.touched"
+                                class="text-danger">
+                        
+                                <div *ngIf = "email.errors?.required">
+                                    <h5>Email field can't be blank</h5>
+                                </div>
+                        
+                                <div *ngIf = "email.errors?.pattern">
+                                    <h5>The mail id doesn't seem right</h5>
+                                </div>
+                            </div>
+                            <div *ngIf="(firstname.invalid && firstname.touched)"
+                                class="text-danger">
+                            
+                                <h5>Your Firstname needs to be more than 1 character</h5>
+                            </div>
+                            <div *ngIf="(phone_number.invalid && phone_number.touched)"
+                                class="text-danger">
+                            
+                                <h5>Your Phone Number Needs to be 11 characters or more without (+)</h5>
+                            </div>
+                            <div *ngIf="(lastname.invalid && lastname.touched)"
+                                class="text-danger">
+                            
+                                <h5>Your Lastname needs to be more than 1 character</h5>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input style="display:block;" class="annka-input" type="text"
+                                  formControlName = "firstname"
+                                  id="firstname"
+                                  value="{{user.firstname}}"
+                                  placeholder="First Name">
+                            </div>
+                            <br/>
+                            <div class="form-group">
+                                <input style="display:block;" class="annka-input" type="text"
+                                  formControlName = "lastname"
+                                  id="lastname"
+                                  value="{{user.lastname}}"
+                                  placeholder="Last Name">
+                            </div>
+                            <br/>
+                            <div class="form-group">
+                              <input style="display:block;" class="annka-input" type="text"
+                                formControlName = "email"
+                                id="email"
+                                value="{{user.email}}"
+                                placeholder="Email">
+                            </div>
+                            <br/>
+                            <div class="form-group">
+                                <input style="display:block;" class="annka-input" type="text"
+                                  formControlName = "phone_number"
+                                  id="phone_number"
+                                  value="{{user.phone_number}}"
+                                  placeholder="Phone Number">
+                            </div>
+                            <br/>
+                            <br/>
+                            <button type="submit" class="annka-green-btn annka-center" [disabled]="!editForm.valid">SAVE</button>
+                            <br/>
+                            <h5 class="text-center"><a routerLink="/account">Back</a></h5>
+                            <br/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    <div *ngIf="showConfirm" class="annka-modal-div" id="login-loader-div">
+        <div class="innder-annka-modal-div">
+            <a class="text-right"><h1 class="close-text" (click)="closeConfirm()">&times;</h1></a>
+            <h2 class="text-center">Confirmation</h2>
+            <hr style="width:450px;"/>
+            <br/>
+            <h4 class="text-center">Confirm Edit</h4>
+            <br/>
+            <br/>
+            <br/>
+            <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="processForm()">CONTINUE</button>
+            <br/>
+            <br/>
+            <button class="annka-green-no-shadow-btn annka-center submit-btn" (click)="closeConfirm()">CLOSE</button>
+        </div>
+    </div>
+    
+    <div *ngIf="loading" class="loading-div">
+        <div class="innder-loading-div">
+            <div class="loading">
+    
+            </div>
+            <h4 class="text-center annka-white">Saving Information...</h4>
+        </div>
+    </div>
+    
+    <div *ngIf="showError" class="annka-modal-div" id="login-loader-div">
+        <div class="innder-annka-modal-div">
+            <a class="text-right"><h1 class="close-text" (click)="closeError()">&times;</h1></a>
+            <h2 class="text-center">{{portfolioError.name}}</h2>
+            <hr style="width:450px;"/>
+            <br/>
+            <br/>
+            <h4 class="text-center">{{portfolioError.message}}</h4>
+            <br/>
+            <br/>
+            <br/>
+            <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeError()">CONTINUE</button>
+        </div>
+    </div>

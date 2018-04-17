@@ -20,6 +20,7 @@ export class AccountService {
   private pending_all_url = "/pendingtransactions";
   private cashout_url = "/cashout/wallet";
   private resend_url = "/resend_email";
+  private update_url = "/update"
 
   constructor(private http: HttpClient, private resourceService:ResourceService) { }
 
@@ -157,6 +158,25 @@ export class AccountService {
     .pipe(
       catchError(this.handleError)
     )
+  }
+
+  update(user:User):Observable<String>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.update_url,{user}, 
+      {
+        headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+
+      })
+      .map((respond: AnnkaResponse) => {
+          if(respond){
+              return respond.response;
+          }
+          else{
+              return false;
+          }
+      })
+      .pipe(
+         catchError(this.handleError)
+      )
   }
 
 }

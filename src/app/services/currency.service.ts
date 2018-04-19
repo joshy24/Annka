@@ -79,14 +79,44 @@ export class CurrencyService {
     
   }
 
+  getWithdrawalAssetsAmount(assets){
+    var value = 0;
+    assets.map(asset => {
+       value+=this.getWithdrawalAmount(asset.value, asset.old_value)
+    })
+
+    return value;
+  }
+
+  getWithdrawalAmount(amount, old_amount){
+    if(amount<=old_amount){ //user did not make profit
+      return amount;
+    }
+    else{ //user made profit
+        var profit = amount - old_amount;
+
+        var percent = old_amount * 0.15; 
+
+        if(profit>percent){
+            //remove 2%
+            return amount - (amount*0.02);
+        }
+        else{
+            //remove 1%
+            return amount - (amount*0.01);
+        }
+
+    }
+  }
+
   getNairaAnnkaRate(amount){
     if(amount==0){
       return 0;
     }
     else{
-      var fee = Math.round(amount*0.94);
+      var fee = Math.round(amount*0.97);
 
-      var six = Math.round(amount*0.06)
+      var six = Math.round(amount*0.03)
 
       if(six>3000){
         fee = amount - 3000;
@@ -127,6 +157,8 @@ export class CurrencyService {
   getChangeDirection(old_amt, new_amt){
      return new_amt>=old_amt;
   }
+
+
 
 }
 

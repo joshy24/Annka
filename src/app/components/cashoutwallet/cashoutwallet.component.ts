@@ -18,6 +18,8 @@ export class CashoutwalletComponent implements OnInit {
   user: User;
   portfolioError:PortfolioError;
   showError: boolean;
+  showMessage: boolean;
+  cash_outloading:boolean;
 
   constructor(private router: Router, private accountService:AccountService, private currencyService:CurrencyService) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
@@ -26,7 +28,6 @@ export class CashoutwalletComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.portfolioError = {
       name: "",
       message: "",
@@ -56,6 +57,14 @@ export class CashoutwalletComponent implements OnInit {
     this.loading = false;
   }
 
+  showCashLoading(){
+    this.cash_outloading = true;
+  }
+
+  hideCashLoading(){
+    this.cash_outloading = false;
+  }
+
   openError(){
     this.showError = true;
   }
@@ -64,37 +73,57 @@ export class CashoutwalletComponent implements OnInit {
       this.showError = false;
   }
 
-  onFormSubmit(){
-    if(this.amountForm.valid){
-      if(this.amountForm.value.amount>0&&this.amountForm.value.amount<=this.user.account_balance){
-         this.showLoading();
-         this.accountService.cashout(this.amountForm.value.amount).subscribe(res => {
-            this.hideLoading();
-            if(res=="success"){
-              this.router.navigate([ "/pendingtransactions" ]);
-            }
-            else{
-              this.portfolioError.name = "Withdrawal"
-              this.portfolioError.message = "Your withdrawal could not be processed at the moment please try again later."
-              this.openError();
-            }
-         }, err => {
-            this.portfolioError.name = "Withdrawal"
-            this.portfolioError.message = "Your withdrawal could not be processed at the moment please try again later."
-            this.openError();
-            this.hideLoading();
-         })
-      }
-      else{
-        this.portfolioError.name = "Invalid Amount"
-        this.portfolioError.message = "Please Enter an Amount that is Greater than ₦50 and less than ₦"+this.user.account_balance
+  openMessage(){
+    this.showMessage = true;
+  }
+
+  closeMessage(){
+    this.showMessage = false;
+  }
+
+  continueCashout(){
+    this.closeMessage();
+    this.showCashLoading();
+    this.accountService.cashout(this.amountForm.value.amount).subscribe(res => {
+        this.hideCashLoading();
+        if(res=="success"){
+          this.router.navigate([ "/pendingtransactions" ]);
+        }
+        else{
+          this.portfolioError.name = "Withdrawal"
+          this.portfolioError.message = "Your withdrawal could not be processed at the moment please try again later."
+          this.openError();
+        }
+    }, err => {
+       this.hideCashLoading();
+        this.portfolioError.name = "Withdrawal"
+        this.portfolioError.message = "Your withdrawal could not be processed at the moment please try again later."
         this.openError();
-      }
+    })
+  }
+
+  onFormSubmit(){
+    if(this.user.account_balance>0){
+        if(this.amountForm.valid){
+          if(this.amountForm.value.amount>0&&this.amountForm.value.amount<=this.user.account_balance){
+              this.openMessage();
+          }
+          else{
+            this.portfolioError.name = "Invalid Amount"
+            this.portfolioError.message = "Please Enter an Amount that is Greater than ₦50 and less than ₦"+this.user.account_balance
+            this.openError();
+          }
+        }
+        else{
+          this.portfolioError.name = "Invalid Amount"
+          this.portfolioError.message = "Please Enter an Amount that is Greater than ₦50 and less than ₦"+this.currencyService.getAmount(this.user.account_balance)
+          this.openError();
+        }
     }
     else{
-      this.portfolioError.name = "Invalid Amount"
-      this.portfolioError.message = "Please Enter an Amount that is Greater than ₦50 and less than ₦"+this.currencyService.getAmount(this.user.account_balance)
-      this.openError();
+        this.portfolioError.name = "Wallet Not Funded"
+        this.portfolioError.message = "You cant request a Wallet Withdrawal. Please Fund Your Annka Wallet"
+        this.openError();
     }
   }
 

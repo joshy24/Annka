@@ -29,7 +29,8 @@
                   <br/>
                </form>
            </div>
-           <hr/>
+           <h5 class="text-center">A Bank Transaction fee of ₦250 is charged</h5>
+           <br/>
            <div class="annka-black-background" style="width:100%; padding-top:10px; padding-bottom:10px;">
                <h4 class="text-center annka-white" style="line-height:1.2em;">Wallet Balance - ₦{{currencyService.getAmount(user.account_balance)}}</h4>
            </div>
@@ -37,14 +38,24 @@
   </div>
 </div>
 
-<div #loading *ngIf="loading" class="loading" style="margin-top:150px;">
-    
+<div class="loading" *ngIf="loading" style="margin-top:150px;">
+
+</div>
+
+<div *ngIf="cash_outloading" class="loading-div">
+    <div class="inner-loading-div">
+        <div class="loading">
+
+        </div>
+        <h4 class="text-center annka-white">Working on it....</h4>
+    </div>
 </div>
 
 <div *ngIf="showError" class="annka-modal-div" id="login-loader-div">
   <div class="innder-annka-modal-div">
       <a class="text-right"><h1 class="close-text" (click)="closeError()">&times;</h1></a>
       <h2 class="text-center">{{portfolioError.name}}</h2>
+      <hr style="width:300px;"/>
       <br/>
       <br/>
       <h4 class="text-center">{{portfolioError.message}}</h4>
@@ -53,4 +64,22 @@
       <br/>
       <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeError()">CONTINUE</button>
   </div>
+</div>
+
+<div *ngIf="showMessage" class="annka-modal-div" id="login-loader-div">
+    <div class="innder-annka-modal-div">
+        <a class="text-right"><h1 class="close-text" (click)="closeMessage()">&times;</h1></a>
+        <h2 class="text-center">Wallet CashOut</h2>
+        <hr style="width:300px;"/>
+        <br/>
+        <br/>
+        <h4 class="text-center annka-center" style="line-height:1.5em; max-width:900px;">₦{{currencyService.getAmount(amountForm.value.amount-250)}} will be transferred to your Bank Account from your Annka Wallet</h4>
+        <br/>
+        <br/>
+        <h5 class="text-center">A Bank transaction fee of ₦250 is charged</h5>
+        <br/>
+        <br/>
+        <br/>
+        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="continueCashout()">CONTINUE</button>
+    </div>
 </div>

@@ -3,6 +3,7 @@ import User from '../../models/user.model';
 import { AccountService } from '../../services/account.service';
 import { CurrencyService } from '../../services/currency.service';
 import PortfolioError from '../../models/portfolio.error'
+import { Router } from '@angular/router';
 import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 @Component({
@@ -19,7 +20,7 @@ export class AccountComponent implements OnInit {
   sending_loading:boolean;
   @ViewChild(SnackbarComponent) snackbar:SnackbarComponent;
   
-  constructor(private accountService:AccountService, private currencyService:CurrencyService) { }
+  constructor(private accountService:AccountService, private currencyService:CurrencyService, private router: Router) { }
   
   ngOnInit() {
      this.loading = true;
@@ -105,7 +106,13 @@ export class AccountComponent implements OnInit {
     this.showError = false;
   }
 
-  cashout(){
-
+  showCashout(){
+     if(this.user.account_balance<=0){
+        this.portfolioError.name = "Insufficient Funds";
+        this.portfolioError.message = "You Dont have enough funds in your wallet to cashout";
+        this.showError = true;
+     }else{
+       this.router.navigate([ "/cashout/wallet" ]);
+     }
   }
 }

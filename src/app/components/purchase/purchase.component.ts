@@ -214,7 +214,7 @@ export class PurchaseComponent implements OnInit {
       if(this.portfolio.assets==null||this.portfolio.assets.length<=0||name.length<=0){
           //show modal that the user needs to add assets to create portfolio
           this.portfolioError.name = this.portfolio.assets==null||this.portfolio.assets.length<=0 ? "Assets Required" : "Name Required";
-          this.portfolioError.message = this.portfolio.assets==null||this.portfolio.assets.length<=0 ? "You must have digital assets in your portfolio" : "Your portfolio must have a name";
+          this.portfolioError.message = this.portfolio.assets==null||this.portfolio.assets.length<=0 ? "You need to have a digital asset to your portfolio" : "Your portfolio must have a name";
           this.portfolioError.action = "assets";
           this.openError();
       }

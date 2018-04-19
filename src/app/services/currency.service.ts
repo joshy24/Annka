@@ -102,9 +102,9 @@ export class CurrencyService {
        return 0;
     }
     else{
-      var fee = Math.round(amount*0.94);
+      var fee = Math.round(amount*0.97);
 
-      var six = Math.round(amount*0.06)
+      var six = Math.round(amount*0.03)
 
       if(six>3000){
         fee = amount - 3000;

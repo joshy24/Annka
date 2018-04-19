@@ -49,7 +49,7 @@
             <br/>
             <a class="annka-blue-btn" routerLink="/account/fund">FUND</a>
             <br/>
-            <a class="annka-green-btn" routerLink="/cashout/wallet">CASH OUT</a>
+            <a class="annka-green-btn" (click)="showCashout()">CASH OUT</a>
             <br/>
             <h4><b>Bank</b></h4>
             <h4>{{user.account_bank}}</h4>
@@ -57,7 +57,7 @@
             <h4><b>Account Number</b></h4>
             <h4>{{user.account_number}}</h4>
             <br>
-            <h5 class="annka-green">We Need your Bank details for when you want to cash out on your investments</h5>
+            <h5 class="annka-green">We Need your Bank details when you want to cash out on your investments</h5>
         </div>
     </div>
     <div class="row">

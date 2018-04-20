@@ -1,4 +1,4 @@
-<div>
+
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -42,7 +42,7 @@
         </div>
     </nav>
 
-    <div style="min-height:550px;">
+    <div style="min-height:700px;">
         <router-outlet></router-outlet>
     </div>
     
@@ -50,35 +50,29 @@
     <div class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-6" (click)="gohome()">
-                    <img src="../assets/images/logo.png" width="80" height="80" class="img-responsive annka-center">
-                    <h1 class="text-center annka-header annka-white">Annka</h1>
-                    <br/>
-                    <h5 class="text-center">An EpikTeck Platform</h5>
+                <div class="col-md-5 col-sm-12">
+                    <div class="annka-footer-left-div">
+                        <ul class="annka-footer-ul-left">
+                            <li>© 2018, Annka.</li>
+                            <li>Terms</li>
+                            <li>Privacy</li>
+                            <li>Help</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <h3 class="annka-footer-h3"><b>Annka</b></h3>
-                            <ul class="annka-footer-ul">
-                                <li>Home</li>
-                                <li>About</li>
-                                <li>Guidelines</li>
-                                <li>Documentation</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <h3 class="annka-footer-h3"><b>User</b></h3>
-                            <ul class="annka-footer-ul">
-                                <li>Account</li>
-                                <li>Portfolios</li>
-                                <li>Wallet</li>
-                                <li>Pending</li>
-                            </ul>
-                        </div>
+                <div class="col-md-2 col-sm-12">
+                    <img src="../assets/images/logo.png" width="60" height="60" class="annka-center text-center">
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <div class="annka-footer-right-div">
+                        <ul class="annka-footer-ul">
+                            <li>Home</li>
+                            <li>About</li>
+                            <li>Guidelines</li>
+                            <li>FAQ</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

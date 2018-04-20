@@ -3,12 +3,13 @@ import * as moment from "moment";
 
 @Injectable()
 export class ResourceService {
-  private base_url:string = "https://annka.xyz/api";
+  private pbase_url:string = "https://annka.xyz/api";
+  private dbase_url:string = "http://localhost:3020/api";
   
   constructor() { }
 
   getBaseUrl(){
-     return this.base_url;
+     return this.pbase_url;
   }
 
   parseDate(date){

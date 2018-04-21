@@ -11,7 +11,7 @@ export class ResourceService {
   getBaseUrl(){
      return this.pbase_url;
   }
-
+  
   parseDate(date){
     var d = date.toString();
     var adate = d.split("T")

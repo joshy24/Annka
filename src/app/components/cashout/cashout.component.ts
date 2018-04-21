@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio.service';
 import { CurrencyService } from '../../services/currency.service';
 import PortfolioError from '../../models/portfolio.error';
@@ -7,6 +7,7 @@ import Portfolio from '../../models/portfolio.model';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
   selector: 'app-cashout',
@@ -22,6 +23,8 @@ export class CashoutComponent implements OnInit {
   asset_codes: String;
   showMessage:boolean;
   location:string;
+  cash_outloading:boolean;
+  @ViewChild(MessageComponent) message:MessageComponent;
 
   constructor(private url_location: Location, private portfolioService:PortfolioService, private  currencyService: CurrencyService, private route: ActivatedRoute, private router:Router) { }
 
@@ -54,15 +57,15 @@ export class CashoutComponent implements OnInit {
   }
 
   cashout(location){
-    switch(location){
-      case "wallet":
-        this.location = "Annka Wallet";
-        break;
-      case "bank":
-        this.location = "Bank Account";
-        break;
-    }
-    this.openMessage();
+      switch(location){
+        case "wallet":
+          this.location = "Annka Wallet";
+          break;
+        case "bank":
+          this.location = "Bank Account";
+          break;
+      }
+      this.openMessage();
   }
 
   continueCashout(){
@@ -71,19 +74,20 @@ export class CashoutComponent implements OnInit {
     }
     var location = this.location=="Annka Wallet"?  "wallet" : "bank";
 
+    this.closeMessage();
+    this.showCashLoading();
     this.portfolioService.cashout(this.portfolio._id, this.asset._id, location).subscribe(res => {
-      console.log(res)
+      this.hideCashLoading();
       if(res=="success"){
          //All good
-        
+         this.router.navigate([ "/pendingtransactions" ]);
       }
       else{
-         switch(res){
-
-         }
+         this.message.showMessage("Withdrawal", ["Your withdrawal could not be processed at the moment please try again later."]);
       }
     }, err => {
-
+        this.hideCashLoading();
+        this.message.showMessage("Withdrawal", ["Your withdrawal could not be processed at the moment please try again later."]);
     })
   }
 
@@ -97,6 +101,14 @@ export class CashoutComponent implements OnInit {
 
   goBack(){
     this.url_location.back();
+  }
+
+  showCashLoading(){
+    this.cash_outloading = true;
+  }
+
+  hideCashLoading(){
+    this.cash_outloading = false;
   }
 
 }

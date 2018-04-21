@@ -77,3 +77,14 @@
         <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="continueCashout()">CONTINUE</button>
     </div>
 </div>
+
+<div *ngIf="cash_outloading" class="loading-div">
+    <div class="inner-loading-div">
+        <div class="loading">
+
+        </div>
+        <h4 class="text-center annka-white">Working on it....</h4>
+    </div>
+</div>
+
+<message></message>

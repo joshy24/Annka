@@ -84,13 +84,13 @@ export class LoginComponent implements OnInit {
 
             switch(error){
               case "User Not Found":
-                this.portfolioError.message = "The Username or Password is incorrect";
+                this.portfolioError.message = "The Email address or Password is incorrect";
               break;
               case "Server Error":
                 this.portfolioError.message = "Login could not be processed at this moment. Please try again later";
               break
               case "Wrong Password":
-                this.portfolioError.message = "The Username or Password is incorrect";
+                this.portfolioError.message = "The Email address or Password is incorrect";
               break;
               default:
                 this.portfolioError.message = "An Error occurred login you in";

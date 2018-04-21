@@ -96,9 +96,9 @@ export class CashoutwalletComponent implements OnInit {
         }
     }, err => {
        this.hideCashLoading();
-        this.portfolioError.name = "Withdrawal"
-        this.portfolioError.message = "Your withdrawal could not be processed at the moment please try again later."
-        this.openError();
+          this.portfolioError.name = "Withdrawal"
+          this.portfolioError.message = "Your withdrawal could not be processed at the moment please try again later."
+          this.openError();
     })
   }
 

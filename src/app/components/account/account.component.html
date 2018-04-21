@@ -91,8 +91,13 @@
     </div>
 </div>
 
-<div *ngIf="loading" class="loading">
-    
+<div *ngIf="sending_loading" class="loading">
+    <div class="innder-loading-div">
+        <div class="loading">
+
+        </div>
+        <h4 class="text-center annka-white">Sending Mail</h4>
+    </div>
 </div>
 
 <snackbar></snackbar>

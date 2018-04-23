@@ -19,4 +19,8 @@ export class ResourceService {
     return moment(adate[0]).format("LL");
   }
 
+  toLowerCase(value){
+    return value.toLowerCase();
+  }
+
 }

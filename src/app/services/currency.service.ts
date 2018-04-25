@@ -127,6 +127,13 @@ export class CurrencyService {
     
   }
   
+  getShortenedValue(val){
+    let num = val.toString();
+    var arr = num.split(".");
+
+    return arr[0]+"."+arr[1].substring(0,8);
+  }
+
   getAnnkaRate(amount, value){
     if(value==0||amount==0){
        return 0;

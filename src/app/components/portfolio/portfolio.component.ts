@@ -146,13 +146,13 @@ export class PortfolioComponent implements OnInit {
       switch(portfolio){
         case "Assets Max Size Reached":
             this.portfolioError.name = "Maximum Size Reached";
-            this.portfolioError.message = "You cant own more than 5 Digital Portfolios";
+            this.portfolioError.message = "You cant own more than 5 Crypto Assets in a Portfolio";
             this.portfolioError.action = "assets";
             this.openError();
         break;
         case "Portfolio Exists":
-            this.portfolioError.name = "Portfolio Exists";
-            this.portfolioError.message = "A portfolio with that name already exists. Pleasse rename your portfolio";
+            this.portfolioError.name = "Asset Exists";
+            this.portfolioError.message = "That asset exists in your portfolio";
             this.portfolioError.action = "assets";
             this.openError();
         break;
@@ -162,8 +162,10 @@ export class PortfolioComponent implements OnInit {
             this.portfolioError.action = "wallet";
             this.openError();
         break;
-        default :
-            this.router.navigate(['/portfolio', portfolio]); 
+        default:
+            this.hideBuying();
+            this.showLoading();
+            this.getPortfolio();
         break;
       }
     }, err => {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterContentInit } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio.service';
 import { CurrencyService } from '../../services/currency.service';
 import PortfolioError from '../../models/portfolio.error';
@@ -14,7 +14,7 @@ import { MessageComponent } from '../message/message.component';
   templateUrl: './cashout.component.html',
   styleUrls: ['./cashout.component.css']
 })
-export class CashoutComponent implements OnInit {
+export class CashoutComponent implements OnInit, AfterContentInit {
 
   portfolio:Portfolio;
   asset:Asset;
@@ -32,16 +32,6 @@ export class CashoutComponent implements OnInit {
      this.portfolio_id = this.route.snapshot.paramMap.get('portfolio');
      this.asset_id = this.route.snapshot.paramMap.get('asset');
 
-     if(this.asset_id!="all"){
-        this.portfolioService.asset(this.asset_id).subscribe(asset => {
-          if(asset!=null&&asset!=undefined){
-            this.asset = asset;
-          }
-        }, error => {
-              
-        })
-     }
-
      this.portfolioService.portfolio(this.portfolio_id).subscribe(portfolio => {
       if(portfolio!=null&&portfolio!=undefined){
          this.portfolio = portfolio;
@@ -49,11 +39,18 @@ export class CashoutComponent implements OnInit {
          this.asset_codes = "";
          this.portfolio.assets.forEach((asset) => {
             this.asset_codes+= " "+asset.market_code+" ";
+            if(asset._id==this.asset_id){
+              this.asset = asset;
+            }
          });
       }
      }, error => {
 
      })
+  }
+
+  ngAfterContentInit(){
+    console.log("This is when we got here")
   }
 
   cashout(location){
@@ -69,26 +66,26 @@ export class CashoutComponent implements OnInit {
   }
 
   continueCashout(){
-    if(!this.location){
-      return;
-    }
-    var location = this.location=="Annka Wallet"?  "wallet" : "bank";
+      if(!this.location){
+        return;
+      }
+      var location = this.location=="Annka Wallet"?  "wallet" : "bank";
 
-    this.closeMessage();
-    this.showCashLoading();
-    this.portfolioService.cashout(this.portfolio._id, this.asset._id, location).subscribe(res => {
-      this.hideCashLoading();
-      if(res=="success"){
-         //All good
-         this.router.navigate([ "/pendingtransactions" ]);
-      }
-      else{
-         this.message.showMessage("Withdrawal", ["Your withdrawal could not be processed at the moment please try again later."]);
-      }
-    }, err => {
+      this.closeMessage();
+      this.showCashLoading();
+      this.portfolioService.cashout(this.portfolio._id, this.asset_id, location).subscribe(res => {
         this.hideCashLoading();
-        this.message.showMessage("Withdrawal", ["Your withdrawal could not be processed at the moment please try again later."]);
-    })
+        if(res=="success"){
+          //All good
+          this.url_location.back();
+        }
+        else{
+          this.message.showMessage("Withdrawal", ["Your withdrawal could not be processed at the moment please try again later."]);
+        }
+      }, err => {
+          this.hideCashLoading();
+          this.message.showMessage("Withdrawal", ["Your withdrawal could not be processed at the moment please try again later."]);
+      })
   }
 
   openMessage(){

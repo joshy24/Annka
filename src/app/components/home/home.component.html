@@ -22,7 +22,7 @@
             <div class="col-md-4 col-sm-4" *ngFor="let currency of selected_currencies; let i = index" (click)="buyAsset(i)" style="margin-bottom:30px;">
                 <a href="">
                 <div class="annka-card shadow">
-                    <img src="../../../assets/images/64/color/{{currency.Image_url}}@2x.png" class="img-responsive annka-center">
+                    <img src="https://s3.eu-central-1.amazonaws.com/annkapublic/64/{{currency.Image_url}}@2x.png" class="img-responsive annka-center">
                     <h2 class="text-center"><b>{{currency.Currency}}</b></h2>
                     <h4 class="text-center"><b>{{currency.CurrencyLong}}</b></h4>
                 </div>

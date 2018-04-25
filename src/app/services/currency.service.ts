@@ -99,11 +99,11 @@ export class CurrencyService {
 
         if(profit>percent){
             //remove 2%
-            return amount - (amount*0.02);
+            return amount - ((amount*0.02)+250);
         }
         else{
             //remove 1%
-            return amount - (amount*0.01);
+            return amount - ((amount*0.01)+250);
         }
 
     }

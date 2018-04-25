@@ -21,8 +21,9 @@ export class TransactionComponent implements OnInit {
     this.showLoading();
 
     this.accountService.pendingall().subscribe(all => {
-        if(all)
+        if(all){
             this.transactions = all;
+        }
 
         this.hideLoading();
     }, err => {

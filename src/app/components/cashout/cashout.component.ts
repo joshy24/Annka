@@ -77,7 +77,12 @@ export class CashoutComponent implements OnInit, AfterContentInit {
         this.hideCashLoading();
         if(res=="success"){
           //All good
-          this.url_location.back();
+          if(location=="wallet"){
+            this.router.navigate(["/account"])
+          }
+          else{
+            this.router.navigate(["/pendingtransactions"])
+          }
         }
         else{
           this.message.showMessage("Withdrawal", ["Your withdrawal could not be processed at the moment please try again later."]);

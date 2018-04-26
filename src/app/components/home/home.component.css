@@ -8,10 +8,9 @@
     -o-background-size: cover;
     background-size: cover;
     margin: 0px 0px 0px 0px;
-    height: 400px;
-    min-height: 300px;
     color: #FFFFFFFF;
-    padding-top: 50px;
+    padding-top: 35px;
+    padding-bottom: 35px;
     width: 100%;
 }
 
@@ -20,8 +19,14 @@
 }
 
 @media screen and (max-width: 768px) {
-    .home-intro-div h3{
-        font-size: 8px;
+    .home-intro-div{
+        height: 600px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .home-intro-div{
+        height: 600px;
     }
 }
 

@@ -51,6 +51,7 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
 import { GuidelinesComponent } from './components/guidelines/guidelines.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { MessageComponent } from './components/message/message.component';
+import { TransactionmessageComponent } from './components/transactionmessage/transactionmessage.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { MessageComponent } from './components/message/message.component';
     ForgotpasswordComponent,
     GuidelinesComponent,
     SnackbarComponent,
-    MessageComponent
+    MessageComponent,
+    TransactionmessageComponent
   ],
   imports: [
     BrowserModule,

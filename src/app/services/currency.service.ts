@@ -61,7 +61,13 @@ export class CurrencyService {
   }
   
   getAmount(amount){
+
     var a = amount.toString();
+    
+    if(a.includes('.')){
+       let s = a.split(".")
+       a = s[0];
+    }
     
     switch(a.length){
       case 4:
@@ -99,11 +105,11 @@ export class CurrencyService {
 
         if(profit>percent){
             //remove 2%
-            return amount - ((amount*0.02)+250);
+            return amount - ((amount*0.02)+200);
         }
         else{
             //remove 1%
-            return amount - ((amount*0.01)+250);
+            return amount - ((amount*0.01)+200);
         }
 
     }
@@ -120,6 +126,42 @@ export class CurrencyService {
 
       if(six>3000){
         fee = amount - 3000;
+      }
+
+      return fee;
+    }
+    
+  }
+
+  getCreationFee(amount){
+    if(amount==0){
+      return 0;
+    }
+    else{
+      var fee = Math.round(amount*0.02);
+
+      var six = Math.round(amount*0.02)
+
+      if(six>2000){
+        fee = 2000;
+      }
+
+      return fee;
+    }
+    
+  }
+
+  getCreationCommission(amount){
+    if(amount==0){
+      return 0;
+    }
+    else{
+      var fee = Math.round(amount*0.01);
+
+      var six = Math.round(amount*0.01)
+
+      if(six>1000){
+        fee = 1000;
       }
 
       return fee;
@@ -149,7 +191,7 @@ export class CurrencyService {
 
       var num = fee/value;
       
-      return Number(num.toFixed(8));
+      return num;
     }
   }
 

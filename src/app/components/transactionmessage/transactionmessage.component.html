@@ -1,0 +1,44 @@
+<div *ngIf="show" class="annka-modal-div-transparent" id="login-loader-div">
+  <div class="innder-annka-modal-div-transparent">
+      <a class="text-right"><h1 class="close-text" (click)="closeMessage()">&times;</h1></a>
+      <h2 class="text-center">{{title}}</h2>
+      <hr style="width:300px;"/>
+      <br/>
+      <br/>
+      <div class="annka-fees-div">
+        <h5 *ngIf="top_message" class="text-center annka-white">{{top_message}}</h5>
+        <br/>
+        <br/>
+        <div class="row">
+            <h4 class="pull-left" style="margin-left:15px">Amount</h4>
+            <h4 class="pull-right" style="margin-right:15px">₦{{currencyService.getAmount(amount)}}</h4>
+        </div>
+        <div class="row">
+            <h4 class="pull-left" style="margin-left:15px">{{feeName}}</h4>
+            <h4 class="pull-right" style="margin-right:15px">- ₦{{currencyService.getAmount(fee)}}</h4>
+        </div>
+        <div class="row">
+            <h4 class="pull-left" style="margin-left:15px">Annka Commission</h4>
+            <h4 class="pull-right" style="margin-right:15px">- ₦{{currencyService.getAmount(commission)}}</h4>
+        </div>
+        <hr class="annka-white">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-sx-4">
+                <h4 class="pull-left annka-block">Total Amount</h4>
+            </div>
+            <div class="col-md-4 col-sm-4 col-sx-4">
+              
+            </div>
+            <div class="col-md-4 col-sm-4 col-sx-4">
+                <h4 class="pull-right annka-block">₦{{currencyService.getAmount(balance)}}</h4>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="continueClick()">CONTINUE</button>
+        <br/>
+        <br/>
+        <h5 style="line-height:1.8em;" *ngIf="bottom_message" class="text-center annka-green">{{bottom_message}}</h5>
+      </div>
+  </div>
+</div>

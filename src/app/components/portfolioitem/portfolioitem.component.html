@@ -1,36 +1,33 @@
-<div class="col-md-6 col-sm-6">
+<div class="col-md-4 col-sm-4">
     <div class="portfolio-item annka-card shadow">
         <div class="row">
-            <div class="col-md-3 col-sm-4"> <!-- logo div -->
-                <img src="https://s3.eu-central-1.amazonaws.com/annkapublic/128/{{asset.image_url}}.png" class="img-responsive">
+            <div class="col-xs-4 col-md-4 col-sm-4"> <!-- logo div -->
+                <img src="https://s3.eu-central-1.amazonaws.com/annkapublic/128/{{asset.image_url}}.png" class="img-responsive" width="90" height="90">
             </div>
-            <div class="col-md-9 col-sm-8"> <!-- information div -->
-                <h1>{{asset.market_code}}</h1>
-                <h2>{{asset.name}}</h2>
-                <br/>
-                <hr/>
-                <div class="row">
-                    <div class="col-md-6 col-sm-5">
-                        <h3><b>Quantity</b></h3>
-                        <h4>{{currencyService.getShortenedValue(asset.quantity)}}</h4>
-                        <br/>
-                        <div>
-                            <div class="annka-inline">
-                                <h3><b>Value</b></h3>
-                                <h4>₦{{currencyService.getAmount(asset.value)}}</h4>
-                            </div>
-                            <div class="annka-inline" style="margin-top:0px;">
-                                <h4 class="annka-green pull-right" *ngIf="currencyService.getChangeDirection(asset.old_value, asset.value)==true">+ {{currencyService.getPercentageChange(asset.old_value, asset.value)}}%</h4>
-                                <h4 class="annka-red pull-right" *ngIf="currencyService.getChangeDirection(asset.old_value, asset.value)==false">- {{currencyService.getPercentageChange(asset.old_value, asset.value)}}%</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-7">
-                        <h2>{{asset.percent}}% of your portfolio</h2>
-                    </div>
-                </div>
+            <div class="col-xs-4 col-md-4 col-sm-4"> <!-- information div -->
+                <h3>{{asset.market_code}}</h3>
+                <h4>{{asset.name}}</h4>
+            </div>
+            <div class="col-xs-4 col-md-4 col-sm-4">
+                    <br/>
+                    <h4>{{asset.percent}} %</h4>
+                    <h5 class="annka-grey">of portfolio</h5>
             </div>
         </div>
+        <div class="row">
+            <h4 class="text-center">{{currencyService.getShortenedValue(asset.quantity)}}</h4>
+        </div>
+        <hr style="margin-top:8px; margin-bottom:8px;"/>
+        <div class="row">
+            <div class="col-xs-6 col-md-6 col-sm-6">
+                <h4 style="float:right; margin-left:auto; margin-right: 5px;">₦{{currencyService.getAmount(asset.value)}}</h4>
+            </div>
+            <div class="col-xs-6 col-md-6 col-sm-6" style="margin-top:0px;">
+                <h4 style="float:left; margin-left:10px; margin-right: auto;" class="annka-green" *ngIf="currencyService.getChangeDirection(asset.old_value, asset.value)==true">+ {{currencyService.getPercentageChange(asset.old_value, asset.value)}}%</h4>
+                <h4 style="float:left; margin-left:10px; margin-right: auto;" class="annka-red" *ngIf="currencyService.getChangeDirection(asset.old_value, asset.value)==false">- {{currencyService.getPercentageChange(asset.old_value, asset.value)}}%</h4>
+            </div>
+        </div>
+        <hr style="margin-top:8px; margin-bottom:8px;"/>
         <div class="row">
             <br/>
             <button class="annka-green-btn submit-btn annka-center" (click)="doCashOut()">Cash Out</button>

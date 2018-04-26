@@ -1,12 +1,12 @@
 <div class="col-md-3 col-sm-4 col-xs-6">
   <div class="annka-card-price shadow annka-white-background">
       <h3 class="annka-blue"><b>₦{{currencyService.getAmount(price)}}</b></h3>
-      <h5>You Get</h5>
+      <h5 style="color:#000000;">You Get</h5>
       <div *ngIf="loading" class="loading-small">
         
       </div>
       <div *ngIf="!loading">
-          <h4>{{currencyService.getAnnkaRate(price, ticker)}}</h4>
+          <h4 style="color:#000000;">{{currencyService.getShortenedValue(currencyService.getAnnkaRate(price, ticker))}}</h4>
           <h3 class="annka-green">{{currency}}</h3>
       </div>
   </div>

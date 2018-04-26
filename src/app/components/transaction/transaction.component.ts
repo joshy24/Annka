@@ -13,20 +13,23 @@ export class TransactionComponent implements OnInit {
   loading:boolean;
   transactions:Transaction[];
   show_msg:boolean;
+  error:boolean;
   @ViewChild(MessageComponent) message:MessageComponent;
 
   constructor(private url_location: Location, private accountService:AccountService) { }
 
   ngOnInit() {
-    this.showLoading();
+    this.showLoading(); 
+
+    this.error = false;
 
     this.accountService.pendingall().subscribe(all => {
-        if(all){
+        if(all&&all!=[]){
             this.transactions = all;
         }
-
         this.hideLoading();
     }, err => {
+        this.error = true;
         this.hideLoading();
     })
   }

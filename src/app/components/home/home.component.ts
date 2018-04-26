@@ -55,10 +55,14 @@ export class HomeComponent implements OnInit {
       this.search = false;
   }
 
-  addAssetToParent = function(currency){
+  addAssetToParent = function(asset){
       this.search = false;
-      this.currencyService.changeCurrency(currency);
+      this.currencyService.changeCurrency(asset.Currency);
       this.router.navigate(['/portfolio/new']);
+  }
+
+  showSignup(){
+      this.router.navigate(['/signup']);
   }
 
 }

@@ -31,6 +31,15 @@ export class AccountComponent implements OnInit {
       message: "",
       action: ""
      }
+
+     if(localStorage.getItem("not_activated")&&localStorage.getItem("not_activated").length>0){
+        //we have a message
+        this.portfolioError.name = "Account Not Activated";
+        this.portfolioError.message = localStorage.getItem("not_activated");
+        this.openError();
+        localStorage.removeItem("not_activated");
+     }
+
   }
 
   ngOnDestroy() {

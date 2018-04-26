@@ -37,6 +37,11 @@ export class ResponseInterceptor implements HttpInterceptor {
                         this.router.navigate([ "/login" ]);
                     }
                 }
+
+                if(err.status === 400 && err.statusText == "Not Activated"){
+                    localStorage.setItem("not_activated", "Your Account Has Not been activated. An activation email was sent to your email address");
+                    this.router.navigate([ "/account" ]);
+                }
                 });
 
     }

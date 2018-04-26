@@ -10,7 +10,7 @@ import Currency from '../../models/currency.model';
 export class SearchComponent implements OnInit {
 
   @Output() closeClick: EventEmitter<String> = new EventEmitter<String>();
-  @Output() assetSet: EventEmitter<String> = new EventEmitter<String>();
+  @Output() assetSet: EventEmitter<Currency> = new EventEmitter<Currency>();
   @Input() currencies;
   
   selected_currencies: Currency[];
@@ -44,6 +44,6 @@ export class SearchComponent implements OnInit {
   }
 
   setCurrency(i){
-    this.assetSet.emit(this.selected_currencies[i].Currency);
+    this.assetSet.emit(this.selected_currencies[i]);
   }
 }

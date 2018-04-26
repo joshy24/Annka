@@ -2,38 +2,30 @@
     <div class="row">
         <div class="shadow annka-card annka-padding-16 annka-center" style="max-width:800px;">
             <div class="row" style="padding-left:24px; padding-right:24px; padding-top:8px;" >
-                <h1 class="annka-inline"><b>{{portfolio.name}}</b></h1> 
-                <div class="annka-inline pull-right">
+                <div class="col-md-8 col-sm-8">
+                    <h1 class="annka-inline"><b>{{portfolio.name}}</b></h1> 
                     <button class="annka-green-btn submit-btn" (click)="cashOutAll()">Cash Out</button>
-                </div>
-            </div>
-            <div class="row" style="padding-left:20px; padding-right:20px;">
-                <div class="col-md-6 col-sm-6 col-xs-6" style="height: 80px;">
+                    <br/>
                     <h2>₦{{currencyService.getAmount(portfolio.amount)}}</h2>
                     <h5 class="annka-grey">Estimated value of portfolio</h5>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-6" style="height: 60px;">
-                    <div *ngIf="currencyService.getChangeDirection(portfolio.old_amount, portfolio.amount)==true" style="width:220px; float:right; padding-top:30px;">
+                    <br/>
+                    <div *ngIf="currencyService.getChangeDirection(portfolio.old_amount, portfolio.amount)==true" style="width:220px; float:left;">
                         <h3 class="annka-inline annka-green" style="margin-right:24px;">+ {{currencyService.getPercentageChange(portfolio.old_amount, portfolio.amount)}}%</h3> <h3 class="annka-inline annka-green">+ ₦{{currencyService.getAmount(currencyService.getAmountChange(portfolio.old_amount, portfolio.amount))}}</h3>
                     </div>
-                    <div *ngIf="currencyService.getChangeDirection(portfolio.old_amount, portfolio.amount)==false" style="width:220px; float:right; padding-top:30px;" #elsepart>
+                    <div *ngIf="currencyService.getChangeDirection(portfolio.old_amount, portfolio.amount)==false" style="width:220px; float:left;" #elsepart>
                         <h3 class="annka-inline annka-red" style="margin-right:24px;">- {{currencyService.getPercentageChange(portfolio.old_amount, portfolio.amount)}}%</h3> <h3 class="annka-inline annka-red">- ₦{{currencyService.getAmount(currencyService.getAmountChange(portfolio.old_amount, portfolio.amount))}}</h3>
                     </div>
                 </div>
+                <div class="col-md-4 col-sm-4">
+                    <div style="max-width: 350px; margin-left:auto; margin-right:auto;">
+                        <piechart></piechart>
+                    </div>
+                    <div style="margin-left:auto; margin-right:auto;">
+                        <h4 class="text-center">{{asset_codes}}</h4>
+                        <button class="annka-blue-btn submit-btn annka-center" (click)="openEdit()">Add Asset</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <!--<div class="pie-chart-div" style="width:300px; height:300px; margin-left:auto; margin-right: 0px;">
-            <piechart></piechart>
-        </div>-->
-    <br/>
-    <hr/>
-    <br/>
-    <div class="row">
-        <h3 style="margin-right:auto; margin-left: 65px;" class="annka-inline">Assets in Portfolio</h3> 
-        <div class="annka-inline pull-right" style="margin-left:auto; margin-right: 65px;">
-            <h4 class="text-center">{{asset_codes}}</h4>
-            <button class="annka-blue-btn submit-btn" (click)="openEdit()">Add Asset</button>
         </div>
     </div>
     <div class="row">
@@ -48,50 +40,27 @@
     
 </div>
 
-<div *ngIf="showEdit" class="annka-modal-div" id="login-loader-div">
+<div *ngIf="show_amount" class="annka-modal-div" id="login-loader-div">
     <div class="innder-annka-modal-div">
-        <a class="text-right"><h1 class="close-text" (click)="closeEdit()">&times;</h1></a>
-        <h2 class="text-center">Add an Asset to {{portfolio.name}}</h2>
+        <a class="text-right"><h1 class="close-text" (click)="closeAmount()">&times;</h1></a>
+        <h2 class="text-center">Select Amount</h2>
         <hr style="width:450px;"/>
         <br/>
-        <h3 class="text-center">Asset</h3>
-        <div class="selector-div">
-            <select (ngModel)="currencies" class="annka-center">
-                <option *ngFor="let money of currencies; let i = index" (ngValue)="money" (click)="addCurrency(i)"> {{money.Currency}} </option>
-            </select>
+        <h4 class="text-center">Selected Asset - {{selected_currency.CurrencyLong}}</h4>
+        <br/>
+        <button class="annka-blue-no-shadow-btn submit-btn annka-center" (click)="showSearch()">Select another asset</button>
+        <br/>
+        <div class="price-item-div">
+            <priceitem *ngFor="let price of currencyService.prices; let i = index" [currency]="selected_currency.Currency" [price]="price" [ticker]="ticker" [loading]="loading" (click)="addAmount(price)"></priceitem>
         </div>
         <br/>
-        <h3 class="text-center">Amount</h3>
-        <div class="selector-div">
-                <select (ngModel)="prices" (ngModelChange)="showPurchase($event)" class="annka-center">
-                    <option *ngFor="let price of prices; let i = index" (ngValue)="price" (click)="addAmount(price)"> ₦{{currencyService.getAmount(price)}} </option>
-                </select>
-        </div>
-        <br/>
-        <h5 class="text-center">You Get</h5>
-        <div *ngIf="loading" class="loading-small">
-        
-        </div>
-        <h4 *ngIf="!loading" class="text-center"> {{rate}}</h4>
-        <h3 class="annka-green text-center">{{selected_currency.CurrencyLong}}</h3>
-        <br/>
-        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="AddCurrency()">Add</button>
     </div>
 </div>
 
-<div *ngIf="showError" class="annka-modal-div" id="login-loader-div">
-    <div class="innder-annka-modal-div">
-        <a class="text-right"><h1 class="close-text" (click)="closeError()">&times;</h1></a>
-        <h2 class="text-center">{{portfolioError.name}}</h2>
-        <hr style="width:450px;"/>
-        <br/>
-        <br/>
-        <h4 class="text-center">{{portfolioError.message}}</h4>
-        <br/>
-        <br/>
-        <br/>
-        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeError()">GOT IT</button>
-    </div>
+<message></message>
+
+<div *ngIf="search">
+    <search (closeClick)="closeSearchFromParent($event)" (assetSet)="addAssetToParent($event)" [currencies]="currencyService.currencies"></search>
 </div>
 
 <div *ngIf="buying" class="loading-div">
@@ -102,3 +71,5 @@
         <h4 class="text-center annka-white">Purchasing Asset...</h4>
     </div>
 </div>
+
+<transactionmessage (closeClick)="performTransaction()"></transactionmessage>

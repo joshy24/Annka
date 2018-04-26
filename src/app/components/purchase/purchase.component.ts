@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Optional, Self } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { CurrencyService } from '../../services/currency.service';
-import { BitrexService } from '../../services/bitrex.service';
+
 import { AccountService } from '../../services/account.service';
 import Portfolio from '../../models/portfolio.model';
 import Currency from '../../models/currency.model';
@@ -12,6 +12,7 @@ import { PiedataService } from "../../services/piedata.service";
 import { PortfolioService } from "../../services/portfolio.service";
 import { SnackbarComponent } from '../snackbar/snackbar.component';
 import { MessageComponent } from '../message/message.component';
+import { TransactionmessageComponent } from '../transactionmessage/transactionmessage.component'
 
 @Component({
   selector: 'app-purchase',
@@ -36,8 +37,9 @@ export class PurchaseComponent implements OnInit {
   showInvestMessage:boolean;
   @ViewChild(SnackbarComponent) snackbar:SnackbarComponent;
   @ViewChild(MessageComponent) message:MessageComponent;
+  @ViewChild(TransactionmessageComponent) transactionmessage:TransactionmessageComponent;
 
-  constructor(private portfolioService:PortfolioService, private accountService:AccountService, private router:Router, private route: ActivatedRoute, public currencyService:CurrencyService, private bitrexService: BitrexService, private piedataService:PiedataService) {
+  constructor(private portfolioService:PortfolioService, private accountService:AccountService, private router:Router, private route: ActivatedRoute, public currencyService:CurrencyService, private piedataService:PiedataService) {
      
   }
   
@@ -221,13 +223,13 @@ export class PurchaseComponent implements OnInit {
       else{
          //save portfolio then go to portfolio component
          this.portfolio.name = name;
-
-         
-         this.openPurchaseMessage();
+         //this.openPurchaseMessage();
+         this.transactionmessage.showMessage("Create Portfolio", this.currency +" - "+this.currencyService.getAnnkaRate(this.portfolio.amount, this.ticker), "Purchasing Digital Assets involves a lot of tedious steps and spending a considerable amount of money just to make a simple transaction go through. Annka removes that complexity and reduces cost significantly with you needing just your credit card and an email address. Because we are bearing the burding and cost of purchasing and maintaining digital assets on your behalf you are charged a blockchain fee and a commision.", this.portfolio.amount, this.currencyService.getCreationFee(this.portfolio.amount), this.currencyService.getCreationCommission(this.portfolio.amount), false, "Blockchain Network Fee");
       }
   }
 
-  continuePurchase(){
+  //continuePurchase(){
+    performTransaction(){
       this.closePurchaseMessage();
       this.showCreateLoading()
       this.portfolioService.create(this.portfolio).subscribe( data => {
@@ -279,11 +281,11 @@ export class PurchaseComponent implements OnInit {
      this.search = false;
   }
 
-  addAssetToParent = function(currency){
+  addAssetToParent = function(asset){
     this.search = false;
 
-    this.currency = currency;
-    this.currencyService.changeCurrency(currency);
+    this.currency = asset.Currency;
+    this.currencyService.changeCurrency(asset.Currency);
     this.setCurrencyLong();
     this.getRate();
     clearInterval(this.interval);

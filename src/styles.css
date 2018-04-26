@@ -96,6 +96,10 @@ hr{
     display: block;
 }
 
+.annka-block{
+    display:block;
+}
+
 .annka-red-btn{
     display: block;
     background-color: #7B241C;
@@ -117,6 +121,27 @@ hr{
 .annka-red-btn:hover{
     text-decoration: none;
     background-color: #E74C3C;
+    color:#FFFFFF;
+}
+
+.annka-signup-btn{
+    display: block;
+    background-color: #5D6D7E;
+    color: #FFFFFF;
+    border: 0px solid rgba(0,0,0,0);
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    width: 200px;
+    text-align: center;
+}
+
+.annka-signup-btn:hover{
+    text-decoration: none;
+    background-color: #34495E;
     color:#FFFFFF;
 }
 
@@ -208,6 +233,21 @@ hr{
     text-decoration: none;
     background-color: #2Ecc71;
     color:#FFFFFF;
+}
+
+.annka-card-pending{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    min-width: 100px;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 5px;
+    background: #FFFFFF;
 }
 
 .annka-card{
@@ -482,7 +522,7 @@ hr{
 
 @media screen and (max-width: 1048px) {
     .annka-footer-right-div{
-        margin-top: 22px;
+        margin-top: 15px;
         margin-right:auto;
         margin-left: auto;
         display: block;
@@ -492,7 +532,7 @@ hr{
 
     .annka-footer-left-div{
         margin-top: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         width: 350px;
         margin-right:auto;
         margin-left: auto;

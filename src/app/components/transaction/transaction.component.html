@@ -4,7 +4,7 @@
          <h3 class="annka-center text-center"><b>Pending Transactions</b> <a (click)="showMessage()"> <i  class="far fa-question-circle"></i></a></h3>
          <br/>
          <br/>
-         <div *ngIf="transactions&&!loading">
+         <div *ngIf="transactions&&transactions.length>0&&!loading">
               <div class="col-md-4 col-sm-4 col-xs-4">
                 <h4><b>Date</b></h4>
               </div>
@@ -17,13 +17,12 @@
 
               <pendingitem *ngFor="let transaction of transactions; let i = index" [transaction]="transaction"></pendingitem>
          </div>
-         <div *ngIf="!transactions&&!loading">
-            <h5 class="text-center">You dont have any pending transactions at the moment</h5>
-            <br/>
-            <h5 class="text-center"><a class="text-center" (click)="goBack()">Back</a></h5>
+         <div *ngIf="transactions.length==0&&!loading">
+                <h5 class="text-center">You dont have any pending transactions at the moment</h5>
+                <br/>
+                <h5 class="text-center"><a class="text-center" (click)="goBack()">Back</a></h5>
          </div>
          <br/>
-         
     </div>
 </div>
 

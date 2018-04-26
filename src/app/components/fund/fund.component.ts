@@ -40,11 +40,11 @@ export class FundComponent implements OnInit {
 
   onFormSubmit(){
     if(this.amountForm.valid){
-        if(this.amountForm.value.amount>=6000&&this.amountForm.value.amount<=200000){
+        if(this.amountForm.value.amount>=5200&&this.amountForm.value.amount<=200000){
             window.location.href = "https://annka.xyz/api/account?amount="+this.amountForm.value.amount+"&name="+this.authService.getToken();
         }
         else{
-            this.message.showMessage("Invalid Amount", ["Please Enter an amount between ₦6000 and ₦200,000"])
+            this.message.showMessage("Invalid Amount", ["Please Enter an amount between ₦5,200 and ₦200,000"])
         }
     }
   }

@@ -11,15 +11,15 @@
         <br/>
         <div class="row">
             <h4 class="pull-left" style="margin-left:15px">Amount</h4>
-            <h4 class="pull-right" style="margin-right:15px">₦{{currencyService.getAmount(amount)}}</h4>
+            <h4 class="pull-right" style="margin-right:15px">₦{{currencyService.getAmount(balance)}}</h4>
         </div>
         <div class="row">
             <h4 class="pull-left" style="margin-left:15px">{{feeName}}</h4>
-            <h4 class="pull-right" style="margin-right:15px">- ₦{{currencyService.getAmount(fee)}}</h4>
+            <h4 class="pull-right" style="margin-right:15px">₦{{currencyService.getAmount(fee)}}</h4>
         </div>
         <div class="row">
             <h4 class="pull-left" style="margin-left:15px">Annka Commission</h4>
-            <h4 class="pull-right" style="margin-right:15px">- ₦{{currencyService.getAmount(commission)}}</h4>
+            <h4 class="pull-right" style="margin-right:15px">₦{{currencyService.getAmount(commission)}}</h4>
         </div>
         <hr class="annka-white">
         <div class="row">
@@ -30,7 +30,7 @@
               
             </div>
             <div class="col-md-4 col-sm-4 col-sx-4">
-                <h4 class="pull-right annka-block">₦{{currencyService.getAmount(balance)}}</h4>
+                <h4 class="pull-right annka-block">₦{{currencyService.getAmount(amount)}}</h4>
             </div>
         </div>
         <br/>

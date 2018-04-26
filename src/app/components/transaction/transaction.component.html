@@ -5,22 +5,26 @@
          <br/>
          <br/>
          <div *ngIf="transactions&&transactions.length>0&&!loading">
-              <div class="col-md-4 col-sm-4 col-xs-4">
-                <h4><b>Date</b></h4>
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-4">
-                  <h4><b>Description</b></h4>
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-4">
-                  <h4><b>Status</b></h4>
-              </div>
-
-              <pendingitem *ngFor="let transaction of transactions; let i = index" [transaction]="transaction"></pendingitem>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <h4><b>Date</b></h4>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <h4><b>Description</b></h4>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <h4><b>Status</b></h4>
+                </div>
+            </div>
+            <div class="row">
+                <pendingitem *ngFor="let transaction of transactions; let i = index" [transaction]="transaction"></pendingitem>
+            </div>
          </div>
+         
          <div *ngIf="transactions.length==0&&!loading">
-                <h5 class="text-center">You dont have any pending transactions at the moment</h5>
-                <br/>
-                <h5 class="text-center"><a class="text-center" (click)="goBack()">Back</a></h5>
+            <h5 class="text-center">You dont have any pending transactions at the moment</h5>
+            <br/>
+            <h5 class="text-center"><a class="text-center" (click)="goBack()">Back</a></h5>
          </div>
          <br/>
     </div>

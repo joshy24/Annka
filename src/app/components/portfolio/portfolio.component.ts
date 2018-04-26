@@ -100,6 +100,7 @@ export class PortfolioComponent implements OnInit {
         this.rate = this.currencyService.getAnnkaRate(this.selected_amount, this.ticker);
         this.hideLoading();
     }, err => {
+      this.ticker = 0;
       this.hideLoading();
     })
 
@@ -110,17 +111,20 @@ export class PortfolioComponent implements OnInit {
         this.rate = this.currencyService.getAnnkaRate(this.selected_amount, this.ticker);
         this.hideLoading();
       }, err => {
+        this.ticker = 0;
         this.hideLoading();
       })
     }, 60000)
   }
 
   addAmount(amount){
-      this.selected_amount = amount;
-      this.rate = this.currencyService.getAnnkaRate(this.selected_amount, this.ticker);
-      //show transaction message
-      this.closeAmount();
-      this.transactionmessage.showMessage("Add Asset", this.selected_currency.Currency +" - "+this.currencyService.getAnnkaRate(this.selected_amount, this.ticker), "Purchasing Digital Assets involves a lot of tedious steps and spending a considerable amount of money just to make a simple transaction go through. Annka removes that complexity and reduces cost significantly with you needing just your credit card and an email address. Because we are bearing the burding and cost of purchasing and maintaining digital assets on your behalf you are charged a blockchain fee and a commision.", this.selected_amount, this.currencyService.getCreationFee(this.selected_amount), this.currencyService.getCreationCommission(this.selected_amount), false, "Blockchain Network Fee");
+      if(!this.ticker||this.ticker==0||!this.selected_currency||this.selected_currency==null||this.selected_currency==undefined){
+        this.selected_amount = amount;
+        this.rate = this.currencyService.getAnnkaRate(this.selected_amount, this.ticker);
+        //show transaction message
+        this.closeAmount();
+        this.transactionmessage.showMessage("Add Asset", this.selected_currency.Currency +" - "+this.currencyService.getAnnkaRate(this.selected_amount, this.ticker), "Purchasing Digital Assets involves a lot of tedious steps and spending a considerable amount of money just to make a simple transaction go through. Annka removes that complexity and reduces cost significantly with you needing just your credit card and an email address. Because we are bearing the burding and cost of purchasing and maintaining digital assets on your behalf you are charged a blockchain fee and a commision.", this.selected_amount, this.currencyService.getCreationFee(this.selected_amount), this.currencyService.getCreationCommission(this.selected_amount), false, "Blockchain Network Fee");
+      }
   }
   
   AddCurrency(){
@@ -235,6 +239,7 @@ export class PortfolioComponent implements OnInit {
           this.ticker = res;
           this.hideLoading();
     }, err => {
+          this.ticker = 0;
           this.hideLoading();
     })
 
@@ -245,6 +250,7 @@ export class PortfolioComponent implements OnInit {
         
         this.hideLoading();
       }, err => {
+        this.ticker = 0;
         this.hideLoading();
       })
     }, 60000)

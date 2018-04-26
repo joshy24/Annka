@@ -235,21 +235,6 @@ hr{
     color:#FFFFFF;
 }
 
-.annka-card-pending{
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    min-width: 100px;
-    width: 100%;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding-top: 5px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-bottom: 5px;
-    background: #FFFFFF;
-}
-
 .annka-card{
     margin-left: auto;
     margin-right: auto;

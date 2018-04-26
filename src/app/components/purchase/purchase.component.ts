@@ -221,10 +221,12 @@ export class PurchaseComponent implements OnInit {
           this.openError();
       }
       else{
-         //save portfolio then go to portfolio component
-         this.portfolio.name = name;
-         //this.openPurchaseMessage();
-         this.transactionmessage.showMessage("Create Portfolio", this.currency +" - "+this.currencyService.getAnnkaRate(this.portfolio.amount, this.ticker), "Purchasing Digital Assets involves a lot of tedious steps and spending a considerable amount of money just to make a simple transaction go through. Annka removes that complexity and reduces cost significantly with you needing just your credit card and an email address. Because we are bearing the burding and cost of purchasing and maintaining digital assets on your behalf you are charged a blockchain fee and a commision.", this.portfolio.amount, this.currencyService.getCreationFee(this.portfolio.amount), this.currencyService.getCreationCommission(this.portfolio.amount), false, "Blockchain Network Fee");
+         if(this.ticker){
+              //save portfolio then go to portfolio component
+              this.portfolio.name = name;
+              //this.openPurchaseMessage();
+              this.transactionmessage.showMessage("Create Portfolio", this.currency +" - "+this.currencyService.getAnnkaRate(this.portfolio.amount, this.ticker), "Purchasing Digital Assets involves a lot of tedious steps and spending a considerable amount of money just to make a simple transaction go through. Annka removes that complexity and reduces cost significantly with you needing just your credit card and an email address. Because we are bearing the burding and cost of purchasing and maintaining digital assets on your behalf you are charged a blockchain fee and a commision.", this.portfolio.amount, this.currencyService.getCreationFee(this.portfolio.amount), this.currencyService.getCreationCommission(this.portfolio.amount), false, "Blockchain Network Fee");
+         }
       }
   }
 

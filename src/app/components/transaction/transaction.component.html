@@ -4,23 +4,6 @@
          <h3 class="annka-center text-center"><b>Pending Transactions</b> <a (click)="showMessage()"> <i  class="far fa-question-circle"></i></a></h3>
          <br/>
          <br/>
-         <div *ngIf="transactions&&transactions.length>0&&!loading">
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-4">
-                    <h4><b>Date</b></h4>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-4">
-                    <h4><b>Description</b></h4>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-4">
-                    <h4><b>Status</b></h4>
-                </div>
-            </div>
-            <div class="row">
-                <pendingitem *ngFor="let transaction of transactions; let i = index" [transaction]="transaction"></pendingitem>
-            </div>
-         </div>
-         
          <div *ngIf="transactions.length==0&&!loading">
             <h5 class="text-center">You dont have any pending transactions at the moment</h5>
             <br/>
@@ -28,6 +11,20 @@
          </div>
          <br/>
     </div>
+    <div *ngIf="transactions&&transactions.length>0&&!loading" class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <h5><b>Date</b></h5>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <h5><b>Description</b></h5>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <h5><b>Status</b></h5>
+        </div>
+    </div>
+    <div *ngIf="transactions&&transactions.length>0&&!loading">
+        <pendingitem *ngFor="let transaction of transactions; let i = index" [transaction]="transaction"></pendingitem>
+    <div >
 </div>
 
 <div #loading *ngIf="loading" class="loading" style="margin-top:150px;">

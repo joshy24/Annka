@@ -21,6 +21,7 @@ export class AccountService {
   private cashout_url = "/cashout/wallet";
   private resend_url = "/resend_email";
   private update_url = "/update"
+  private forgot_password_url = "/forgot_password"
 
   constructor(private http: HttpClient, private resourceService:ResourceService) { }
 
@@ -162,6 +163,25 @@ export class AccountService {
 
   update(user:User):Observable<String>{
     return this.http.post(this.resourceService.getBaseUrl()+this.update_url,{user}, 
+      {
+        headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
+
+      })
+      .map((respond: AnnkaResponse) => {
+          if(respond){
+              return respond.response;
+          }
+          else{
+              return false;
+          }
+      })
+      .pipe(
+         catchError(this.handleError)
+      )
+  }
+
+  forgot_password(email):Observable<String>{
+    return this.http.post(this.resourceService.getBaseUrl()+this.forgot_password_url,{email}, 
       {
         headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
 

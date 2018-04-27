@@ -11,10 +11,10 @@ import { MessageComponent } from '../message/message.component';
 })
 export class TransactionComponent implements OnInit {
   loading:boolean;
-  transactions:Transaction[];
   show_msg:boolean;
   error:boolean;
   @ViewChild(MessageComponent) message:MessageComponent;
+  transactions:Transaction[];
 
   constructor(private url_location: Location, private accountService:AccountService) { }
 

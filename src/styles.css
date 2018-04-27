@@ -249,6 +249,10 @@ hr{
     background: #FFFFFF;
 }
 
+.annka-text{
+    line-height:1.6em;
+}
+
 .annka-inline{
     display: inline
 }

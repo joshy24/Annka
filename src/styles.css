@@ -1,8 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
-body{
+html {
+    height: 100%;
     width: 100%;
-    height: auto;
 }
+body {
+    margin:0px;
+    height: auto;
+    min-height: 100%;
+    width: 100%;
+}
+
 a {
     color: #273746;
     text-decoration: none;
@@ -234,6 +240,28 @@ hr{
     background-color: #2Ecc71;
     color:#FFFFFF;
 }
+
+.annka-main-content{
+    min-height:700px;
+}
+
+/*@media screen and (max-height: 2800px) {
+    .annka-main-content{
+    min-height:2750px;
+    }
+}
+
+@media screen and (max-height: 2700px) {
+    .annka-main-content{
+    min-height:2650px;
+    }
+}
+
+@media screen and (max-height: 2540px) {
+    .annka-main-content{
+    min-height:2500px;
+    }
+}*/
 
 .annka-card{
     margin-left: auto;

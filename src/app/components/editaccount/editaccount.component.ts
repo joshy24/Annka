@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import User from '../../models/user.model'
 import PortfolioError from '../../models/portfolio.error'
-
+import { NameService } from '../../services/name.service';
 
 @Component({
   selector: 'app-editaccount',
@@ -23,7 +23,7 @@ export class EditaccountComponent implements OnInit {
   portfolioError:PortfolioError;
   showError: boolean;
 
-  constructor(private accountService:AccountService, private router:Router) { }
+  constructor(private nameService:NameService, private accountService:AccountService, private router:Router) { }
 
   ngOnInit() {
     this.editForm = new FormGroup({
@@ -127,6 +127,7 @@ export class EditaccountComponent implements OnInit {
         authenticated => {
             this.hideLoading();
             if(authenticated=="success"){
+              this.nameService.changeName("name");
               this.router.navigate(['/account']);
             }
         }, error => {

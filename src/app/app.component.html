@@ -1,78 +1,78 @@
-
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" routerLink="/"><img src="../../../assets/images/annka-beta.png" width="90" height="34" style="margin-top:-5px;"></a>
-              </div>
-          
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                  <li><a routerLink="/">Home</a></li>
-                  <li><a routerLink="/guidelines">Guidelines</a></li>
-                </ul>
-          
-                <ul class="nav navbar-nav navbar-right">
+<nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" routerLink="/"><img src="../../../assets/images/annka-beta.png" width="90" height="34" style="margin-top:-5px;"></a>
+                      </div>
                   
-                  <li *ngIf="authService.isUserAuthenticated()"><a routerLink="/portfolio/all">Portfolios</a></li>
-                  <li *ngIf="authService.isUserAuthenticated(); else unauth"><a routerLink="/account">Account</a></li>
-                  <li *ngIf="authService.isUserAuthenticated()"><a routerLink="/pendingtransactions">Pending <span *ngIf="pending!=0" class="badge">{{pending}}</span></a></li>
-                  
-                  <li *ngIf="authService.isUserAuthenticated()" class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user_name}}<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a routerLink="/account">Wallet</a></li>
-                        <li><a (click)="logout()">Logout</a></li>
-                    </ul>
-                  </li>
-                  
-                  <ng-template #unauth>
-                      <li><a routerLink="/login">Login</a></li>
-                      <li><a routerLink="/signup">Signup</a></li>
-                  </ng-template>
-                </ul>
-              </div><!-- /.navbar-collapse -->
-        </div>
-    </nav>
-
-    <div style="min-height:700px;">
-        <router-outlet></router-outlet>
-    </div>
-    
-    <!--footer-->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 col-sm-12">
-                    <div class="annka-footer-left-div">
-                        <ul class="annka-footer-ul-left">
-                            <li>© 2018, Annka.</li>
-                            <li>Terms</li>
-                            <li>Privacy</li>
-                            <li>Help</li>
+                      <!-- Collect the nav links, forms, and other content for toggling -->
+                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                          <li><a routerLink="/">Home</a></li>
+                          <li><a routerLink="/guidelines">Guidelines</a></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-12">
-                    <img src="../assets/images/logo.png" width="50" height="50" class="annka-center text-center" style="margin-top:4px;">
-                </div>
-                <div class="col-md-5 col-sm-12">
-                    <div class="annka-footer-right-div">
-                        <ul class="annka-footer-ul">
-                            <li>Home</li>
-                            <li>About</li>
-                            <li>Guidelines</li>
-                            <li>FAQ</li>
+                  
+                        <ul class="nav navbar-nav navbar-right">
+                          
+                          <li *ngIf="authService.isUserAuthenticated()"><a routerLink="/portfolio/all">Portfolios</a></li>
+                          <li *ngIf="authService.isUserAuthenticated(); else unauth"><a routerLink="/account">Account</a></li>
+                          <li *ngIf="authService.isUserAuthenticated()"><a routerLink="/pendingtransactions">Pending <span *ngIf="pending!=0" class="badge">{{pending}}</span></a></li>
+                          
+                          <li *ngIf="authService.isUserAuthenticated()" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user_name}}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a routerLink="/account">Wallet</a></li>
+                                <li><a (click)="logout()">Logout</a></li>
+                            </ul>
+                          </li>
+                          
+                          <ng-template #unauth>
+                              <li><a routerLink="/login">Login</a></li>
+                              <li><a routerLink="/signup">Signup</a></li>
+                          </ng-template>
                         </ul>
+                      </div><!-- /.navbar-collapse -->
+                </div>
+            </nav>
+        
+            <div class="annka-main-content">
+                <router-outlet></router-outlet>
+            </div>
+            
+            <!--footer-->
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12">
+                            <div class="annka-footer-left-div">
+                                <ul class="annka-footer-ul-left">
+                                    <li>© 2018, Annka.</li>
+                                    <li>Terms</li>
+                                    <li>Privacy</li>
+                                    <li>Help</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <img src="../assets/images/logo.png" width="50" height="50" class="annka-center text-center" style="margin-top:4px;">
+                        </div>
+                        <div class="col-md-5 col-sm-12">
+                            <div class="annka-footer-right-div">
+                                <ul class="annka-footer-ul">
+                                    <li>Home</li>
+                                    <li>About</li>
+                                    <li>Guidelines</li>
+                                    <li>FAQ</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+   

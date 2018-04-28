@@ -13,6 +13,7 @@ import { UnauthGuardService } from './services/unauth-guard-service.service';
 import { AccountService } from './services/account.service';
 import { PortfolioService } from './services/portfolio.service';
 import { ResourceService } from './services/resource.service';
+import { NameService } from './services/name.service'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -112,7 +113,8 @@ import { TransactionmessageComponent } from './components/transactionmessage/tra
     },
     AccountService,
     PortfolioService,
-    ResourceService
+    ResourceService,
+    NameService
   ],
   bootstrap: [AppComponent]
 })

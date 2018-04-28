@@ -4,6 +4,7 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import PortfolioError from '../../models/portfolio.error'
 import { AuthService } from '../../services/auth-service.service';
+import { NameService } from '../../services/name.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   portfolioError:PortfolioError;
   showError: boolean;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private nameService:NameService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
       this.loginForm = new FormGroup({
@@ -73,6 +74,7 @@ export class LoginComponent implements OnInit {
           authenticated => {
             this.hideLoading();
               if(authenticated) {
+                this.nameService.changeName("name");
                 this.router.navigate([ this.portfolio_url ]);					  
               } 
               else {

@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import User from '../../models/user.model'
 import PortfolioError from '../../models/portfolio.error'
+import { NameService } from '../../services/name.service';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +21,7 @@ export class SignupComponent implements OnInit {
   portfolioError:PortfolioError;
   showError: boolean;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private nameService:NameService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
       this.signupForm = new FormGroup({
@@ -83,11 +84,10 @@ export class SignupComponent implements OnInit {
           
     this.authService.signup(user).subscribe(
         authenticated => {
-            console.log("Data - "+authenticated)
             this.hideLoading();
             if(authenticated) {
               let url =  this.authService.getRedirectUrl(); 
-              
+              this.nameService.changeName("name");
               this.router.navigate([ this.portfolio_url ]);	
               				  
             } 
@@ -95,19 +95,18 @@ export class SignupComponent implements OnInit {
               
             }
         }, error => {
-           console.log("Error - "+error)
            this.hideLoading();
            this.portfolioError.name = "Signup Message";
 
             switch(error){
-                case "User Not Found":
-                  
+                case "User Exists":
+                this.portfolioError.message = "A user with that email address exists. Please use another email address or login";
                 break;
                 case "Server Error":
-                  this.portfolioError.message = "Login could not be processed at this moment. Please try again later";
-                break
-                case "Wrong Password":
-                  
+                  this.portfolioError.message = "Signup could not be processed at this moment. Please try again later";
+                break;
+                default:
+                this.portfolioError.message = "An Error occured. Please try signing up again";
                 break;
             }
 

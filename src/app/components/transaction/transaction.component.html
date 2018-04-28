@@ -24,7 +24,9 @@
     </div>
     <div *ngIf="transactions&&transactions.length>0&&!loading">
         <pendingitem *ngFor="let transaction of transactions; let i = index" [transaction]="transaction"></pendingitem>
-    <div >
+    </div>
+    <br/>
+    <br/>
 </div>
 
 <div #loading *ngIf="loading" class="loading" style="margin-top:150px;">

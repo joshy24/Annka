@@ -9,7 +9,7 @@ export class ResourceService {
   constructor() { }
 
   getBaseUrl(){
-     return this.dbase_url;
+     return this.pbase_url;
   }
   
   parseDate(date){

@@ -167,9 +167,10 @@ export class AccountService {
         headers: new HttpHeaders().set('Accept', "application/json;q=0.9,*/*;q=0.8")
 
       })
-      .map((respond: AnnkaResponse) => {
+      .map((respond: User) => {
           if(respond){
-              return respond.response;
+              localStorage.setItem('user', JSON.stringify(respond));
+              return "success";
           }
           else{
               return false;

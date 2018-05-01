@@ -15,7 +15,7 @@ export class TransactionComponent implements OnInit {
   error:boolean;
   @ViewChild(MessageComponent) message:MessageComponent;
   transactions:Transaction[];
-
+  
   constructor(private url_location: Location, private accountService:AccountService) { }
 
   ngOnInit() {

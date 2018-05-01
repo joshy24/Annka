@@ -2,6 +2,7 @@
     <div class="container">
         <div class="annka-login-div annka-center">
             <div class="annka-login-div-inner shadow annka-center">
+                <img src="../../../assets/images/logoblue.png" width="40" height="40" class="img-responsive annka-center">
                 <form class="form-horizontal"  [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
 
                       <h4 class="text-center"><b>Signup</b></h4>
@@ -139,9 +140,9 @@
                             </label>
                         </div>
                         <br/>
-                        <button type="submit" class="annka-green-btn annka-center" [disabled]="!signupForm.valid">CONTINUE</button>
+                        <button type="submit" class="annka-blue-btn annka-center" [disabled]="!signupForm.valid">CONTINUE</button>
                         <br/>
-                        <h5 class="text-center"><a routerLink="/login">Login</a></h5>
+                        <h5 class="text-center">Already have an account? <a style="text-decoration:underline;" routerLink="/login"><b>Login</b></a></h5>
                 </form>
             </div>
         </div>

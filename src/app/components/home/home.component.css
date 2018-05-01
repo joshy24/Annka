@@ -1,5 +1,5 @@
 #home-intro-div{
-    background: #273746;
+    background: url("https://s3.eu-central-1.amazonaws.com/annkapublic/bg1.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -7,6 +7,7 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    background-color: #273746;
     margin: 0px 0px 0px 0px;
     color: #FFFFFFFF;
     padding-top: 35px;

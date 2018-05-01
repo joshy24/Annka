@@ -110,7 +110,7 @@ export class CashoutwalletComponent implements OnInit {
           }
           else{
             this.portfolioError.name = "Invalid Amount"
-            this.portfolioError.message = "Please Enter an Amount that is Greater than ₦50 and less than ₦"+this.user.account_balance
+            this.portfolioError.message = "Please Enter an Amount that is Greater than ₦50 and less than ₦"+this.currencyService.getAmount(this.user.account_balance)
             this.openError();
           }
         }

@@ -2,3 +2,81 @@ nav{
     margin-top: 0px;
     margin-bottom: 0px;
 }
+
+.annka-feedback-btn{
+    background: none;
+ 
+    margin-right: 16px;
+
+    margin-bottom: 60px;
+    
+    position: fixed;
+    
+    bottom: 0;
+    
+    right: 0;
+    
+    z-index: 5000;
+    
+    text-decoration: none;
+    
+    color: #145A32;
+}
+
+.fa-question-circle{
+    font-size: 40px;
+}
+
+.annka-feedback-btn:hover{
+    color: #28B463;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    display: none;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 5000;
+
+    top: 5px;
+    right: 105%; 
+
+    /*Opacity transition*/
+    opacity: 0;
+    transition: opacity 2s;
+}
+ 
+.tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 100%; /* To the right of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+}
+
+.annka-feedback-btn:hover .tooltiptext {
+    visibility: visible;
+    display: inline;
+
+    opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .annka-feedback-btn{
+        margin-bottom: 16px;
+    }
+
+    .fa-question-circle{
+        font-size: 30px;
+    }
+}

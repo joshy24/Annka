@@ -80,7 +80,7 @@ a:hover{
 }
 
 h1,h2,h3,h4,h5,input,a,option{
-    font-family: "Open Sans", sans-serif;
+    font-family: "Oxygen", sans-serif;
 }
 
 a:hover{
@@ -108,7 +108,7 @@ hr{
 
 .annka-red-btn{
     display: block;
-    background-color: #7B241C;
+    background-color: #E74C3C;
     color: #FFFFFF;
     border: 0px solid rgba(0,0,0,0);
     border-radius: 20px;
@@ -126,13 +126,13 @@ hr{
 
 .annka-red-btn:hover{
     text-decoration: none;
-    background-color: #E74C3C;
+    background-color: #7B241C;
     color:#FFFFFF;
 }
 
 .annka-signup-btn{
     display: block;
-    background-color: #5D6D7E;
+    background-color: #2E86C1;
     color: #FFFFFF;
     border: 0px solid rgba(0,0,0,0);
     border-radius: 20px;
@@ -153,7 +153,7 @@ hr{
 
 .annka-blue-btn{
     display: block;
-    background-color: #273746;
+    background-color: #2E86C1;
     color: #FFFFFF;
     border: 0px solid rgba(0,0,0,0);
     border-radius: 20px;
@@ -171,7 +171,7 @@ hr{
 
 .annka-blue-no-shadow-btn{
     display: block;
-    background-color: #273746;
+    background-color: #2E86C1;
     color: #FFFFFF;
     border: 0px solid rgba(0,0,0,0);
     border-radius: 20px;
@@ -186,19 +186,19 @@ hr{
 
 .annka-blue-no-shadow-btn:hover{
     text-decoration: none;
-    background-color: #5D6D7E;
+    background-color: #273746;
     color:#FFFFFF;
 }
 
 .annka-blue-btn:hover{
     text-decoration: none;
-    background-color: #5D6D7E;
+    background-color: #273746;;
     color:#FFFFFF;
 }
 
 .annka-green-btn{
     display: block;
-    background-color: #145A32;
+    background-color: #28B463;
     color: #FFFFFF;
     border: 0px solid rgba(0,0,0,0);
     border-radius: 20px;
@@ -215,14 +215,14 @@ hr{
 }
 
 .annka-green-btn:hover{
-    background-color: #2Ecc71;
+    background-color: #145A32;
     color: #FFFFFF;
     text-decoration: none;
 }
 
 .annka-green-no-shadow-btn{
     display: block;
-    background-color: #145A32;
+    background-color: #28B463;
     color: #FFFFFF;
     border: 0px solid rgba(0,0,0,0);
     border-radius: 20px;
@@ -237,8 +237,18 @@ hr{
 
 .annka-green-no-shadow-btn:hover{
     text-decoration: none;
-    background-color: #2Ecc71;
+    background-color: #145A32;
     color:#FFFFFF;
+}
+
+.annka-mobile-hr{
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .annka-mobile-hr{
+        display: block;
+    }
 }
 
 .annka-main-content{
@@ -297,8 +307,10 @@ hr{
 
 .annka-input{
     min-width: 250px;
-    width: 100%;
+    width: 90%;
     max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
     height: 30px;
     border-bottom: 1px solid #D0D3D4;
     border-right: 0px solid #000000;
@@ -353,11 +365,15 @@ hr{
 }
 
 #home-whyannka-div{
-    background: url("./assets/images/bg1.jpg");
+    background: url("https://s3.eu-central-1.amazonaws.com/annkapublic/bg1.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment: fixed; 
+    background-color: #273746; 
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -365,11 +381,15 @@ hr{
 }
 
 #home-message-div{
-    background: url("./assets/images/bg1.jpg");
+    background: url("https://s3.eu-central-1.amazonaws.com/annkapublic/bg1.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-attachment: fixed;
+    background-color: #273746;
     padding-top: 20px;
     padding-bottom: 20px;
     width: 100%;
@@ -384,8 +404,12 @@ hr{
 
 .annka-fund-div{
     max-width: 600px;
+    min-width: 320px;
+    width:42%;
     background-color: #FFFFFF;
     margin-bottom: 60px;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .shadow {

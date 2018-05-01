@@ -2,6 +2,7 @@
     <div class="container">
         <div class="annka-login-div annka-center">
             <div class="annka-login-div-inner shadow annka-center">
+                <img src="../../../assets/images/logoblue.png" width="40" height="40" class="img-responsive annka-center">
                 <form class="form-horizontal"  [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
                     
                     <h4 class="text-center"><b>Login</b></h4>
@@ -39,13 +40,13 @@
                             placeholder="Password">
                         </div>
                         <br/>
-                        <button type="submit" class="annka-green-btn annka-center" [disabled]="!loginForm.valid">CONTINUE
+                        <button type="submit" class="annka-blue-btn annka-center" [disabled]="!loginForm.valid">CONTINUE
                             
                         </button>
                         <br/>
                         <h5 class="text-center"><a class="text-center" routerLink="/forgotpassword">Forgot Password?</a></h5>
                         <br/>
-                        <h5 class="text-center">Dont have an account? <a class="text-center" routerLink="/signup">Signup</a></h5>
+                        <h5 class="text-center">Dont have an account? <a style="text-decoration:underline;" class="text-center" routerLink="/signup"><b>Signup</b></a></h5>
                 </form>
             </div>
         </div>

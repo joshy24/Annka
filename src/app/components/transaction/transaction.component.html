@@ -1,7 +1,12 @@
-<div class="container">
+<div class="container">   
+    <br/>
+    <h3 class="annka-center text-center"><b>Pending Transactions</b> <a (click)="showMessage()"> <i  class="far fa-question-circle"></i></a></h3>
     <div class="row">
-         <br/>
-         <h3 class="annka-center text-center"><b>Pending Transactions</b> <a (click)="showMessage()"> <i  class="far fa-question-circle"></i></a></h3>
+        <div *ngIf="loading" class="loading" style="margin-top:150px;">
+            
+        </div>
+    </div>
+    <div class="row">
          <br/>
          <br/>
          <div *ngIf="transactions.length==0&&!loading">
@@ -9,6 +14,7 @@
             <br/>
             <h5 class="text-center"><a class="text-center" (click)="goBack()">Back</a></h5>
          </div>
+         
          <br/>
     </div>
     <div *ngIf="transactions&&transactions.length>0&&!loading" class="row">
@@ -27,10 +33,6 @@
     </div>
     <br/>
     <br/>
-</div>
-
-<div #loading *ngIf="loading" class="loading" style="margin-top:150px;">
-    
 </div>
 
 <message></message>

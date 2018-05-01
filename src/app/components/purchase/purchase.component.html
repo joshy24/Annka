@@ -1,58 +1,58 @@
 <div id="new-portfolio-div">
-  <div class="container">
-      <div class="row">
-        <br/>
-        <div>
-            <h3 class="annka-new-portfolio"><b>New Portfolio </b> <a (click)="openInvestmentMessage()"> <i  class="far fa-question-circle"></i></a></h3> 
-            <div *ngIf="user" class="purchase-wallet-div">
-                <h4><b>Wallet Balance - ₦{{currencyService.getAmount(user.account_balance)}}</b></h4>
-                <a class="annka-green-btn" routerLink="/account/fund">FUND ACCOUNT</a>
-            </div>
-        </div>
-        <div class="shadow annka-card" style="padding-bottom:20px;">
-            <h4 class="annka-green"><b>Step 1 - Give your portfolio a name</b></h4>
+    <div class="container">
+        <div class="row">
             <br/>
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
-                    <div class="annka-step-1-a">
-                        <div class="input-group annka-center">
-                            <input type="text" class="form-control" placeholder="name" aria-describedby="basic-addon1" value="{{portfolio.name}}" #portfolio_name>
+            <div>
+                <h3 class="annka-new-portfolio"><b>New Portfolio </b> <a (click)="openInvestmentMessage()"> <i  class="far fa-question-circle"></i></a></h3> 
+                <div *ngIf="user" class="purchase-wallet-div">
+                    <h4><b>Wallet Balance - ₦{{currencyService.getAmount(user.account_balance)}}</b></h4>
+                    <a class="annka-green-btn" routerLink="/account/fund">FUND ACCOUNT</a>
+                </div>
+            </div>
+            <div class="shadow annka-card" style="padding-bottom:20px;">
+                <h4 class="annka-green"><b>Step 1 - Give your portfolio a name</b></h4>
+                <br/>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="annka-step-1-a">
+                            <div class="input-group annka-center">
+                                <input type="text" class="form-control" placeholder="name" aria-describedby="basic-addon1" value="{{portfolio.name}}" #portfolio_name>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="annka-step-1-b">
+                            <h4 class="text-center"><b>Amount in Portfolio</b></h4>
+                            <h4 class="text-center">₦{{currencyService.getAmount(portfolio.amount)}}</h4>
                         </div>
-                    </div> 
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="annka-step-1-b">
-                        <h4 class="text-center"><b>Amount in Portfolio</b></h4>
-                        <h4 class="text-center">₦{{currencyService.getAmount(portfolio.amount)}}</h4>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-4 annka-step-1">
-                    <div class="annka-step-1-c">
-                        <h4 class="text-center"><b>Assets in Portfolio</b></h4>
-                        <h4 *ngIf="asset_codes==''" class="text-center">None</h4>
-                        <h4 *ngIf="asset_codes!=''" class="text-center">{{asset_codes}}</h4>
+                    <div class="col-md-4 col-sm-4 annka-step-1">
+                        <div class="annka-step-1-c">
+                            <h4 class="text-center"><b>Assets in Portfolio</b></h4>
+                            <h4 *ngIf="asset_codes==''" class="text-center">None</h4>
+                            <h4 *ngIf="asset_codes!=''" class="text-center">{{asset_codes}}</h4>
+                        </div>
                     </div>
+                </div>     
+            </div>
+            <div class="shadow annka-card" style="padding-bottom:20px;">
+                <h4 class="annka-green"><b>Step 2 - Add an Asset to your portfolio</b></h4>
+                <h3 class="annka-center text-center"><a style="margin-left:50px;" (click)="showSearch()"><i class="fas fa-search annka-inline"></i> Select Asset </a></h3>
+                
+                <br/>
+                <h3 class="text-center">Add {{currencyLong}} ({{currency}}) to your portfolio</h3>
+                <hr/>
+                <br/>
+                <h4 style="margin-left:20px;">Our Popular Packages</h4>         
+                <div class="price-item-div">
+                    <priceitem *ngFor="let price of currencyService.prices; let i = index" [currency]="currency" [price]="price" [ticker]="ticker" [loading]="loading" (click)="addAmount(price)"></priceitem>
                 </div>
-            </div>     
-        </div>
-        <div class="shadow annka-card" style="padding-bottom:20px;">
-            <h4 class="annka-green"><b>Step 2 - Add an Asset to your portfolio</b></h4>
-            <h3 class="annka-center text-center"><a style="margin-left:50px;" (click)="showSearch()"><i class="fas fa-search annka-inline"></i> Select Asset </a></h3>
-            
-            <br/>
-            <h3 class="text-center">Add {{currencyLong}} ({{currency}}) to your portfolio</h3>
-            <hr/>
-            <br/>
-            <h4 style="margin-left:20px;">Our Popular Packages</h4>         
-            <div class="price-item-div">
-                <priceitem *ngFor="let price of currencyService.prices; let i = index" [currency]="currency" [price]="price" [ticker]="ticker" [loading]="loading" (click)="addAmount(price)"></priceitem>
             </div>
         </div>
-      </div>
-      <div class="row">
-          <button class="annka-blue-btn annka-center submit-btn" (click)="submitPortfolio(portfolio_name.value)">Create Portfolio</button>
-      </div>
-  </div>
+        <div class="row">
+            <button class="annka-blue-btn annka-center submit-btn" (click)="submitPortfolio(portfolio_name.value)">Create Portfolio</button>
+        </div>
+    </div>
 </div>
 
 <div *ngIf="showError" class="annka-modal-div" id="login-loader-div">
@@ -62,32 +62,12 @@
         <hr style="width:300px;"/>
         <br/>
         <br/>
-        <h4 class="text-center">{{portfolioError.message}}</h4>
+        <h4 class="text-center" style="line-height:1.6em;">{{portfolioError.message}}</h4>
         <br/>
         <br/>
         <br/>
         <button *ngIf="portfolioError.action=='wallet'" class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="showFundWallet()">FUND WALLET</button>
         <button *ngIf="portfolioError.action=='assets'" class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="closeError()">CONTINUE</button>
-    </div>
-</div>
-
-<div *ngIf="showPurchaseMessage" class="annka-modal-div" id="login-loader-div">
-    <div class="innder-annka-modal-div">
-        <a class="text-right"><h1 class="close-text" (click)="closePurchaseMessage()">&times;</h1></a>
-        <h2 class="text-center">Create Portfolio</h2>
-        <hr style="width:300px;"/>
-        <br/>
-        <br/>
-        <h4 class="text-center">Estimated Value of Portfolio</h4>
-        <h3 class="text-center annka-green">₦{{currencyService.getAmount(currencyService.getNairaAnnkaRate(portfolio.amount))}}</h3>
-        <br/>  
-        <br/>
-        <h4 class="text-center annka-center" style="line-height:1.8em;">Purchasing Digital Assets involves a lot of tedious steps and spending a considerable amount of money just to make a simple transaction go through. Annka removes that complexity and reduces cost significantly with you needing just your credit card and an email address. <br/> Because we are bearing the burding and cost of purchasing and maintaining digital assets on your behalf we charge you a blockchain fee and a commision when creating your portfolio.</h4>
-        <br/>
-        <br/>
-        
-        <br/>
-        <button class="annka-blue-no-shadow-btn annka-center submit-btn" (click)="continuePurchase()">CONTINUE</button>
     </div>
 </div>
 
